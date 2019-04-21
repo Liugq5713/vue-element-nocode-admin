@@ -8,7 +8,7 @@
     </el-main>
     <el-aside width="400px">
       <el-card class="box-card">
-        <!-- <Asset/> -->
+        <Asset/>
       </el-card>
     </el-aside>
   </el-container>

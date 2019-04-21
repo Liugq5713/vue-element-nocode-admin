@@ -1,5 +1,3 @@
-<template></template>
-
 <script>
 import Radio from "./FormItem/Radio";
 export default {
@@ -19,11 +17,10 @@ export default {
             {
               title: "Radio 单选框组",
               code: `
-                <el-radio-group v-model="radio">
                     <el-radio :label="3">备选项</el-radio>
                     <el-radio :label="6">备选项</el-radio>
                     <el-radio :label="9">备选项</el-radio>
-                 </el-radio-group>`
+                 `
             }
           ]
         },
@@ -53,18 +50,20 @@ export default {
     }
   },
   render() {
-    return (
-      <el-collapse v-model="activeNames" >
-    <el-collapse-item v-for="(form,idx) in forms" :key="form.title" :title="form.title" :name="idx">
-      <div v-for="(spec,idx) in form.specs" :key="idx">
-        <div>
-          <div v-html="spec.code"></div>
-          <el-radio v-model="radio" label="1">备选项</el-radio>
-        </div>
-      </div>
-    </el-collapse-item>
-  </el-collapse>
-    )
+    const elCollapseItems = Object.keys(this.forms).map((type, idx) => {
+      return (
+        <el-collapse-item
+          title={this.forms[type].title}
+          name={this.forms[type].idx}
+        >
+          <div>
+            <div v-html="spec.code" />
+            <Radio />
+          </div>
+        </el-collapse-item>
+      );
+    });
+    return <el-collapse>{elCollapseItems}</el-collapse>;
   }
 };
 </script>
