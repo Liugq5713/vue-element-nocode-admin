@@ -1,18 +1,11 @@
-<template>
-  <el-collapse v-model="activeNames" @change="handleChange">
-    <el-collapse-item v-for="(form,idx) in forms" :key="form.title" :title="form.title" :name="idx">
-      <div v-for="(spec,idx) in form.specs" :key="idx">
-        <div>
-          <div v-html="spec.code"></div>
-          <el-radio v-model="radio" label="1">备选项</el-radio>
-        </div>
-      </div>
-    </el-collapse-item>
-  </el-collapse>
-</template>
+<template></template>
 
 <script>
+import Radio from "./FormItem/Radio";
 export default {
+  components: {
+    Radio
+  },
   data() {
     return {
       forms: {
@@ -21,10 +14,7 @@ export default {
           specs: [
             {
               title: "基础用法",
-              tempage: `
-                <el-radio v-model="radio" label="1">备选项</el-radio>
-                <el-radio v-model="radio" label="2">备选项</el-radio>`,
-              code: Vue.compile(this.tempage)
+              props: {}
             },
             {
               title: "Radio 单选框组",
@@ -61,6 +51,20 @@ export default {
     handleChange(val) {
       console.log(val);
     }
+  },
+  render() {
+    return (
+      <el-collapse v-model="activeNames" >
+    <el-collapse-item v-for="(form,idx) in forms" :key="form.title" :title="form.title" :name="idx">
+      <div v-for="(spec,idx) in form.specs" :key="idx">
+        <div>
+          <div v-html="spec.code"></div>
+          <el-radio v-model="radio" label="1">备选项</el-radio>
+        </div>
+      </div>
+    </el-collapse-item>
+  </el-collapse>
+    )
   }
 };
 </script>
