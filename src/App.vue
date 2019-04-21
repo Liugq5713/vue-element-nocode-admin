@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <el-container>
+    <el-main>
+      <el-card class="box-card">
+        表单编辑区
+        <test/>
+      </el-card>
+    </el-main>
+    <el-aside width="400px">
+      <el-card class="box-card">
+        <Asset/>
+      </el-card>
+    </el-aside>
+  </el-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Asset from "./components/Asset";
+import test from "./components/test";
 export default {
-  name: 'app',
   components: {
-    HelloWorld
+    Asset,
+    test
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
