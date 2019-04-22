@@ -8,14 +8,9 @@
         :clone="cloneFormItem"
       >
         <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
-          <el-row>
-            <el-col :span="5">
-              <el-button size="small" style="margin-left: 10px" icon="el-icon-rank"></el-button>
-            </el-col>
-            <el-col :span="18">
-              <component v-bind:is="element.type"></component>
-            </el-col>
-          </el-row>
+          <el-button size="small" style="margin:10px;padding: 10px" plain>
+            <component v-bind:is="element.type"></component>
+          </el-button>
         </div>
       </draggable>
     </el-collapse-item>

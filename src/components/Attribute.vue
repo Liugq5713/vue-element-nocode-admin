@@ -1,5 +1,5 @@
 <template>
-  <el-card class="box-card">
+  <div>
     <div>
       <span>label</span>
       <el-input
@@ -19,7 +19,7 @@
       ></el-input>
     </div>
     <el-checkbox v-model="formItemAttribute.required" label="true" @change="setFormItemAttribute">必填</el-checkbox>
-  </el-card>
+  </div>
 </template>
 
 <script>
@@ -39,7 +39,6 @@ export default {
   },
   watch: {
     formItem(val) {
-      console.log(" val", val);
       if (val.added) {
         this.formItemOpt = "add";
         this.formItemIndex = val.added.newIndex;
