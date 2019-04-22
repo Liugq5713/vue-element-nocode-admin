@@ -7,7 +7,7 @@ set -e
 npm run build
 
 # 进入生成的文件夹
-
+cd dist
 #创建.nojekyll 防止Github Pages build错误
 touch .nojekyll
 
