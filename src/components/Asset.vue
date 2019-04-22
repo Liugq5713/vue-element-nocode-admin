@@ -1,69 +1,78 @@
+<template>
+  <el-collapse>
+    <el-collapse-item v-for="(form,idx) in forms" :title="form.title" :key="idx" :name="idx">
+      <draggable
+        class="dragArea list-group"
+        :list="form.specs"
+        group="{name:'formItems', pull: 'clone', put: false }"
+        :clone="cloneFormItem"
+      >
+        <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
+          {{ element.type }}
+          <Radio/>
+        </div>
+      </draggable>
+    </el-collapse-item>
+  </el-collapse>
+</template>
+
+
 <script>
 import Radio from "./FormItem/Radio";
+import draggable from "vuedraggable";
 export default {
   components: {
-    Radio
+    Radio,
+    draggable
   },
   data() {
     return {
-      forms: {
-        radio: {
+      forms: [
+        {
+          type: "radio",
           title: "Radio 单选框",
           specs: [
             {
+              type: "radio_base",
               title: "基础用法",
               props: {}
             },
             {
+              type: "radio_group",
               title: "Radio 单选框组",
-              code: `
-                    <el-radio :label="3">备选项</el-radio>
-                    <el-radio :label="6">备选项</el-radio>
-                    <el-radio :label="9">备选项</el-radio>
-                 `
+              props: {}
             }
           ]
         },
-        checkbox: {
+        {
+          type: "checkbox",
           title: "Checkbox 多选框",
+          specs: [{ title: "Input 输入框", name: "cat 9", id: 9 }]
+        },
+        {
+          type: "input",
+          title: "Input输入框",
           specs: [{ title: "Input 输入框" }]
         },
-        input: {
-          title: "Input 输入框",
-          specs: [{ title: "Input 输入框" }]
-        },
-        select: {
+        {
+          type: "select",
           title: "Select 选择器",
           specs: [{ title: "Input 输入框" }]
         },
-        switch: {
-          title: "Switch 开关",
+        {
+          type: "switch",
+          title: "Switch开关",
           specs: [{ title: "Input 输入框" }]
         }
-      },
+      ],
       activeNames: ["1"]
     };
   },
   methods: {
-    handleChange(val) {
-      console.log(val);
+    cloneFormItem(val) {
+      console.log("val", val);
+      return { ...val };
     }
-  },
-  render() {
-    const elCollapseItems = Object.keys(this.forms).map((type, idx) => {
-      return (
-        <el-collapse-item
-          title={this.forms[type].title}
-          name={this.forms[type].idx}
-        >
-          <div>
-            <div v-html="spec.code" />
-            <Radio />
-          </div>
-        </el-collapse-item>
-      );
-    });
-    return <el-collapse>{elCollapseItems}</el-collapse>;
   }
 };
 </script>

@@ -8,7 +8,7 @@ export default {
         `
     };
   },
-  render(h) {
+  render() {
     return (
       <div>
         <el-radio value="radio" label="1">
