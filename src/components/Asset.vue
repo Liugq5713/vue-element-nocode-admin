@@ -1,15 +1,21 @@
 <template>
   <el-collapse>
-    <el-collapse-item v-for="(form,idx) in forms" :title="form.title" :key="idx" :name="idx">
+    <el-collapse-item v-for="(form,idx) in forms" :title="form.title" :key="idx" :name="form.type">
       <draggable
         class="dragArea list-group"
         :list="form.specs"
-        group="{name:'formItems', pull: 'clone', put: false }"
+        :group="{ name: 'formItems', pull: 'clone', put: false }"
         :clone="cloneFormItem"
       >
         <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
-          {{ element.type }}
-          <Radio/>
+          <el-row>
+            <el-col :span="5">
+              <el-button size="small" style="margin-left: 10px" icon="el-icon-rank"></el-button>
+            </el-col>
+            <el-col :span="18">
+              <component v-bind:is="element.type"></component>
+            </el-col>
+          </el-row>
         </div>
       </draggable>
     </el-collapse-item>
@@ -19,58 +25,71 @@
 
 <script>
 import Radio from "./FormItem/Radio";
+import Input from "./FormItem/Input";
 import draggable from "vuedraggable";
+
+const defaultProps = {
+  label: "",
+  value: "",
+  isRequired: ""
+};
 export default {
   components: {
     Radio,
+    Input,
     draggable
   },
   data() {
     return {
       forms: [
         {
-          type: "radio",
+          type: "Radio",
           title: "Radio 单选框",
           specs: [
             {
-              type: "radio_base",
+              type: "Radio",
               title: "基础用法",
-              props: {}
+              props: { ...defaultProps }
             },
             {
-              type: "radio_group",
+              type: "Radio",
               title: "Radio 单选框组",
-              props: {}
+              props: { ...defaultProps }
             }
           ]
         },
         {
-          type: "checkbox",
+          type: "Checkbox",
           title: "Checkbox 多选框",
           specs: [{ title: "Input 输入框", name: "cat 9", id: 9 }]
         },
         {
-          type: "input",
+          type: "Input",
           title: "Input输入框",
-          specs: [{ title: "Input 输入框" }]
+          specs: [
+            {
+              type: "Input",
+              title: "Input 输入框",
+              props: { ...defaultProps }
+            }
+          ]
         },
         {
-          type: "select",
+          type: "Select",
           title: "Select 选择器",
           specs: [{ title: "Input 输入框" }]
         },
         {
-          type: "switch",
+          type: "Switch",
           title: "Switch开关",
           specs: [{ title: "Input 输入框" }]
         }
       ],
-      activeNames: ["1"]
+      activeNames: ["Radio"]
     };
   },
   methods: {
     cloneFormItem(val) {
-      console.log("val", val);
       return { ...val };
     }
   }

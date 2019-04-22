@@ -2,11 +2,7 @@
 <script>
 export default {
   data() {
-    return {
-      temp: `
-       
-        `
-    };
+    return {};
   },
   render() {
     return (
