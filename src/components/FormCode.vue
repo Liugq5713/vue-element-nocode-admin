@@ -1,9 +1,12 @@
 <template>
-  <code class="code">
-    <pre>
+  <el-card class="box-card">
+    <el-button size="mini" type="primary" @click="copy">复制</el-button>
+    <code class="code">
+      <pre ref="srcCode">
     {{srcCode}}
     </pre>
-  </code>
+    </code>
+  </el-card>
 </template>
 
 <script>
@@ -56,6 +59,24 @@ export default {
     this.genFormCode();
   },
   methods: {
+    copy() {
+      const clipboardDiv = this.$refs["srcCode"];
+      clipboardDiv.focus();
+      window.getSelection().removeAllRanges();
+      var range = document.createRange();
+      range.setStartBefore(clipboardDiv.firstChild);
+      range.setEndAfter(clipboardDiv.lastChild);
+      window.getSelection().addRange(range);
+      try {
+        if (document.execCommand("copy")) {
+          this.$message.success("已复制到剪贴板");
+        } else {
+          this.$message.error("未能复制到剪贴板，请全选后右键复制");
+        }
+      } catch (err) {
+        this.$message.error("未能复制到剪贴板，请全选后右键复制");
+      }
+    },
     genSelectFormItem,
     genFormCode() {
       this.srcCode = this.genFormWrapper(
@@ -66,9 +87,9 @@ export default {
     },
     genFormWrapper(ref, formObj, fromItemsCode) {
       return `
-      <el-form ref="${ref}" :model="${formObj}" label-width="80px">
+<el-form ref="${ref}" :model="${formObj}" label-width="80px">
         ${fromItemsCode}
-      </el-form>`;
+</el-form>`;
     },
     genFormValidateCode() {},
     genFormCommonCode() {
