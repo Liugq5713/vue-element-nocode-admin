@@ -19,8 +19,6 @@
 
 
 <script>
-import Radio from "./FormItem/Radio";
-import Input from "./FormItem/Input";
 import draggable from "vuedraggable";
 
 const defaultProps = {
@@ -30,54 +28,70 @@ const defaultProps = {
 };
 export default {
   components: {
-    Radio,
-    Input,
     draggable
   },
   data() {
     return {
       forms: [
         {
-          type: "Radio",
+          type: "ERadio",
           title: "Radio 单选框",
           specs: [
             {
-              type: "Radio",
+              type: "ERadio",
               title: "基础用法",
               props: { ...defaultProps }
             },
             {
-              type: "Radio",
+              type: "ERadio",
               title: "Radio 单选框组",
               props: { ...defaultProps }
             }
           ]
         },
         {
-          type: "Checkbox",
+          type: "ECheckbox",
           title: "Checkbox 多选框",
-          specs: [{ title: "Input 输入框", name: "cat 9", id: 9 }]
+          specs: [
+            {
+              type: "ECheckbox",
+              title: "Checkbox 单选框组",
+              props: { ...defaultProps }
+            }
+          ]
         },
         {
-          type: "Input",
+          type: "EInput",
           title: "Input输入框",
           specs: [
             {
-              type: "Input",
+              type: "EInput",
               title: "Input 输入框",
               props: { ...defaultProps }
             }
           ]
         },
         {
-          type: "Select",
+          type: "ESelect",
           title: "Select 选择器",
-          specs: [{ title: "Input 输入框" }]
+          specs: [
+            {
+              type: "ESelect",
+              title: "Select 单选框组",
+              props: { ...defaultProps }
+            }
+          ]
         },
         {
-          type: "Switch",
+          type: "ESwitch",
           title: "Switch开关",
-          specs: [{ title: "Input 输入框" }]
+          specs: [
+            {
+              type: "ESwitch",
+              title: "Switch 单选框组",
+              props: { ...defaultProps }
+            }
+          ]
         }
       ],
       activeNames: ["Radio"]

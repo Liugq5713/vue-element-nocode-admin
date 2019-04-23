@@ -48,16 +48,12 @@
 import draggable from "vuedraggable";
 import Asset from "./Asset";
 import Attribute from "./Attribute";
-import Radio from "./FormItem/Radio";
-import Input from "./FormItem/Input";
 
 export default {
   components: {
     Asset,
     Attribute,
-    draggable,
-    Radio,
-    Input
+    draggable
   },
   data() {
     return {

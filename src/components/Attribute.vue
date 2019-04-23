@@ -1,24 +1,28 @@
 <template>
   <div>
-    <div>
-      <span>label</span>
-      <el-input
-        v-model.trim="formItemAttribute.label"
-        placeholder="请输入"
-        style="width:200px"
-        @change="setFormItemAttribute()"
-      ></el-input>
-    </div>
-    <div>
-      <span>value</span>
-      <el-input
-        v-model.trim="formItemAttribute.value"
-        placeholder="请输入"
-        style="width:200px"
-        @change="setFormItemAttribute"
-      ></el-input>
-    </div>
-    <el-checkbox v-model="formItemAttribute.required" label="true" @change="setFormItemAttribute">必填</el-checkbox>
+    <el-form :model="formItemAttribute" label-width="70px">
+      <el-form-item label="label" style="width: 90%">
+        <el-input
+          v-model.trim="formItemAttribute.label"
+          placeholder="请输入label"
+          @change="setFormItemAttribute()"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="value" style="width: 90%">
+        <el-input
+          v-model.trim="formItemAttribute.value"
+          placeholder="请输入value"
+          @change="setFormItemAttribute()"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="数据格式" style="width: 90%">
+        <el-checkbox
+          v-model="formItemAttribute.required"
+          label="true"
+          @change="setFormItemAttribute"
+        >必填</el-checkbox>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
