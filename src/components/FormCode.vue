@@ -1,6 +1,8 @@
 <template>
   <el-card class="box-card">
-    <el-button size="mini" type="primary" @click="copy">复制</el-button>
+    <div slot="header" class="clearfix">
+      <el-button size="mini" type="primary" @click="copy">复制代码</el-button>
+    </div>
     <code class="code">
       <pre ref="srcCode">
     {{srcCode}}
@@ -65,9 +67,12 @@ export default {
     },
     genFormWrapper(ref, formObj, fromItemsCode) {
       return `
+<template>
 <el-form :model="${formObj}" label-width="80px">
   ${fromItemsCode}
-</el-form>`;
+</el-form>
+</template>
+`;
     },
     genFormValidateCode() {},
     genFormCommonCode() {
