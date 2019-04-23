@@ -4,9 +4,11 @@
       <el-button size="mini" type="primary" @click="copy">复制代码</el-button>
     </div>
     <code class="code">
-      <pre ref="srcCode">
+      <div style="overflow:auto">
+        <pre ref="srcCode">
     {{srcCode}}
     </pre>
+      </div>
     </code>
   </el-card>
 </template>
