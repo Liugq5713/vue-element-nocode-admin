@@ -1,20 +1,30 @@
 <template>
-  <el-collapse v-model="activeName" accordion>
-    <el-collapse-item v-for="(form,idx) in forms" :title="form.title" :key="idx" :name="form.type">
-      <draggable
-        class="dragArea list-group"
-        :list="form.specs"
-        :group="{ name: 'formItems', pull: 'clone', put: false }"
-        :clone="cloneFormItem"
+  <el-card class="box-card" style="margin-top:10px">
+    <div slot="header" class="clearfix">
+      <span>表单元素资源</span>
+    </div>
+    <el-collapse v-model="activeName" accordion>
+      <el-collapse-item
+        v-for="(form,idx) in forms"
+        :title="form.title"
+        :key="idx"
+        :name="form.type"
       >
-        <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
-          <el-button size="small" style="margin:10px;padding: 10px" plain>
-            <component v-bind:is="element.type"></component>
-          </el-button>
-        </div>
-      </draggable>
-    </el-collapse-item>
-  </el-collapse>
+        <draggable
+          class="dragArea list-group"
+          :list="form.specs"
+          :group="{ name: 'formItems', pull: 'clone', put: false }"
+          :clone="cloneFormItem"
+        >
+          <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
+            <el-button size="small" style="margin:10px;padding: 10px" plain>
+              <component v-bind:is="element.type"></component>
+            </el-button>
+          </div>
+        </draggable>
+      </el-collapse-item>
+    </el-collapse>
+  </el-card>
 </template>
 
 
@@ -99,7 +109,6 @@ export default {
   },
   methods: {
     cloneFormItem(val) {
-      console.log('clone val', val)
       return { ...val };
     }
   }

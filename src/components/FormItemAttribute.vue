@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <el-card class="box-card">
+    <div slot="header" class="clearfix">
+      <span>表单元素属性编辑</span>
+    </div>
     <el-form :model="formItemAttribute" label-width="70px">
       <el-form-item label="label" style="width: 90%">
         <el-input
@@ -23,7 +26,7 @@
         >必填</el-checkbox>
       </el-form-item>
     </el-form>
-  </div>
+  </el-card>
 </template>
 
 <script>

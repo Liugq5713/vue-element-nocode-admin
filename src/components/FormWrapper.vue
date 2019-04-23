@@ -1,6 +1,7 @@
 <template>
   <el-container>
     <el-main>
+      <FormAttribute style="margin-bottom:10px"/>
       <el-card class="box-card">
         <!-- background-color:rgb(190, 191, 190) -->
         <div style="width:100%;">
@@ -25,31 +26,23 @@
       </el-card>
     </el-main>
     <el-aside width="500px">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span>表单元素属性编辑</span>
-        </div>
-        <Attribute :formItem="formItemAttribute" @change="setFormItemAttribute"/>
-      </el-card>
-      <el-card class="box-card" style="margin-top:10px">
-        <div slot="header" class="clearfix">
-          <span>表单元素资源</span>
-        </div>
-        <Asset/>
-      </el-card>
+      <FormItemAttribute :formItem="formItemAttribute" @change="setFormItemAttribute"/>
+      <Asset/>
     </el-aside>
   </el-container>
 </template>
 
 <script>
 import draggable from "vuedraggable";
+import FormAttribute from "./FormAttribute";
+import FormItemAttribute from "./FormItemAttribute";
 import Asset from "./Asset";
-import Attribute from "./Attribute";
 
 export default {
   components: {
     Asset,
-    Attribute,
+    FormAttribute,
+    FormItemAttribute,
     draggable
   },
   data() {
