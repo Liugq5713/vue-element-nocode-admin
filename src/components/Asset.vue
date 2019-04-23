@@ -1,5 +1,5 @@
 <template>
-  <el-collapse>
+  <el-collapse v-model="activeName" accordion>
     <el-collapse-item v-for="(form,idx) in forms" :title="form.title" :key="idx" :name="form.type">
       <draggable
         class="dragArea list-group"
@@ -94,7 +94,7 @@ export default {
           ]
         }
       ],
-      activeNames: ["Radio"]
+      activeName: ["ERadio"]
     };
   },
   methods: {
