@@ -51,11 +51,6 @@ export default {
               type: "ERadio",
               title: "基础用法",
               props: { ...defaultProps }
-            },
-            {
-              type: "ERadio",
-              title: "Radio 单选框组",
-              props: { ...defaultProps }
             }
           ]
         },

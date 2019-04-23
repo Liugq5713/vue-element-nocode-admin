@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-main>
-      <FormAttribute style="margin-bottom:10px"/>
+      <FormAttribute style="margin-bottom:10px" @change="setFormAttribute"/>
       <el-card class="box-card">
         <!-- background-color:rgb(190, 191, 190) -->
         <div style="width:100%;">
@@ -9,14 +9,14 @@
             <draggable
               class="dragArea list-group"
               :options="{group: 'formItems'}"
-              v-bind:class="{ bigDragArea: list.length===0 }"
-              :list="list"
+              v-bind:class="{ bigDragArea: formItems.length===0 }"
+              :list="formItems"
               @change="genFormItem"
             >
-              <div class="list-group-item" v-for="(element,idx) in list" :key="idx">
-                <div @click="genFormItemByClick(idx,element)">
-                  <el-form-item :label="element&&element.props.label||'表单label'">
-                    <component v-if="element" v-bind:is="element.type"></component>
+              <div class="list-group-item" v-for="(formItem,idx) in formItems" :key="idx">
+                <div @click="genFormItemByClick(idx,formItem)">
+                  <el-form-item :label="formItem&&formItem.props.label||'表单label'">
+                    <component v-if="formItem" v-bind:is="formItem.type"></component>
                   </el-form-item>
                 </div>
               </div>
@@ -24,6 +24,7 @@
           </el-form>
         </div>
       </el-card>
+      <FormCode :form="form" :formItems="formItems"/>
     </el-main>
     <el-aside width="500px">
       <FormItemAttribute :formItem="formItemAttribute" @change="setFormItemAttribute"/>
@@ -37,22 +38,21 @@ import draggable from "vuedraggable";
 import FormAttribute from "./FormAttribute";
 import FormItemAttribute from "./FormItemAttribute";
 import Asset from "./Asset";
+import FormCode from "./FormCode";
 
 export default {
   components: {
     Asset,
     FormAttribute,
     FormItemAttribute,
+    FormCode,
     draggable
   },
   data() {
     return {
-      form: {
-        isValidate: "",
-        needConfirm: ""
-      },
+      form: {},
       formItemAttribute: {},
-      list: []
+      formItems: []
     };
   },
   methods: {
@@ -64,16 +64,19 @@ export default {
     genFormItemByClick(idx, element) {
       this.formItemAttribute = { type: "click", idx, element };
     },
+    setFormAttribute(val) {
+      this.form = val;
+    },
     setFormItemAttribute(type, idx, props) {
       if (type === "add") {
-        const formItem = this.list[idx];
+        const formItem = this.formItems[idx];
         formItem.props = {
           ...formItem.props,
           ...props
         };
       }
       if (type === "click") {
-        const formItem = this.list[idx];
+        const formItem = this.formItems[idx];
         formItem.props = {
           ...formItem.props,
           ...props
@@ -84,9 +87,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bigDragArea {
-  height: 400px;
+  height: 300px;
 }
 
 .bigDragArea::after {
@@ -96,5 +99,9 @@ export default {
   color: #858585;
   font-weight: 300;
   text-align: center;
+}
+
+.dragArea {
+  min-height: 300px;
 }
 </style>

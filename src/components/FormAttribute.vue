@@ -22,10 +22,18 @@ export default {
     return {
       form: {
         formObj: "",
-        name: "做了个表",
+        ref: "",
         is_validated: true
       }
     };
+  },
+  watch: {
+    form: {
+      handler: function(val) {
+        this.$emit("change", val);
+      },
+      deep: true
+    }
   }
 };
 </script>
