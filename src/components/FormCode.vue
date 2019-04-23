@@ -32,18 +32,20 @@ export default {
       console.log("code val", val);
       this.genFormCode();
     },
-    formItems(val) {
-      this.fromItemsCode = val
-        .map(item => {
-          return genSelectFormItem(
-            this.formObj,
-            item.props.label,
-            item.props.value
-          );
-        })
-        .join("\n");
-      console.log("this.fromItems ", this.fromItems);
-      this.genFormCode();
+    formItems: {
+      handler(val) {
+        this.fromItemsCode = val
+          .map(item => {
+            return genSelectFormItem(
+              this.formObj,
+              item.props.label,
+              item.props.value
+            );
+          })
+          .join("\n");
+        this.genFormCode();
+      },
+      deep: true
     }
   },
 
