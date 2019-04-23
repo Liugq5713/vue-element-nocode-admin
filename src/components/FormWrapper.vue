@@ -7,18 +7,15 @@
           <el-form :model="form" label-width="100px">
             <draggable
               class="dragArea list-group"
-              group="formItems"
-              v-model="list"
+              :options="{group: 'formItems'}"
+              v-bind:class="{ bigDragArea: list.length===0 }"
+              :list="list"
               @change="genFormItem"
             >
-              <div
-                v-if="list.length===0"
-                style="height:200px;font-size:30px;color:#858585;text-align:center"
-              >请将表单元素拖拽此处</div>
               <div class="list-group-item" v-for="(element,idx) in list" :key="idx">
                 <div @click="genFormItemByClick(idx,element)">
-                  <el-form-item :label="element.props.label||'表单label'">
-                    <component v-bind:is="element.type"></component>
+                  <el-form-item :label="element&&element.props.label||'表单label'">
+                    <component v-if="element" v-bind:is="element.type"></component>
                   </el-form-item>
                 </div>
               </div>
@@ -67,7 +64,9 @@ export default {
   },
   methods: {
     genFormItem(val) {
-      this.formItemAttribute = val;
+      if (val.added) {
+        this.formItemAttribute = val;
+      }
     },
     genFormItemByClick(idx, element) {
       this.formItemAttribute = { type: "click", idx, element };
@@ -91,3 +90,18 @@ export default {
   }
 };
 </script>
+
+<style>
+.bigDragArea {
+  height: 400px;
+}
+
+.bigDragArea::after {
+  content: "请将表单元素拖拽此处";
+  height: 200px;
+  font-size: 30px;
+  color: #858585;
+  font-weight: 300;
+  text-align: center;
+}
+</style>

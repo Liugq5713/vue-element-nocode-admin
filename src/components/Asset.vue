@@ -99,6 +99,7 @@ export default {
   },
   methods: {
     cloneFormItem(val) {
+      console.log('clone val', val)
       return { ...val };
     }
   }
