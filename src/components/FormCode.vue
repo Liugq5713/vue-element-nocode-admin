@@ -38,6 +38,12 @@ export default {
       handler(val) {
         this.refCode = val.ref;
         this.formObj = val.formObj;
+        this.fromItemsCode = this.formItems
+          .map(item => {
+            const func = genFormItemCode(item.type);
+            return func(this.formObj, item.props.label, item.props.value);
+          })
+          .join("\n");
         this.genFormCode();
       },
       deep: true

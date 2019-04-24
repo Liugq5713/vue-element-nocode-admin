@@ -6,7 +6,7 @@
     <el-main>
       <FormAttribute style="margin-bottom:10px" @change="setFormAttribute"/>
       <el-card class="box-card">
-        <el-row>
+        <el-row :gutter="20">
           <el-col :span="16">
             <!-- background-color:rgb(190, 191, 190) -->
             <div style="width:100%;">
@@ -19,7 +19,10 @@
                   @change="genFormItem"
                 >
                   <div class="list-group-item" v-for="(formItem,idx) in formItems" :key="idx">
-                    <div @click="genFormItemByClick(idx,formItem)">
+                    <div
+                      @click="genFormItemByClick(idx,formItem)"
+                      :class="{selected:!(idx-clickedIndex)}"
+                    >
                       <el-form-item :label="formItem&&formItem.props.label||'表单label'">
                         <component v-if="formItem" v-bind:is="formItem.type"></component>
                       </el-form-item>
@@ -58,6 +61,7 @@ export default {
   },
   data() {
     return {
+      clickedIndex: -1,
       form: {},
       formItemAttribute: {},
       formItems: []
@@ -66,10 +70,12 @@ export default {
   methods: {
     genFormItem(val) {
       if (val.added) {
+        this.clickedIndex = val.added.newIndex;
         this.formItemAttribute = val;
       }
     },
     genFormItemByClick(idx, element) {
+      this.clickedIndex = idx;
       this.formItemAttribute = { type: "click", idx, element };
     },
     setFormAttribute(val) {
@@ -111,5 +117,11 @@ export default {
 
 .dragArea {
   min-height: 300px;
+}
+
+.selected {
+  background-color: rgb(253, 247, 247);
+  border: #f8d2d2 solid 1px;
+  border-radius: 3%;
 }
 </style>
