@@ -110,13 +110,13 @@ export default {
         }`
     },
     genScriptDataRules(formObj,formItems){
-      const formdata= formItems
+      const formdata= formItems.filter(item=>{
+        return item.props.required
+      })
           .map(item => {
-            if(item.props.required){
               return `${item.props.value}: [
                 { required: true, message: '${item.props.label}必填', trigger: 'change' }
           ],`
-            }
           }).join(',\n          ')
   return `rules:{
           ${formdata}

@@ -58,6 +58,7 @@ export default {
       if (val.type === "click") {
         this.formItemOpt = "click";
         this.formItemIndex = val.idx;
+        this.formItemAttribute = { ...val.element.props };
       }
     }
   },
