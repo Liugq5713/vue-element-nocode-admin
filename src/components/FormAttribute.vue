@@ -42,7 +42,6 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-
         this.$emit("change", {...val,ref:val.validated&&val.ref});
       },
       deep: true,

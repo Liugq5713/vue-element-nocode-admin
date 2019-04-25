@@ -115,6 +115,13 @@ export default {
   text-align: center;
 }
 
+
+.el-form-item {
+  margin:4px 0;
+}
+
+
+
 .dragArea {
   min-height: 300px;
 }
