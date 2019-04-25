@@ -3,27 +3,27 @@
     <div slot="header" class="clearfix">
       <span>表单元素属性编辑</span>
     </div>
-    <el-form :model="formItemAttribute" label-width="70px">
-      <el-form-item label="label" style="width: 90%">
+    <el-form :model="formItemAttribute">
+      <el-form-item>
         <el-input
           v-model.trim="formItemAttribute.label"
           placeholder="请输入label"
           @change="setFormItemAttribute()"
         ></el-input>
       </el-form-item>
-      <el-form-item label="value" style="width: 90%">
+      <el-form-item>
         <el-input
           v-model.trim="formItemAttribute.value"
           placeholder="请输入value"
           @change="setFormItemAttribute()"
         ></el-input>
       </el-form-item>
-      <el-form-item label="数据格式" style="width: 90%">
+      <el-form-item>
         <el-checkbox
           v-model="formItemAttribute.required"
           label="true"
           @change="setFormItemAttribute"
-        >必填</el-checkbox>
+        >是否必填</el-checkbox>
       </el-form-item>
     </el-form>
   </el-card>

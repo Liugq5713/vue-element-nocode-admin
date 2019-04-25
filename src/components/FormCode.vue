@@ -34,7 +34,7 @@ export default {
       dataFormData:{},
       dataFormRules:{},
       submitMethods:'',
-      is_validated:false
+      validated:false
     };
   },
   watch: {
@@ -57,20 +57,23 @@ export default {
   methods: {
     genFormItemCode,
     genVueFile(form,formItems) {
-          console.log('form', form)
           const data = {
             ref:form.ref,
             formObj:form.formObj,
-            is_validated:form.is_validated,
+            method:form.method,
+            validated:form.validated,
+            confirmed:form.confirmed,
             formItems:formItems
           }
       this.srcCode = this.genVueFileWrapper(data);
     },
-    genVueFileWrapper({formObj,is_validated,formItems}={}) {
+    genVueFileWrapper({formObj,validated,ref,method,confirmed,formItems}={}) {
       return `
 <template>
-<el-form :model="${formObj}"  label-width="80px">
+<el-form :model="${formObj}" ${this.genFormRef(validated,ref)} label-width="80px">
   ${this.genFormItemsCode(formObj,formItems)}
+  ${this.genFormItemUpsertButton(validated,ref,method)}
+  
 </el-form>
 </template>
 <script>
@@ -78,11 +81,11 @@ export default {
     data() {
       return {
         ${this.genScriptDataFormData(formObj,formItems)},
-        ${is_validated?this.genScriptDataRules(formObj,formItems):''}
+        ${validated?this.genScriptDataRules(formObj,formItems):''}
       }
     },
     methods: {
-
+      ${this.genScriptMethodSubmit(validated,confirmed,formObj,method)}
     }
   }
 <\/script>
@@ -93,7 +96,7 @@ export default {
   return formItems
           .map(item => {
             const func = genFormItemCode(item.type);
-            return func(this.formObj, item.props.label, item.props.value);
+            return func(formObj, item.props.label, item.props.value);
           })
           .join("\n");
     },
@@ -119,41 +122,90 @@ export default {
           ${formdata}
         }`
     },
-    genScriptMethodSubmit(){
-
+    genScriptMethodSubmit(validated,confirmed,formObj,method){
+      if(confirmed&&validated){
+        return `${method}(formName) {
+          this.$refs[formName].validate((valid) => {
+            if (valid) {
+               this.$confirm('此操作将永久删除此项, 是否继续?', '提示',
+                {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+                  }).then(await () => {
+                      await ${method}(this.${formObj})
+                      this.$message.success('创建成功')
+                  }).catch(() => {
+                    this.$message({
+                      type: 'info',
+                      message: '已取消删除'
+                    });
+                });
+            } else {
+              console.log('error submit!!');
+              return false;
+            }
+          });
+        }`
+      }
+     
+      if(confirmed){
+        return `${method}(formName) {
+          this.$confirm('此操作将永久删除此项, 是否继续?', '提示',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+            }).then(await () => {
+                await ${method}(this.${formObj})
+                this.$message.success('创建成功')
+            }).catch(() => {
+              this.$message({
+                type: 'info',
+                message: '已取消删除'
+              });
+           });
+          }
+        `
+      }
+      if(validated){
+        return `${method}(formName) {
+          this.$refs[formName].validate(async (valid) => {
+            if (valid) {
+              await ${method}(this.${formObj})
+              this.$message.success('创建成功')
+            } else {
+              console.log('error submit!!');
+              return false;
+            }
+          });
+        }`
+      }
+      return `async ${method}(){
+          await ${method}(this.${formObj})
+          this.$message.success('创建成功')
+        }`
     },
     genFormValidate(){
 
     },
-    genFormCommonCode() {
-      const str = `
-<el-form :model="${this.formObj}" label-width="80px">
-
-</el-form>
-<script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        }
+    genFormItemUpsertButton(validated,ref,method){
+      if(validated){
+        return `<el-form-item>
+    <el-button size='mini' type='primary' @click='${method}('${ref}')'>创建</el-button>
+  </el-form-item>`
+      }else{
+        return `<el-form-item>
+    <el-button size='mini' type='primary' @click='${method}'>创建</el-button>
+  </el-form-item>`
       }
     },
-    methods: {
-      onSubmit() {
-        console.log('submit!');
-      }
-    }
-  }
-<\/script>`;
-      this.code = str;
+   genFormRef(validated,ref){
+     if(validated){
+       return `ref='${ref}'`
+     }else{
+       return `\t`
+     }
     },
     copy() {
       const clipboardDiv = this.$refs["srcCode"];

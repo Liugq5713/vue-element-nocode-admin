@@ -2,16 +2,26 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>表单属性</span>
-      <div style="float:right">
-        <el-input v-model.trim="form.formObj" style="width:150px;margin:0 10px" placeholder="表单对象"></el-input>
-        <el-input
-          v-if="form.is_validated"
-          v-model.trim="form.ref"
-          placeholder="表单的Ref值"
-          style="width:150px"
-        ></el-input>
-        <el-checkbox style="width:150px;margin:0 10px" v-model="form.is_validated" label="true">需要验证</el-checkbox>
-      </div>
+    </div>
+    <div>
+      <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-form-item label="表单对象">
+          <el-input v-model.trim="form.formObj"  style="width:150px;" placeholder="表单对象"></el-input>
+        </el-form-item>
+        <el-form-item label="更新方法">
+          <el-input v-model.trim="form.method" style="width:150px" placeholder="更新方法"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-checkbox style="width:150px" v-model="form.validated" label="true">需要验证</el-checkbox>
+        </el-form-item>
+        <el-form-item label="表单Ref">
+          <el-input v-model.trim="form.ref"  style="width:150px;" placeholder="表单的Ref值"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-checkbox style="width:150px;margin:0 1px" v-model="form.confirmed" label="true">双重确认</el-checkbox>
+        </el-form-item>
+      </el-form>
+     
     </div>
   </el-card>
 </template>
@@ -21,9 +31,11 @@ export default {
   data() {
     return {
       form: {
-        formObj: "",
-        ref: "",
-        is_validated: true
+        formObj: "defaultFormObj",
+        ref: "defaultRef",
+        validated: true,
+        confirmed:false,
+        method:'defaultMethod'
       }
     };
   },
@@ -31,9 +43,30 @@ export default {
     form: {
       handler: function(val) {
 
-        this.$emit("change", {...val,ref:val.is_validated&&val.ref});
+        this.$emit("change", {...val,ref:val.validated&&val.ref});
       },
-      deep: true
+      deep: true,
+      immediate:true
+    }
+  },
+  method:{
+    test(){
+      this.$confirm('此操作将永久删除此项, 是否继续?', '提示',
+         {
+           confirmButtonText: '确定',
+           cancelButtonText: '取消',
+           type: 'warning'
+           }).then(() => {
+             this.$message({
+               type: 'success',
+               message: '删除成功!'
+             });
+           }).catch(() => {
+             this.$message({
+               type: 'info',
+               message: '已取消删除'
+             });
+             });
     }
   }
 };
@@ -47,5 +80,8 @@ export default {
 }
 .clearfix:after {
   clear: both;
+}
+.formItemMargin{
+  margin-right:10px
 }
 </style>
