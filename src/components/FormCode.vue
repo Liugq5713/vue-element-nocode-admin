@@ -30,59 +30,101 @@ export default {
       srcCode: "",
       fromItemsCode: "",
       refCode: "",
-      formObj: ""
+      formObj: "",
+      dataFormData:{},
+      dataFormRules:{},
+      submitMethods:'',
+      is_validated:false
     };
   },
   watch: {
     form: {
       handler(val) {
-        this.refCode = val.ref;
-        this.formObj = val.formObj;
-        this.fromItemsCode = this.formItems
-          .map(item => {
-            const func = genFormItemCode(item.type);
-            return func(this.formObj, item.props.label, item.props.value);
-          })
-          .join("\n");
-        this.genFormCode();
-      },
+    this.genVueFile(val,this.formItems);
+},
       deep: true
     },
     formItems: {
       handler(val) {
-        this.fromItemsCode = val
-          .map(item => {
-            const func = genFormItemCode(item.type);
-            return func(this.formObj, item.props.label, item.props.value);
-          })
-          .join("\n");
-        this.genFormCode();
+    this.genVueFile(this.form,val);
       },
       deep: true
     }
   },
   created() {
-    this.genFormCode();
+    this.genVueFile(this.form,this.formItems);
   },
   methods: {
     genFormItemCode,
-    genFormCode() {
-      this.srcCode = this.genFormWrapper(
-        this.refCode,
-        this.formObj,
-        this.fromItemsCode
-      );
+    genVueFile(form,formItems) {
+          console.log('form', form)
+          const data = {
+            ref:form.ref,
+            formObj:form.formObj,
+            is_validated:form.is_validated,
+            formItems:formItems
+          }
+      this.srcCode = this.genVueFileWrapper(data);
     },
-    genFormWrapper(ref, formObj, fromItemsCode) {
+    genVueFileWrapper({formObj,is_validated,formItems}={}) {
       return `
 <template>
-<el-form :model="${formObj}" label-width="80px">
-  ${fromItemsCode}
+<el-form :model="${formObj}"  label-width="80px">
+  ${this.genFormItemsCode(formObj,formItems)}
 </el-form>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        ${this.genScriptDataFormData(formObj,formItems)},
+        ${is_validated?this.genScriptDataRules(formObj,formItems):''}
+      }
+    },
+    methods: {
+
+    }
+  }
+<\/script>
 `;
     },
     genFormValidateCode() {},
+    genFormItemsCode(formObj,formItems){
+  return formItems
+          .map(item => {
+            const func = genFormItemCode(item.type);
+            return func(this.formObj, item.props.label, item.props.value);
+          })
+          .join("\n");
+    },
+    genScriptDataFormData(formObj,formItems){
+      const formdata= formItems
+          .map(item => {
+            return `${item.props.value}:''`
+          }).join(',\n          ')
+  return `${formObj}:{
+          ${formdata}
+        }`
+    },
+    genScriptDataRules(formObj,formItems){
+      const formdata= formItems
+          .map(item => {
+            if(item.props.required){
+              return `${item.props.value}: [
+                { required: true, message: '${item.props.label}必填', trigger: 'change' }
+          ],`
+            }
+          }).join(',\n          ')
+  return `rules:{
+          ${formdata}
+        }`
+    },
+    genScriptMethodSubmit(){
+
+    },
+    genFormValidate(){
+
+    },
     genFormCommonCode() {
       const str = `
 <el-form :model="${this.formObj}" label-width="80px">

@@ -64,7 +64,7 @@ export default {
   methods: {
     setFormItemAttribute() {
       this.$emit("change", this.formItemOpt, this.formItemIndex, {
-        ...this.formItemAttribute
+        ...this.formItemAttribute,
       });
     }
   }

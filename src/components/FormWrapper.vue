@@ -21,7 +21,7 @@
                   <div class="list-group-item" v-for="(formItem,idx) in formItems" :key="idx">
                     <div
                       @click="genFormItemByClick(idx,formItem)"
-                      :class="{selected:!(idx-clickedIndex)}"
+                      :class="{selected:idx===clickedIndex}"
                     >
                       <el-form-item :label="formItem&&formItem.props.label||'表单label'">
                         <component v-if="formItem" v-bind:is="formItem.type"></component>
