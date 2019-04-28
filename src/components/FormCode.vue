@@ -91,7 +91,6 @@ export default {
 <\/script>
 `;
     },
-    genFormValidateCode() {},
     genFormItemsCode(formObj,formItems){
   return formItems
           .map(item => {
@@ -115,8 +114,8 @@ export default {
       })
           .map(item => {
               return `${item.props.value}: [
-                { required: true, message: '${item.props.label}必填', trigger: 'change' }
-          ],`
+                { required: true, message: '${item.props.label}必填', trigger: 'blur' }
+          ]`
           }).join(',\n          ')
   return `rules:{
           ${formdata}
@@ -192,7 +191,7 @@ export default {
     genFormItemUpsertButton(validated,ref,method){
       if(validated){
         return `<el-form-item>
-    <el-button size='mini' type='primary' @click='${method}('${ref}')'>创建</el-button>
+    <el-button size='mini' type='primary' @click="${method}('${ref}')">创建</el-button>
   </el-form-item>`
       }else{
         return `<el-form-item>
