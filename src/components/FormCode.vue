@@ -71,7 +71,7 @@ export default {
       return `
 <template>
 <el-form :model="${formObj}" ${this.genFormRef(validated,ref)} label-width="80px">
-  ${this.genFormItemsCode(formObj,formItems)}
+  ${this.genFormItemsCode(formObj,validated,formItems)}
   ${this.genFormItemUpsertButton(validated,ref,method)}
   
 </el-form>
@@ -91,11 +91,11 @@ export default {
 <\/script>
 `;
     },
-    genFormItemsCode(formObj,formItems){
+    genFormItemsCode(formObj,validated,formItems){
   return formItems
           .map(item => {
             const func = genFormItemCode(item.type);
-            return func(formObj, item.props.label, item.props.value);
+            return func(formObj, validated,item.props.label, item.props.value);
           })
           .join("\n");
     },
