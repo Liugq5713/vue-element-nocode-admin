@@ -78,6 +78,7 @@ export default {
       }
     },
     genFormItemByClick(idx, element) {
+      console.log("element", element);
       this.clickedIndex = idx;
       this.formItemAttribute = { type: "click", idx, element };
     },

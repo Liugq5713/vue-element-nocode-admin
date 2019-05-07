@@ -16,6 +16,16 @@ export default {
     return {
       formJson: undefined
     };
+  },
+  methods: {
+    gen() {
+      const v = eval(`this.formJson`);
+      const f = JSON.stringify(this.formJson);
+      const j = f.replace(/[\r\n]/gm, "");
+      console.log(v, f, j);
+      console.log(typeof this.formJson, typeof v, v);
+      this.$emit(JSON.parse(this.formJson));
+    }
   }
 };
 </script>
