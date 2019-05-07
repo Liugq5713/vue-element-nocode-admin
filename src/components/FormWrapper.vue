@@ -2,6 +2,7 @@
   <el-container>
     <el-aside width="300px">
       <Asset/>
+      <JsonForm/>
     </el-aside>
     <el-main>
       <FormAttribute style="margin-bottom:10px" @change="setFormAttribute"/>
@@ -50,6 +51,7 @@ import FormAttribute from "./FormAttribute";
 import FormItemAttribute from "./FormItemAttribute";
 import Asset from "./Asset";
 import FormCode from "./FormCode";
+import JsonForm from "./JsonForm";
 
 export default {
   components: {
@@ -57,7 +59,8 @@ export default {
     FormAttribute,
     FormItemAttribute,
     FormCode,
-    draggable
+    draggable,
+    JsonForm
   },
   data() {
     return {
@@ -115,12 +118,9 @@ export default {
   text-align: center;
 }
 
-
 .el-form-item {
-  margin:4px 0;
+  margin: 4px 0;
 }
-
-
 
 .dragArea {
   min-height: 300px;
