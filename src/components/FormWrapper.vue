@@ -87,16 +87,10 @@ export default {
     setFormAttribute(val) {
       this.form = val;
     },
-    setFormItemAttribute(type, idx, props) {
-      if (type === "add") {
+    setFormItemAttribute(type, idx, formType, props) {
+      if (type === "add" || type === "click") {
         const formItem = this.formItems[idx];
-        formItem.props = {
-          ...formItem.props,
-          ...props
-        };
-      }
-      if (type === "click") {
-        const formItem = this.formItems[idx];
+        this.$set(formItem, "type", formType);
         formItem.props = {
           ...formItem.props,
           ...props
