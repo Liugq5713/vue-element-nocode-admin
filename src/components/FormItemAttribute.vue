@@ -5,7 +5,11 @@
     </div>
     <el-form :model="formItemAttribute">
       <el-form-item>
-        <el-select v-model="formItemType" placeholder="请选择表单元素类型" @change="setFormItemAttribute">
+        <el-select
+          v-model="formItemElement.type"
+          placeholder="请选择表单元素类型"
+          @change="setFormItemAttribute"
+        >
           <el-option
             v-for="item in input_type_opts"
             :key="item.value"
@@ -44,51 +48,52 @@
 import { input_type_opts } from "./opt.js";
 export default {
   props: {
-    formItem: {
+    store: {
       type: Object
+    },
+    formItemToHandle: {
+      type: null
     }
   },
   data() {
     return {
       input_type_opts,
-      activeNames: ["1"],
-      formItemIndex: 0,
-      formItemType: "",
+      idx: 0,
+      opt: "",
       formItemAttribute: {},
-      formItemOpt: ""
+      formItemElement: {}
     };
   },
   watch: {
-    formItem(val) {
+    formItemToHandle(val) {
       if (val.added) {
-        this.formItemOpt = "add";
-        this.formItemIndex = val.added.newIndex;
-        this.formItemType = val.added.element.type;
+        this.opt = "add";
+        this.idx = val.added.newIndex;
+        this.formItemElement = val.added.element;
         this.formItemAttribute = { ...val.added.element.props };
       } else {
-        this.formItemOpt = "others";
-        this.formItemIndex = 0;
+        this.opt = "others";
+        this.idx = 0;
         this.formItemAttribute = {};
       }
       if (val.type === "click") {
-        this.formItemOpt = "click";
-        this.formItemIndex = val.idx;
-        this.formItemType = val.element.type;
+        this.opt = "click";
+        this.idx = val.idx;
+        this.formItemElement = val.element;
         this.formItemAttribute = { ...val.element.props };
       }
     }
   },
   methods: {
     setFormItemAttribute() {
-      this.$emit(
-        "change",
-        this.formItemOpt,
-        this.formItemIndex,
-        this.formItemType,
-        {
-          ...this.formItemAttribute
-        }
-      );
+      if (this.opt === "add" || this.opt === "click") {
+        this.store.commit("setItemInFormItems", this.idx, {
+          ...this.formItemElement,
+          props: {
+            ...this.formItemAttribute
+          }
+        });
+      }
     }
   }
 };

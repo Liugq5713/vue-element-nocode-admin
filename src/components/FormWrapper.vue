@@ -2,39 +2,17 @@
   <el-container>
     <el-aside width="300px">
       <Asset/>
-      <JsonForm @change="getFormItems"/>
+      <JsonForm :store="store"/>
     </el-aside>
     <el-main>
-      <FormAttribute style="margin-bottom:10px" @change="setFormAttribute"/>
+      <FormAttribute :store="store" style="margin-bottom:10px"/>
       <el-card class="box-card">
         <el-row :gutter="20">
           <el-col :span="16">
-            <!-- background-color:rgb(190, 191, 190) -->
-            <div style="width:100%;">
-              <el-form :model="form" label-width="100px">
-                <draggable
-                  class="dragArea list-group"
-                  :options="{group: 'formItems'}"
-                  v-bind:class="{ bigDragArea: formItems.length===0 }"
-                  :list="formItems"
-                  @change="genFormItem"
-                >
-                  <div class="list-group-item" v-for="(formItem,idx) in formItems" :key="idx">
-                    <div
-                      @click="genFormItemByClick(idx,formItem)"
-                      :class="{selected:idx===clickedIndex}"
-                    >
-                      <el-form-item :label="formItem&&formItem.props.label||'表单label'">
-                        <component v-if="formItem" v-bind:is="formItem.type"></component>
-                      </el-form-item>
-                    </div>
-                  </div>
-                </draggable>
-              </el-form>
-            </div>
+            <FormItems :store="store" :formItems="formItems"></FormItems>
           </el-col>
           <el-col :span="8">
-            <FormItemAttribute :formItem="formItemAttribute" @change="setFormItemAttribute"/>
+            <FormItemAttribute :store="store" :formItemToHandle="formItemToHandle"/>
           </el-col>
         </el-row>
       </el-card>
@@ -46,86 +24,45 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
 import FormAttribute from "./FormAttribute";
+import FormItems from "./FormItems";
 import FormItemAttribute from "./FormItemAttribute";
 import Asset from "./Asset";
 import FormCode from "./FormCode";
 import JsonForm from "./JsonForm";
+import FormStore from "./FormStore.js";
 
 export default {
   components: {
+    FormItems,
     Asset,
     FormAttribute,
     FormItemAttribute,
     FormCode,
-    draggable,
     JsonForm
   },
   data() {
+    const store = new FormStore(this);
     return {
-      clickedIndex: -1,
-      form: {},
-      formItemAttribute: {},
-      formItems: []
+      store
     };
   },
-  methods: {
-    genFormItem(val) {
-      if (val.added) {
-        this.clickedIndex = val.added.newIndex;
-        this.formItemAttribute = val;
-      }
+  computed: {
+    form() {
+      return this.store.states.formAttribute;
     },
-    genFormItemByClick(idx, element) {
-      this.clickedIndex = idx;
-      this.formItemAttribute = { type: "click", idx, element };
+    formItems() {
+      return this.store.states.formItems;
     },
-    getFormItems(val) {
-      this.formItems = val;
+    formItem() {
+      return this.store.states.formItem;
     },
-    setFormAttribute(val) {
-      this.form = val;
+    formItemToHandle() {
+      return this.store.states.formItemToHandle;
     },
-    setFormItemAttribute(type, idx, formType, props) {
-      if (type === "add" || type === "click") {
-        const formItem = this.formItems[idx];
-        this.$set(formItem, "type", formType);
-        formItem.props = {
-          ...formItem.props,
-          ...props
-        };
-      }
+    formItemAttribute() {
+      return this.store.states.formItemAttribute;
     }
   }
 };
 </script>
-
-<style scoped>
-.bigDragArea {
-  height: 300px;
-}
-
-.bigDragArea::after {
-  content: "请将表单元素拖拽此处";
-  height: 200px;
-  font-size: 30px;
-  color: #858585;
-  font-weight: 300;
-  text-align: center;
-}
-
-.el-form-item {
-  margin: 4px 0;
-}
-
-.dragArea {
-  min-height: 300px;
-}
-
-.selected {
-  background-color: rgb(253, 247, 247);
-  border: #f8d2d2 solid 1px;
-  border-radius: 3%;
-}
-</style>

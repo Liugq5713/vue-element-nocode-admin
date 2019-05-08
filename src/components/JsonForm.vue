@@ -17,6 +17,9 @@
 
 <script>
 export default {
+  props: {
+    store: Object
+  },
   data() {
     return {
       formJson: undefined
@@ -26,7 +29,7 @@ export default {
     gen() {
       try {
         const formData = eval(`(${this.formJson})`);
-        const formItems = Object.keys(formData).map((item, idx) => {
+        const formItems = Object.keys(formData).map(item => {
           return {
             type: "EInput",
             title: "JSON生成",
@@ -37,8 +40,7 @@ export default {
             }
           };
         });
-        console.log("formItems", formItems);
-        this.$emit("change", formItems);
+        this.store.commit("setFromItems", formItems);
       } catch (error) {
         this.$message.error("请填入正确的Object");
       }
