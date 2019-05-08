@@ -2,7 +2,7 @@
   <el-container>
     <el-aside width="300px">
       <Asset/>
-      <JsonForm/>
+      <JsonForm @change="getFormItems"/>
     </el-aside>
     <el-main>
       <FormAttribute style="margin-bottom:10px" @change="setFormAttribute"/>
@@ -39,7 +39,7 @@
         </el-row>
       </el-card>
     </el-main>
-    <el-aside width="400px">
+    <el-aside width="300px">
       <FormCode :form="form" :formItems="formItems"/>
     </el-aside>
   </el-container>
@@ -78,9 +78,11 @@ export default {
       }
     },
     genFormItemByClick(idx, element) {
-      console.log("element", element);
       this.clickedIndex = idx;
       this.formItemAttribute = { type: "click", idx, element };
+    },
+    getFormItems(val) {
+      this.formItems = val;
     },
     setFormAttribute(val) {
       this.form = val;

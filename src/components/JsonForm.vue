@@ -5,7 +5,12 @@
         <span>JSON表单对象</span>
         <el-button size="mini" type="primary" style="float:right" @click="gen">生成表单</el-button>
       </div>
-      <el-input type="textarea" :autosize="{ minRows: 5}" placeholder="请输入内容" v-model="formJson"></el-input>
+      <el-input
+        type="textarea"
+        :autosize="{ minRows: 5}"
+        placeholder="请输入内容,用了eval，请不要自嗨"
+        v-model="formJson"
+      ></el-input>
     </el-card>
   </div>
 </template>
@@ -19,12 +24,24 @@ export default {
   },
   methods: {
     gen() {
-      const v = eval(`this.formJson`);
-      const f = JSON.stringify(this.formJson);
-      const j = f.replace(/[\r\n]/gm, "");
-      console.log(v, f, j);
-      console.log(typeof this.formJson, typeof v, v);
-      this.$emit(JSON.parse(this.formJson));
+      try {
+        const formData = eval(`(${this.formJson})`);
+        const formItems = Object.keys(formData).map((item, idx) => {
+          return {
+            type: "EInput",
+            title: "JSON生成",
+            props: {
+              label: `${formData[item] || item}`,
+              value: item,
+              required: ""
+            }
+          };
+        });
+        console.log("formItems", formItems);
+        this.$emit("change", formItems);
+      } catch (error) {
+        this.$message.error("请填入正确的Object");
+      }
     }
   }
 };
