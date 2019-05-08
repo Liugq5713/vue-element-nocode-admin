@@ -20,7 +20,6 @@ const FormStore = function(table, initialState = {}) {
 }
 
 FormStore.prototype.commit = function(name, ...args) {
-  console.log('name', name)
   const mutations = this.mutations
   if (mutations[name]) {
     mutations[name].apply(this, [this.states].concat(args))
