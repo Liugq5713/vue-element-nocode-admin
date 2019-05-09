@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     genFormItem(val) {
+      this.store.commit("setFormItems", this.formItems);
       if (val.added) {
         this.store.commit("setClickedIndex", val.added.newIndex);
         this.store.commit("setFormItemToHandle", val);

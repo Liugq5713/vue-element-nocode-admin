@@ -40,9 +40,6 @@ FormStore.prototype.mutations = {
   },
   setItemInFormItems(states, idx, formItem) {
     states.formItems.splice(idx, 1, formItem)
-  },
-  setFromItems(states, formItems) {
-    this.states = { ...states, formItems }
   }
 }
 

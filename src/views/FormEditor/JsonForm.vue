@@ -40,7 +40,7 @@ export default {
             }
           };
         });
-        this.store.commit("setFromItems", formItems);
+        this.store.commit("setFormItems", formItems);
       } catch (error) {
         this.$message.error("请填入正确的Object");
       }

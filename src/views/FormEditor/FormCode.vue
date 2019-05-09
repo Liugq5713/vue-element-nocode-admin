@@ -3,7 +3,7 @@
     <div slot="header" class="clearfix">
       <el-button size="mini" type="primary" @click="copy">复制代码</el-button>
       <router-link to="code-editor" target="_blank">
-        <el-button size="mini" style="margin-left:10px" type="primary">编辑代码</el-button>
+        <el-button size="mini" style="margin-left:10px" type="primary" @click="edit">编辑代码</el-button>
       </router-link>
     </div>
     <code class="code">
@@ -243,8 +243,12 @@ export default {
         this.$message.error("未能复制到剪贴板，请全选后右键复制");
       }
     },
-    skipToEdit(){
-         window.open(`./code-editor`, '_blank')
+    skipToEdit() {
+      window.open(`./code-editor`, "_blank");
+    },
+    edit() {
+      window.localStorage.removeItem("vue-element-form-gen-code");
+      window.localStorage.setItem("vue-element-form-gen-code", this.srcCode);
     }
   }
 };
