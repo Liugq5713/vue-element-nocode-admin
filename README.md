@@ -15,9 +15,10 @@ element-ui 的表单可视化编辑器，自动生成表单验证代码。不是
 你可以很方便的把数据粘贴至 JSON 表单对象的输入框
 
 ![表单编辑区](https://wpimg.wallstcn.com/80a00d25-c157-42f6-a4b4-3e9366dff194.png)
+
 但是粘贴过来的数据仅有 value 值，因此我定义了`value:label` 这样的结构，value 作为表单的 value,label 作为表单的 label。注意 label 需要用引号引起来。
 
-```
+```js
 {
   "id": 'ID',
   "title": '标题',
