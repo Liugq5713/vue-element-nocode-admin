@@ -1,13 +1,11 @@
 <template>
- <FormWrapper/>
+  <div id="app" >
+    <router-view/>
+  </div>
 </template>
 
-<script>
-import FormWrapper from "./components/FormWrapper";
-
-export default {
-  components: {
-    FormWrapper
-  }
-};
-</script>
+<style>
+body{
+  margin:0
+}
+</style>

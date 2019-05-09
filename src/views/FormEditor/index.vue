@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside width="300px">
-      <Asset/>
+      <FormItemAsset/>
       <JsonForm :store="store"/>
     </el-aside>
     <el-main>
@@ -27,7 +27,7 @@
 import FormAttribute from "./FormAttribute";
 import FormItems from "./FormItems";
 import FormItemAttribute from "./FormItemAttribute";
-import Asset from "./Asset";
+import FormItemAsset from "./FormItemAsset";
 import FormCode from "./FormCode";
 import JsonForm from "./JsonForm";
 import FormStore from "./FormStore.js";
@@ -35,7 +35,7 @@ import FormStore from "./FormStore.js";
 export default {
   components: {
     FormItems,
-    Asset,
+    FormItemAsset,
     FormAttribute,
     FormItemAttribute,
     FormCode,

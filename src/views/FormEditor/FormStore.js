@@ -1,16 +1,12 @@
-const FormStore = function(table, initialState = {}) {
-  if (!table) {
-    throw new Error('Table is required.')
+const FormStore = function(form, initialState = {}) {
+  if (!form) {
+    throw new Error('Form is required.')
   }
-  this.table = table
+  this.form = form
 
   this.states = {
     clickedIndex: -1,
-    formAttribute: {},
-    formItems: [],
-    formItemToHandle: [],
-    formItem: {},
-    formItemAttribute: {}
+    formAttribute: {}
   }
   for (let prop in initialState) {
     if (initialState.hasOwnProperty(prop) && this.states.hasOwnProperty(prop)) {
@@ -20,6 +16,7 @@ const FormStore = function(table, initialState = {}) {
 }
 
 FormStore.prototype.commit = function(name, ...args) {
+  console.log('name', name) // eslint-disable-line
   const mutations = this.mutations
   if (mutations[name]) {
     mutations[name].apply(this, [this.states].concat(args))
@@ -27,6 +24,7 @@ FormStore.prototype.commit = function(name, ...args) {
     throw new Error(`Action not found: ${name}`)
   }
 }
+
 FormStore.prototype.mutations = {
   setFormAttribute(states, formAttribute) {
     this.states = { ...states, formAttribute }

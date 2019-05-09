@@ -34,7 +34,10 @@ export default {
       type: Object
     },
     formItems: {
-      type: Array
+      type: Array,
+      default: () => {
+        return [];
+      }
     }
   },
   data() {
