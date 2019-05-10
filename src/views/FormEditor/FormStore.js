@@ -6,7 +6,11 @@ const FormStore = function(form, initialState = {}) {
 
   this.states = {
     clickedIndex: -1,
-    formAttribute: {}
+    formAttribute: {},
+    formItems: [],
+    formItemToHandle: [],
+    formItem: {},
+    formItemAttribute: {}
   }
   for (let prop in initialState) {
     if (initialState.hasOwnProperty(prop) && this.states.hasOwnProperty(prop)) {

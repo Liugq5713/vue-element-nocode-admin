@@ -108,11 +108,8 @@ export default {
   },
   mounted() {
     window.addEventListener("storage", () => {
-      // When local storage changes, dump the list to
-      // the console.
       this.code = window.localStorage.getItem("vue-element-form-gen-code");
     });
-
     this.code = window.localStorage.getItem("vue-element-form-gen-code");
   },
   beforeDestroy() {
