@@ -31,7 +31,7 @@ export default {
         const formData = eval(`(${this.formJson})`);
         const formItems = Object.keys(formData).map(item => {
           return {
-            type: "EInput",
+            type: "EInputTrim",
             title: "JSON生成",
             props: {
               label: `${formData[item] || item}`,

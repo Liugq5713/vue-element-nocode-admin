@@ -13,6 +13,14 @@ export const genInputTrimFormItem = (formObj, validated, label, value) => {
   `
 }
 
+export const genInputNumFormItem = (formObj, validated, label, value) => {
+  return `
+   <el-form-item label="${label}" ${genFormItemProp(validated, value)}>
+    <el-input v-model.number="${formObj}.${value}" type='number'></el-input>
+  </el-form-item>
+  `
+}
+
 export const genSelectFormItem = (formObj, validated, label, value) => {
   return `
   <el-form-item label="${label}"  ${genFormItemProp(validated, value)}>
@@ -50,6 +58,7 @@ export const genSwitchFormItem = (formObj, validated, label, value) => {
 export default function(type) {
   const typeFuncMap = {
     EInputTrim: genInputTrimFormItem,
+    EInputNum: genInputNumFormItem,
     ECheckbox: genCheckboxFormItem,
     ERadio: genRadioFormItem,
     ESelect: genSelectFormItem,

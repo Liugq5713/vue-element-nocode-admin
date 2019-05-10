@@ -49,7 +49,12 @@ export default {
           specs: [
             {
               type: "EInputTrim",
-              title: "Input 输入框",
+              title: "Input Trim输入框",
+              props: { ...defaultProps }
+            },
+            {
+              type: "EInputNum",
+              title: "Input Number输入框",
               props: { ...defaultProps }
             }
           ]
