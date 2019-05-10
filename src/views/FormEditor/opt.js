@@ -1,11 +1,15 @@
 export const input_type_opts = [
   {
-    value: 'ECheckbox',
-    label: '复选框 Checkbox'
+    value: 'EInputTrim',
+    label: '输入框 Trim Input'
   },
   {
-    value: 'EInput',
-    label: '输入框 Input'
+    value: 'EInputNum',
+    label: '输入框 Num Input'
+  },
+  {
+    value: 'ECheckbox',
+    label: '复选框 Checkbox'
   },
   {
     value: 'ERadio',
