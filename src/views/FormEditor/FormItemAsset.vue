@@ -44,6 +44,17 @@ export default {
     return {
       forms: [
         {
+          type: "EInput",
+          title: "Input输入框",
+          specs: [
+            {
+              type: "EInputTrim",
+              title: "Input 输入框",
+              props: { ...defaultProps }
+            }
+          ]
+        },
+        {
           type: "ERadio",
           title: "Radio 单选框",
           specs: [
@@ -61,17 +72,6 @@ export default {
             {
               type: "ECheckbox",
               title: "Checkbox 单选框组",
-              props: { ...defaultProps }
-            }
-          ]
-        },
-        {
-          type: "EInput",
-          title: "Input输入框",
-          specs: [
-            {
-              type: "EInput",
-              title: "Input 输入框",
               props: { ...defaultProps }
             }
           ]
@@ -99,7 +99,7 @@ export default {
           ]
         }
       ],
-      activeName: ["ERadio"]
+      activeName: ["EInput"]
     };
   },
   methods: {

@@ -1,6 +1,6 @@
 
 <template>
-  <el-input v-model="inputVal" v-bind="$attrs" placeholder="请输入内容"></el-input>
+  <el-input v-model.trim="inputVal" v-model="inputVal" v-bind="$attrs" placeholder="请输入内容"></el-input>
 </template>
 
 <script>
