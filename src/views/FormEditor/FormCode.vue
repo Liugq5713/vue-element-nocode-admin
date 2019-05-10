@@ -85,10 +85,9 @@ export default {
     } = {}) {
       return `
 <template>
-<el-form :model="${formObj}" ${this.genFormRef(
-        validated,
-        ref
-      )} label-width="80px">
+<el-form :model="${formObj}" ${this.genFormRef(validated, ref)}  ${
+        validated ? `:rules='rules'` : ""
+      } label-width="80px">
   ${this.genFormItemsCode(formObj, validated, formItems)}
   ${this.genFormItemUpsertButton(validated, ref, method)}
   
