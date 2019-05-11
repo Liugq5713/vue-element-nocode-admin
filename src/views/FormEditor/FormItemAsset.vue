@@ -18,7 +18,7 @@
         >
           <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
             <el-button size="small" style="margin:10px;padding: 10px" plain>
-              <component v-bind:is="element.type"></component>
+              <component v-bind:is="element.type" size="mini"></component>
             </el-button>
           </div>
         </draggable>

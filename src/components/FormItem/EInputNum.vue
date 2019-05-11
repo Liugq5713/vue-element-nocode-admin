@@ -1,6 +1,6 @@
 
 <template>
-  <el-input v-model.number="inputVal" placeholder="数字" type="number"></el-input>
+  <el-input v-model.number="inputVal" placeholder="数字" v-bind="$attrs" type="number"></el-input>
 </template>
 
 <script>

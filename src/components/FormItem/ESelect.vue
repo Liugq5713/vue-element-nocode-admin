@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="inputVal" placeholder="请选择">
+  <el-select v-model="inputVal" v-bind="$attrs" placeholder="请选择">
     <el-option label="选项一" value="first"></el-option>
     <el-option label="选项二" value="second"></el-option>
   </el-select>

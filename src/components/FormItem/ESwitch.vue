@@ -1,7 +1,7 @@
 
 
 <template>
-  <el-switch v-model="inputVal" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+  <el-switch v-model="inputVal" active-color="#13ce66" v-bind="$attrs" inactive-color="#ff4949"></el-switch>
 </template>
 <script>
 export default {

@@ -1,6 +1,6 @@
 
 <template>
-  <el-checkbox v-model="inputVal">备选项</el-checkbox>
+  <el-checkbox v-model="inputVal" v-bind="$attrs">备选项</el-checkbox>
 </template>
 
 <script>
