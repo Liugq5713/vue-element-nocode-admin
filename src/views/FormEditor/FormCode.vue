@@ -2,9 +2,6 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <el-button size="mini" type="primary" @click="copy">复制代码</el-button>
-      <router-link to="code-editor" target="_blank">
-        <el-button size="mini" style="margin-left:10px" type="primary">编辑代码</el-button>
-      </router-link>
     </div>
     <code class="code">
       <div style="overflow:auto">

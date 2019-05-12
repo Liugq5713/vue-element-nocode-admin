@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+import i18n from './lang'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI)
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
 
 const requireComponent = require.context(
   './components/FormItem/',
@@ -27,5 +29,6 @@ requireComponent.keys().forEach(fileName => {
 
 new Vue({
   router,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
