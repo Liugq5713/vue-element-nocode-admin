@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="clearfix">
-      <el-button size="mini" type="primary" @click="copy">复制代码</el-button>
+      <el-button size="mini" type="primary" @click="copy">{{$t('code.copy')}}</el-button>
     </div>
     <code class="code">
       <div style="overflow:auto">

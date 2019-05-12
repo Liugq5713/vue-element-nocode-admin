@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>JSON表单对象</span>
+        <span>{{$t('form.JSON')}}</span>
         <el-button size="mini" type="primary" style="float:right" @click="gen">生成表单</el-button>
       </div>
       <el-input

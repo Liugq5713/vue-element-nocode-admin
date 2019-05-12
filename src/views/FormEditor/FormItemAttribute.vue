@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="clearfix">
-      <span>表单元素属性编辑</span>
+      <span>{{$t('form.itemAttribute')}}</span>
     </div>
     <el-form :model="formItemAttribute">
       <el-form-item>

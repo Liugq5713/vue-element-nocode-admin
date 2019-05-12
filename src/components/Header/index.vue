@@ -7,14 +7,36 @@
           style="margin-left:10px"
           icon="el-icon-edit"
           type="success"
-        >{{ $t("test") }}在线编辑</el-button>
+        >{{ $t("header.editor") }}</el-button>
       </router-link>
+      <el-select
+        size="mini"
+        style="width:100px;margin-left:10px"
+        v-model="lang"
+        clearable
+        placeholder="中文/En"
+        @change="handleSetLanguage"
+      >
+        <el-option label="中文" value="zh"></el-option>
+        <el-option label="English" value="en"></el-option>
+      </el-select>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      lang: this.$i18n.locale
+    };
+  },
+  methods: {
+    handleSetLanguage(lang) {
+      this.$i18n.locale = lang;
+    }
+  }
+};
 </script>
 
 <style scoped>

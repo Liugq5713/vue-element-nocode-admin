@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card" style="margin-top:10px">
     <div slot="header" class="clearfix">
-      <span>表单元素资源</span>
+      <span>{{ $t("form.itemsAsset") }}</span>
     </div>
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item
