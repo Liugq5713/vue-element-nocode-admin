@@ -2,68 +2,60 @@ const genFormItemProp = (validated, value) => {
   if (validated) {
     return `prop='${value}'`
   } else {
-    return `\t`
+    return
   }
 }
-export const genInputTrimFormItem = (formObj, validated, label, value) => {
-  return `
-   <el-form-item label="${label}" ${genFormItemProp(validated, value)}>
-    <el-input v-model.trim="${formObj}.${value}"></el-input>
+
+const genFormItemWrapper = genFormItem => {
+  return function(formObj, validated, label, value) {
+    return `
+  <el-form-item label="${label}" ${genFormItemProp(validated, value)}>
+    ${genFormItem(formObj, value, label)}
   </el-form-item>
-  `
+      `
+  }
+}
+export const genInputTrim = (formObj, value, label) => {
+  return `<el-input v-model.trim="${formObj}.${value}" placeholder='请输入${label}'></el-input>`
 }
 
-export const genInputNumFormItem = (formObj, validated, label, value) => {
-  return `
-   <el-form-item label="${label}" ${genFormItemProp(validated, value)}>
-    <el-input v-model.number="${formObj}.${value}" type='number'></el-input>
-  </el-form-item>
-  `
+export const genInputNum = (formObj, value, label) => {
+  return `<el-input v-model.number="${formObj}.${value}" type='number' placeholder='请输入${label}></el-input>`
 }
 
-export const genSelectFormItem = (formObj, validated, label, value) => {
+export const genSelect = (formObj, value, label) => {
   return `
-  <el-form-item label="${label}"  ${genFormItemProp(validated, value)}>
     <el-select v-model="${formObj}.${value}" placeholder="请选择${label}">
       <el-option label="区域二" value="beijing"></el-option>
-    </el-select>
-  </el-form-item>`
+    </el-select>`
 }
 
-export const genCheckboxFormItem = (formObj, validated, label, value) => {
+export const genCheckbox = (formObj, value) => {
   return `
-  <el-form-item label="${label}"  ${genFormItemProp(validated, value)}>
-     <el-checkbox-group v-model="${formObj}.${value}">
+  <el-checkbox-group v-model="${formObj}.${value}">
       <el-checkbox label="第一个复选框" name="type"></el-checkbox>
       <el-checkbox label="第二个复选框" name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>`
+  </el-checkbox-group>`
 }
-export const genRadioFormItem = (formObj, validated, label, value) => {
+export const genRadio = (formObj, value) => {
   return `
-  <el-form-item label="${label}" ${genFormItemProp(validated, value)}>
     <el-radio-group v-model="${formObj}.${value}">
       <el-radio label="第一个选项"></el-radio>
       <el-radio label="第二个选项"></el-radio>
-    </el-radio-group>
-  </el-form-item>`
+    </el-radio-group>`
 }
-export const genSwitchFormItem = (formObj, validated, label, value) => {
-  return `
-  <el-form-item label="${label}" ${genFormItemProp(validated, value)}>
-    <el-switch v-model="${formObj}.${value}"></el-switch>
-  </el-form-item>`
+export const genSwitch = (formObj, value) => {
+  return `<el-switch v-model="${formObj}.${value}"></el-switch>`
 }
 
 export default function(type) {
   const typeFuncMap = {
-    EInputTrim: genInputTrimFormItem,
-    EInputNum: genInputNumFormItem,
-    ECheckbox: genCheckboxFormItem,
-    ERadio: genRadioFormItem,
-    ESelect: genSelectFormItem,
-    ESwitch: genSwitchFormItem
+    EInputTrim: genFormItemWrapper(genInputTrim),
+    EInputNum: genFormItemWrapper(genInputNum),
+    ESelect: genFormItemWrapper(genSelect),
+    ECheckbox: genFormItemWrapper(genCheckbox),
+    ERadio: genFormItemWrapper(genRadio),
+    ESwitch: genFormItemWrapper(genSwitch)
   }
-
   return typeFuncMap[type]
 }
