@@ -2,7 +2,7 @@ const genFormItemProp = (validated, value) => {
   if (validated) {
     return `prop='${value}'`
   } else {
-    return
+    return `\u0020`
   }
 }
 
