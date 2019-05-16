@@ -1,8 +1,5 @@
 <template>
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <el-button size="mini" type="primary" @click="copy">{{$t('code.copy')}}</el-button>
-    </div>
+  <RightPanel>
     <code class="code">
       <div style="overflow:auto">
         <pre ref="srcCode">
@@ -10,13 +7,26 @@
     </pre>
       </div>
     </code>
-  </el-card>
+  </RightPanel>
 </template>
 
 <script>
 /* eslint-disable no-useless-escape */
-import {_rules, _ref,_genFormItems,_upsertBtn,_genData,_genRules,_genSubmitMethod } from './vueSnippet.js'
+import {
+  _rules,
+  _ref,
+  _genFormItems,
+  _upsertBtn,
+  _genData,
+  _genRules,
+  _genSubmitMethod
+} from "./vueSnippet.js";
+import RightPanel from "@/components/RightPanel";
+
 export default {
+  components: {
+    RightPanel
+  },
   props: {
     form: {
       type: Object
@@ -81,9 +91,11 @@ export default {
     } = {}) {
       return `
 <template>
-<el-form :model="${formObj}" ${_ref(validated,ref)}  ${_rules(validated)} label-width="80px">
+<el-form :model="${formObj}" ${_ref(validated, ref)}  ${_rules(
+        validated
+      )} label-width="80px">
   ${_genFormItems(formObj, validated, formItems)}
-  ${_upsertBtn(validated,ref,method)}
+  ${_upsertBtn(validated, ref, method)}
 </el-form>
 </template>
 <script>
@@ -91,33 +103,15 @@ export default {
     data() {
       return {
         ${_genData(formObj, formItems)},
-        ${_genRules(validated,formItems)}
+        ${_genRules(validated, formItems)}
       }
     },
     methods: {
-      ${_genSubmitMethod(validated,confirmed,formObj,method)}
+      ${_genSubmitMethod(validated, confirmed, formObj, method)}
     }
   }
 <\/script>
 `;
-    },
-    copy() {
-      const clipboardDiv = this.$refs["srcCode"];
-      clipboardDiv.focus();
-      window.getSelection().removeAllRanges();
-      var range = document.createRange();
-      range.setStartBefore(clipboardDiv.firstChild);
-      range.setEndAfter(clipboardDiv.lastChild);
-      window.getSelection().addRange(range);
-      try {
-        if (document.execCommand("copy")) {
-          this.$message.success("已复制到剪贴板");
-        } else {
-          this.$message.error("未能复制到剪贴板，请全选后右键复制");
-        }
-      } catch (err) {
-        this.$message.error("未能复制到剪贴板，请全选后右键复制");
-      }
     },
     skipToEdit() {
       window.open(`./code-editor`, "_blank");

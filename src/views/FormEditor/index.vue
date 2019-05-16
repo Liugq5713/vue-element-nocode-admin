@@ -21,17 +21,13 @@
           </el-row>
         </el-card>
       </el-main>
-      <el-aside width="300px">
-        <FormCode :form="form" :formItems="formItems"/>
-      </el-aside>
+      <FormCode :form="form" :formItems="formItems"/>
     </el-container>
-    <RightPanel />
   </el-container>
 </template>
 
 <script>
 import Header from "@/components/Header";
-import RightPanel from '@/components/RightPanel'
 import FormAttribute from "./FormAttribute";
 import FormItems from "./FormItems";
 import FormItemAttribute from "./FormItemAttribute";
@@ -48,8 +44,7 @@ export default {
     FormAttribute,
     FormItemAttribute,
     FormCode,
-    JsonForm,
-    RightPanel
+    JsonForm
   },
   data() {
     const store = new FormStore(this);
