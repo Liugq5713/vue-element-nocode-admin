@@ -25,11 +25,13 @@
         <FormCode :form="form" :formItems="formItems"/>
       </el-aside>
     </el-container>
+    <RightPanel />
   </el-container>
 </template>
 
 <script>
 import Header from "@/components/Header";
+import RightPanel from '@/components/RightPanel'
 import FormAttribute from "./FormAttribute";
 import FormItems from "./FormItems";
 import FormItemAttribute from "./FormItemAttribute";
@@ -46,7 +48,8 @@ export default {
     FormAttribute,
     FormItemAttribute,
     FormCode,
-    JsonForm
+    JsonForm,
+    RightPanel
   },
   data() {
     const store = new FormStore(this);
