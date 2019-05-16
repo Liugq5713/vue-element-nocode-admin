@@ -23,6 +23,7 @@
     "babel-preset-vue-app": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "mockjs": "^1.0.1-beta3",
     "vue-codemirror": "^4.0.6",
     "vue-template-compiler": "^2.5.21"
   },
