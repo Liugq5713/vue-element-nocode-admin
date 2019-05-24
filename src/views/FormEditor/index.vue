@@ -21,9 +21,7 @@
           </el-row>
         </el-card>
       </el-main>
-      <el-aside width="300px">
-        <FormCode :form="form" :formItems="formItems"/>
-      </el-aside>
+      <FormCode :form="form" :formItems="formItems"/>
     </el-container>
   </el-container>
 </template>

@@ -1,22 +1,66 @@
 <template>
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <el-button size="mini" type="primary" @click="copy">{{$t('code.copy')}}</el-button>
-    </div>
-    <code class="code">
+  <div class="code-container">
+    <Drawer
+      :openDrawer="openDrawer"
+      triggerEvent="mouseover"
+      controlOffset="20vh"
+      contentSize="600px"
+      :controls="controls"
+    >
+      <template v-slot:control="{drawer}">
+        <el-button v-if="drawer.control.key==='copy'" size="mini" @click="copy">
+          <span style="writing-mode: vertical-rl;">
+            <i class="el-icon-copy-document" style="margin-bottom:4px"></i>
+            {{$t('code.copy')}}
+          </span>
+        </el-button>
+        <el-button size="mini" v-if="drawer.control.key==='look'" style="margin-left:-0px">
+          <span style="writing-mode: vertical-rl;">
+            <i
+              :class="drawer.show?'el-icon-arrow-right':'el-icon-arrow-left'"
+              class="el-icon-arrow-left"
+              style="margin-bottom:4px"
+            ></i>
+            {{drawer.show?'隐藏':'显示'}}代码
+          </span>
+        </el-button>
+      </template>
+      <code class="code">
+        <div style="overflow:auto">
+          <pre>
+    {{srcCode}}
+    </pre>
+        </div>
+      </code>
+    </Drawer>
+    <!-- 为了粘贴出来有格式的代码 -->
+    <code class="code" style="position:absolute;top:-999999px">
       <div style="overflow:auto">
         <pre ref="srcCode">
     {{srcCode}}
     </pre>
       </div>
     </code>
-  </el-card>
+  </div>
 </template>
 
 <script>
 /* eslint-disable no-useless-escape */
-import {_rules, _ref,_genFormItems,_upsertBtn,_genData,_genRules,_genSubmitMethod } from './vueSnippet.js'
+import {
+  _rules,
+  _ref,
+  _genFormItems,
+  _upsertBtn,
+  _genData,
+  _genRules,
+  _genSubmitMethod
+} from "./vueSnippet.js";
+import Drawer from "@/components/Drawer";
+
 export default {
+  components: {
+    Drawer
+  },
   props: {
     form: {
       type: Object
@@ -37,7 +81,19 @@ export default {
       dataFormData: {},
       dataFormRules: {},
       submitMethods: "",
-      validated: false
+      validated: false,
+      controls: [
+        {
+          key: "copy",
+          show: "复制",
+          hidden: "复制"
+        },
+        {
+          key: "look",
+          show: "查看",
+          hidden: "隐藏"
+        }
+      ]
     };
   },
   watch: {
@@ -81,9 +137,11 @@ export default {
     } = {}) {
       return `
 <template>
-<el-form :model="${formObj}" ${_ref(validated,ref)}  ${_rules(validated)} label-width="80px">
+<el-form :model="${formObj}" ${_ref(validated, ref)}  ${_rules(
+        validated
+      )} label-width="80px">
   ${_genFormItems(formObj, validated, formItems)}
-  ${_upsertBtn(validated,ref,method)}
+  ${_upsertBtn(validated, ref, method)}
 </el-form>
 </template>
 <script>
@@ -91,15 +149,30 @@ export default {
     data() {
       return {
         ${_genData(formObj, formItems)},
-        ${_genRules(validated,formItems)}
+        ${_genRules(validated, formItems)}
       }
     },
     methods: {
-      ${_genSubmitMethod(validated,confirmed,formObj,method)}
+      ${_genSubmitMethod(validated, confirmed, formObj, method)}
     }
   }
 <\/script>
 `;
+    },
+    skipToEdit() {
+      window.open(`./code-editor`, "_blank");
+    },
+    openDrawer(target) {
+      let shouldOpen = true;
+      while (!target.matches(".controls")) {
+        if (target.matches(".control-0")) {
+          shouldOpen = false;
+          break;
+        } else {
+          target = target.parentNode;
+        }
+      }
+      return shouldOpen;
     },
     copy() {
       const clipboardDiv = this.$refs["srcCode"];
@@ -118,9 +191,6 @@ export default {
       } catch (err) {
         this.$message.error("未能复制到剪贴板，请全选后右键复制");
       }
-    },
-    skipToEdit() {
-      window.open(`./code-editor`, "_blank");
     }
   }
 };
@@ -128,6 +198,12 @@ export default {
 
 <style scoped>
 .code {
+  padding: 0px 20px;
   background-color: #f8f8f8;
+}
+
+.code-container >>> .control {
+  padding: 0;
+  border: 0;
 }
 </style>
