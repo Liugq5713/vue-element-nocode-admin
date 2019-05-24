@@ -1,5 +1,5 @@
 <template>
-  <RightPanel>
+  <Drawer>
     <code class="code">
       <div style="overflow:auto">
         <pre ref="srcCode">
@@ -7,7 +7,7 @@
     </pre>
       </div>
     </code>
-  </RightPanel>
+  </Drawer>
 </template>
 
 <script>
@@ -21,11 +21,11 @@ import {
   _genRules,
   _genSubmitMethod
 } from "./vueSnippet.js";
-import RightPanel from "@/components/RightPanel";
+import Drawer from "@/components/Drawer";
 
 export default {
   components: {
-    RightPanel
+    Drawer
   },
   props: {
     form: {
@@ -47,7 +47,19 @@ export default {
       dataFormData: {},
       dataFormRules: {},
       submitMethods: "",
-      validated: false
+      validated: false,
+      controls: [
+        {
+          key: "copy",
+          show: "复制",
+          hidden: "复制"
+        },
+        {
+          key: "look",
+          show: "查看",
+          hidden: "隐藏"
+        }
+      ]
     };
   },
   watch: {
