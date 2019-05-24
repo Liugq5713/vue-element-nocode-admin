@@ -116,23 +116,25 @@ export default {
       return ["left", "right"].includes(this.position);
     },
     isVertical() {
-      return ["botom", "top"].includes(this.position);
+      return ["bottom", "top"].includes(this.position);
     }
   },
   mounted() {
-    if (typeof this.controlOffset === "number") {
-      this.controlOffset = `${this.controlOffset}px`;
+    let controlOffset = this.controlOffset;
+    let contentSize = this.contentSize;
+    if (typeof controlOffset === "number") {
+      controlOffset = `${controlOffset}px`;
     }
-    if (typeof this.contentSize === "number") {
-      this.contentSize = `${this.contentSize}px`;
+    if (typeof contentSize === "number") {
+      contentSize = `${contentSize}px`;
     }
     if (this.isVertical) {
-      this.$refs["controls__container"].style["left"] = this.controlOffset;
-      this.$refs["drawer"].style.maxHeight = this.contentSize;
+      this.$refs["controls__container"].style["left"] = controlOffset;
+      this.$refs["drawer"].style.maxHeight = contentSize;
     }
     if (this.isHorizontal) {
-      this.$refs["controls__container"].style["top"] = this.controlOffset;
-      this.$refs["drawer"].style.maxWidth = this.contentSize;
+      this.$refs["controls__container"].style["top"] = controlOffset;
+      this.$refs["drawer"].style.maxWidth = contentSize;
     }
     this.updateControlLayout();
   },
@@ -168,7 +170,7 @@ export default {
     closeSidebar(evt) {
       const parent = evt.target.closest(".drawer");
       if (!parent) {
-        this.closeDrawerByControl();
+        this.show = false;
         this.removeCloseSidebarListener();
       }
     },
