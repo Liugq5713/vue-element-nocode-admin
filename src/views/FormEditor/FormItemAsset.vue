@@ -34,7 +34,8 @@ import draggable from "vuedraggable";
 const defaultProps = {
   label: "",
   value: "",
-  required: ""
+  required: "",
+  type:''
 };
 export default {
   components: {

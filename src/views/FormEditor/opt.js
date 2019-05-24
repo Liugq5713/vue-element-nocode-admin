@@ -24,3 +24,18 @@ export const input_type_opts = [
     label: '开关 Switch'
   }
 ]
+
+export const value_type_opts = [
+  {
+    value: 'url',
+    label: '链接'
+  },
+  {
+    value: 'date',
+    label: '时间'
+  },
+  {
+    value: 'array',
+    label: '数组'
+  }
+]
