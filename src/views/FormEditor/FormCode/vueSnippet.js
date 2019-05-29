@@ -58,7 +58,7 @@ export const _genRules = (validated, formItems) => {
       return item.props.required || item.props.type;
     })
     .map(item => {
-      const trigger = item.type === "ESelect" ? "change" : "bulr";
+      const trigger = item.type === "ESelect" ? "change" : "blur";
       let requiredTpl = "";
       let typeTpl = "";
       if (item.props.required) {

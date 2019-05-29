@@ -8,7 +8,7 @@
       <el-input
         type="textarea"
         :autosize="{ minRows: 5}"
-        placeholder="请输入内容,用了eval，请不要自嗨"
+        placeholder="请输入内容, eg:{value:label}，记得给label加上引号"
         v-model="formJson"
       ></el-input>
     </el-card>
