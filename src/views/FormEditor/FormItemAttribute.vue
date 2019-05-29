@@ -39,13 +39,27 @@
           label="true"
           @change="setFormItemAttribute"
         >是否必填</el-checkbox>
+        <el-select
+          v-model="formItemAttribute.type"
+          style="width:150px"
+          clearable
+          placeholder="数据类型"
+          @change="setFormItemAttribute"
+        >
+          <el-option
+            v-for="item in value_type_opts"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
       </el-form-item>
     </el-form>
   </el-card>
 </template>
 
 <script>
-import { input_type_opts } from "./opt.js";
+import { input_type_opts, value_type_opts } from "./opt.js";
 export default {
   props: {
     store: {
@@ -58,6 +72,7 @@ export default {
   data() {
     return {
       input_type_opts,
+      value_type_opts,
       idx: 0,
       opt: "",
       formItemAttribute: {},

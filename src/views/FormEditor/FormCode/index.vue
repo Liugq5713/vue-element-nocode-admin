@@ -46,15 +46,7 @@
 
 <script>
 /* eslint-disable no-useless-escape */
-import {
-  _rules,
-  _ref,
-  _genFormItems,
-  _upsertBtn,
-  _genData,
-  _genRules,
-  _genSubmitMethod
-} from "./vueSnippet.js";
+import { genVueFileWrapper } from "./vueSnippet.js";
 import Drawer from "@/components/Drawer";
 
 export default {
@@ -123,41 +115,9 @@ export default {
         confirmed: form.confirmed,
         formItems: formItems
       };
-      this.srcCode = this.genVueFileWrapper(data);
+      this.srcCode = genVueFileWrapper(data);
       window.localStorage.removeItem("vue-element-form-gen-code");
       window.localStorage.setItem("vue-element-form-gen-code", this.srcCode);
-    },
-    genVueFileWrapper({
-      formObj,
-      validated,
-      ref,
-      method,
-      confirmed,
-      formItems
-    } = {}) {
-      return `
-<template>
-<el-form :model="${formObj}" ${_ref(validated, ref)}  ${_rules(
-        validated
-      )} label-width="80px">
-  ${_genFormItems(formObj, validated, formItems)}
-  ${_upsertBtn(validated, ref, method)}
-</el-form>
-</template>
-<script>
-  export default {
-    data() {
-      return {
-        ${_genData(formObj, formItems)},
-        ${_genRules(validated, formItems)}
-      }
-    },
-    methods: {
-      ${_genSubmitMethod(validated, confirmed, formObj, method)}
-    }
-  }
-<\/script>
-`;
     },
     skipToEdit() {
       window.open(`./code-editor`, "_blank");

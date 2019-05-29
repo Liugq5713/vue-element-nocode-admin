@@ -1,5 +1,8 @@
 <template>
   <div class="header">
+    <div class="logo">
+      <img width="200px" style="position:absolute;top:-80px;left:20px" :src="logo" alt="logo">
+    </div>
     <div style="padding-top:10px;float:right;padding-right:10px">
       <router-link to="code-editor" target="_blank">
         <el-button
@@ -25,9 +28,11 @@
 </template>
 
 <script>
+import logo from "./just-font-monochrome-white.png";
 export default {
   data() {
     return {
+      logo,
       lang: this.$i18n.locale
     };
   },
