@@ -24,6 +24,11 @@
             {{drawer.show?'隐藏':'显示'}}代码
           </span>
         </el-button>
+        <el-button v-if="drawer.control.key==='github'" size="mini">
+          <a href="https://github.com/Liugq5713/vue-element-form-editor" target="_blank">
+            <img :src="github" width="13px" alt srcset>
+          </a>
+        </el-button>
       </template>
       <code class="code">
         <div style="overflow:auto">
@@ -48,6 +53,7 @@
 /* eslint-disable no-useless-escape */
 import { genVueFileWrapper } from "./vueSnippet.js";
 import Drawer from "@/components/Drawer";
+import github from "./github.svg";
 
 export default {
   components: {
@@ -66,6 +72,7 @@ export default {
   },
   data() {
     return {
+      github,
       srcCode: "",
       fromItemsCode: "",
       refCode: "",
@@ -82,6 +89,11 @@ export default {
         },
         {
           key: "look",
+          show: "查看",
+          hidden: "隐藏"
+        },
+        {
+          key: "github",
           show: "查看",
           hidden: "隐藏"
         }
@@ -125,7 +137,7 @@ export default {
     openDrawer(target) {
       let shouldOpen = true;
       while (!target.matches(".controls")) {
-        if (target.matches(".control-0")) {
+        if (target.matches(".control-0") || target.matches(".control-2")) {
           shouldOpen = false;
           break;
         } else {
@@ -165,5 +177,6 @@ export default {
 .code-container >>> .control {
   padding: 0;
   border: 0;
+  background-color: #fff0;
 }
 </style>
