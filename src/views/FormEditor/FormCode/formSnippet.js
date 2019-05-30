@@ -20,7 +20,7 @@ export const genInputTrim = (formObj, value, label) => {
 }
 
 export const genInputNum = (formObj, value, label) => {
-  return `<el-input v-model.number="${formObj}.${value}" type='number' placeholder='请输入${label}></el-input>`
+  return `<el-input v-model.number="${formObj}.${value}" type='number' placeholder='请输入${label}'></el-input>`
 }
 
 export const genSelect = (formObj, value, label) => {
