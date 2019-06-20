@@ -32,7 +32,7 @@ export default {
         this.$message.error("对象格式不正确");
       }
       if (isArray(data)) {
-        this.$message.error("a对象格式不正确");
+        this.$message.error("不支持数组嵌套数组");
       }
       let tmp = [];
       Object.keys(data).map(item => {
