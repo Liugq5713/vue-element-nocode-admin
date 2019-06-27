@@ -2,7 +2,6 @@
   <div class="code-container">
     <Drawer
       :openDrawer="openDrawer"
-      triggerEvent="mouseover"
       controlOffset="20vh"
       contentSize="600px"
       :controls="controls"
