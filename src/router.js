@@ -15,7 +15,7 @@ export default new Router({
     {
       path: '/code-editor',
       name: 'code-editor',
-      component: () => import('./views/CodeEditor.vue')
+      component: () => import('./views/CodeEditor/index')
     }
   ]
 })

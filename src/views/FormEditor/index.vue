@@ -1,73 +1,53 @@
 <template>
   <el-container>
     <el-header style="padding:0;height: 50px; ">
-      <Header/>
+      <Header />
     </el-header>
     <el-container>
       <el-aside width="300px">
-        <FormItemAsset/>
-        <JsonForm :store="store"/>
+        <FormItemsDrag />
+        <JsonForm />
       </el-aside>
       <el-main>
-        <FormAttribute :store="store" style="margin-bottom:10px"/>
+        <FormAttr style="margin-bottom:10px" />
         <el-card class="box-card">
           <el-row :gutter="20">
             <el-col :span="16">
-              <FormItems :store="store" :formItems="formItems"></FormItems>
+              <FormItemsDrop />
             </el-col>
             <el-col :span="8">
-              <FormItemAttribute :store="store" :formItemToHandle="formItemToHandle"/>
+              <FormItemAttr  />
             </el-col>
           </el-row>
         </el-card>
       </el-main>
-      <FormCode :form="form" :formItems="formItems"/>
+      <FormCode :form="formAttribute" :formItems="formItems" />
     </el-container>
   </el-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Header from "@/components/Header";
-import FormAttribute from "./FormAttribute";
-import FormItems from "./FormItems";
-import FormItemAttribute from "./FormItemAttribute";
-import FormItemAsset from "./FormItemAsset";
+import FormAttr from './components/FormAttr'
+import FormItemAttr from './components/FormItemAttr'
+import FormItemsDrag from './components/FormItemsDrag'
+import FormItemsDrop from './components/FormItemsDrop'
+import JsonForm from "./components/JsonForm";
 import FormCode from "./FormCode";
-import JsonForm from "./JsonForm";
-import FormStore from "./FormStore.js";
 
 export default {
   components: {
     Header,
-    FormItems,
-    FormItemAsset,
-    FormAttribute,
-    FormItemAttribute,
+ FormAttr,
+ FormItemAttr,
+ FormItemsDrag,
+ FormItemsDrop,
     FormCode,
     JsonForm
   },
-  data() {
-    const store = new FormStore(this);
-    return {
-      store
-    };
-  },
   computed: {
-    form() {
-      return this.store.states.formAttribute;
-    },
-    formItems() {
-      return this.store.states.formItems;
-    },
-    formItem() {
-      return this.store.states.formItem;
-    },
-    formItemToHandle() {
-      return this.store.states.formItemToHandle;
-    },
-    formItemAttribute() {
-      return this.store.states.formItemAttribute;
-    }
+    ...mapGetters(["formAttribute", "formItems", "formItem", "formItemAttribute"])
   }
 };
 </script>

@@ -59,16 +59,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import { input_type_opts, value_type_opts } from "./opt.js";
 export default {
-  props: {
-    store: {
-      type: Object
-    },
-    formItemToHandle: {
-      type: null
-    }
-  },
   data() {
     return {
       input_type_opts,
@@ -78,6 +72,9 @@ export default {
       formItemAttribute: {},
       formItemElement: {}
     };
+  },
+  computed:{
+    ...mapGetters(['formItemToHandle'])
   },
   watch: {
     formItemToHandle(val) {
@@ -102,7 +99,7 @@ export default {
   methods: {
     setFormItemAttribute() {
       if (this.opt === "add" || this.opt === "click") {
-        this.store.commit("setItemInFormItems", this.idx, {
+        this.$store.commit("setItemInFormItems", this.idx, {
           ...this.formItemElement,
           props: {
             ...this.formItemAttribute

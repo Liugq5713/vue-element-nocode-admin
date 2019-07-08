@@ -50,24 +50,15 @@
 
 <script>
 /* eslint-disable no-useless-escape */
-import { genVueFileWrapper } from "./vueSnippet.js";
+import { mapGetters } from "vuex";
 import Drawer from "@/components/Drawer";
+
+import { genVueFileWrapper } from "./vueSnippet.js";
 import github from "./github.svg";
 
 export default {
   components: {
     Drawer
-  },
-  props: {
-    form: {
-      type: Object
-    },
-    formItems: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
   },
   data() {
     return {
@@ -99,6 +90,9 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapGetters(["formAttribute", "formItems"])
+  },
   watch: {
     form: {
       handler(val) {
@@ -108,13 +102,13 @@ export default {
     },
     formItems: {
       handler(val) {
-        this.genVueFile(this.form, val);
+        this.genVueFile(this.formAttribute, val);
       },
       deep: true
     }
   },
   created() {
-    this.genVueFile(this.form, this.formItems);
+    this.genVueFile(this.formAttribute, this.formItems);
   },
   methods: {
     genVueFile(form, formItems) {

@@ -13,7 +13,7 @@
         <draggable
           class="dragArea list-group"
           :list="form.specs"
-          :group="{ name: 'formItems', pull: 'clone', put: false }"
+          :group="{ name: 'formItemsToDrop', pull: 'clone', put: false }"
           :clone="cloneFormItem"
         >
           <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">

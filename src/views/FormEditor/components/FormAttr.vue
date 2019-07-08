@@ -26,10 +26,8 @@
 </template>
 
 <script>
+
 export default {
-  props: {
-    store: Object
-  },
   data() {
     return {
       form: {
@@ -44,7 +42,7 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-        this.store.commit("setFormAttribute", {
+        this.$store.commit("setFormAttribute", {
           ...val,
           ref: val.validated && val.ref
         });

@@ -4,12 +4,12 @@
       <el-form :model="form" label-width="120px">
         <draggable
           class="dragArea list-group"
-          :options="{group: 'formItems'}"
-          v-bind:class="{ bigDragArea: formItems.length===0 }"
-          :list="formItems"
+          :options="{group: 'formItemsToDrop'}"
+          v-bind:class="{ bigDragArea: formItemsToDrop.length===0 }"
+          :list="formItemsToDrop"
           @change="genFormItem"
         >
-          <div class="list-group-item" v-for="(formItem,idx) in formItems" :key="idx">
+          <div class="list-group-item" v-for="(formItem,idx) in formItemsToDrop" :key="idx">
             <div @click="genFormItemByClick(idx,formItem)" :class="{selected:idx===clickedIndex}">
               <el-form-item :label="formItem&&formItem.props.label||'表单label'">
                 <component v-if="formItem" v-bind:is="formItem.type"></component>
@@ -24,43 +24,38 @@
 
 <script>
 import draggable from "vuedraggable";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     draggable
   },
-  props: {
-    store: {
-      type: Object
-    },
-    formItems: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   data() {
     return {
-      form: {}
+      form: {},
+      formItemsToDrop:[]
     };
   },
-  computed: {
-    clickedIndex() {
-      return this.store.states.clickedIndex;
+  watch:{
+    formItems(val){
+      this.formItemsToDrop=JSON.parse(JSON.stringify(val))
     }
+  },
+  //clickedIndex
+  computed: {
+    ...mapGetters(["clickedIndex",'formItems'])
   },
   methods: {
     genFormItem(val) {
-      this.store.commit("setFormItems", this.formItems);
+      this.$store.commit("setFormItems", this.formItemsToDrop);
       if (val.added) {
-        this.store.commit("setClickedIndex", val.added.newIndex);
-        this.store.commit("setFormItemToHandle", val);
+        this.$store.commit("setClickedIndex", val.added.newIndex);
+        this.$store.commit("setFormItemToHandle", val);
       }
     },
     genFormItemByClick(idx, element) {
-      this.store.commit("setClickedIndex", idx);
-      this.store.commit("setFormItemToHandle", {
+      this.$store.commit("setClickedIndex", idx);
+      this.$store.commit("setFormItemToHandle", {
         type: "click",
         idx,
         element
