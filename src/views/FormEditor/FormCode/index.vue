@@ -32,7 +32,7 @@
         </div>
       </code>
     </Drawer>
-    <!-- 为了粘贴出来有格式的代码 -->
+    <!-- 为了粘贴出来有缩进的代码 -->
     <code class="code" style="position:absolute;top:-999999px">
       <div style="overflow:auto">
         <pre ref="srcCode">
