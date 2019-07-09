@@ -1,11 +1,6 @@
 <template>
   <div class="code-container">
-    <Drawer
-      :openDrawer="openDrawer"
-      controlOffset="20vh"
-      contentSize="600px"
-      :controls="controls"
-    >
+    <Drawer :openDrawer="openDrawer" controlOffset="20vh" contentSize="600px" :controls="controls">
       <template v-slot:control="{drawer}">
         <el-button v-if="drawer.control.key==='copy'" size="mini" @click="copy">
           <span style="writing-mode: vertical-rl;">
@@ -25,7 +20,7 @@
         </el-button>
         <el-button v-if="drawer.control.key==='github'" size="mini">
           <a href="https://github.com/Liugq5713/vue-element-form-editor" target="_blank">
-            <img :src="github" width="13px" alt srcset>
+            <img :src="github" width="13px" alt srcset />
           </a>
         </el-button>
       </template>
@@ -53,8 +48,8 @@
 import { mapGetters } from "vuex";
 import Drawer from "@/components/Drawer";
 
-import { genVueFileWrapper } from "./vueSnippet.js";
-import github from "./github.svg";
+import { genVueFileWrapper } from "./snippetVue";
+import github from "@/assets/github.svg";
 
 export default {
   components: {
@@ -111,13 +106,13 @@ export default {
     this.genVueFile(this.formAttribute, this.formItems);
   },
   methods: {
-    genVueFile(form, formItems) {
+    genVueFile(formAttribute, formItems) {
       const data = {
-        ref: form.ref,
-        formObj: form.formObj,
-        method: form.method,
-        validated: form.validated,
-        confirmed: form.confirmed,
+        ref: formAttribute.ref,
+        formObj: formAttribute.formObj,
+        method: formAttribute.method,
+        validated: formAttribute.validated,
+        confirmed: formAttribute.confirmed,
         formItems: formItems
       };
       this.srcCode = genVueFileWrapper(data);

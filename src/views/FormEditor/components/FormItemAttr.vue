@@ -73,8 +73,8 @@ export default {
       formItemElement: {}
     };
   },
-  computed:{
-    ...mapGetters(['formItemToHandle'])
+  computed: {
+    ...mapGetters(["formItemToHandle"])
   },
   watch: {
     formItemToHandle(val) {
@@ -99,10 +99,13 @@ export default {
   methods: {
     setFormItemAttribute() {
       if (this.opt === "add" || this.opt === "click") {
-        this.$store.commit("setItemInFormItems", this.idx, {
-          ...this.formItemElement,
-          props: {
-            ...this.formItemAttribute
+        this.$store.commit("setItemInFormItems", {
+          idx: this.idx,
+          formItem: {
+            ...this.formItemElement,
+            props: {
+              ...this.formItemAttribute
+            }
           }
         });
       }
