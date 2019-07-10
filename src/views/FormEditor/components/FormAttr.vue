@@ -26,7 +26,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -42,7 +41,7 @@ export default {
   watch: {
     form: {
       handler: function(val) {
-        this.$store.commit("setFormAttribute", {
+        this.$store.commit("SET_FORM_ATTRIBUTE", {
           ...val,
           ref: val.validated && val.ref
         });

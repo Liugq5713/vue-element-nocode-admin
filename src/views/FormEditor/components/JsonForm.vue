@@ -65,7 +65,7 @@ export default {
       try {
         const formData = eval(`(${this.formJson})`);
         const formItems = this.flattening(formData);
-        this.$store.commit("setFormItems", formItems);
+        this.$store.commit("SET_FORMITEMS", formItems);
       } catch (error) {
         this.$message.error("请填入正确的Object");
       }

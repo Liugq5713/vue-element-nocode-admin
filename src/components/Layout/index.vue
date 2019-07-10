@@ -1,11 +1,11 @@
 <template>
   <el-container class="container">
     <el-aside width="300px;">
-      <Sidebar />
+      <Sidebar :isSidebarCollapse="isSidebarCollapse" />
     </el-aside>
     <el-container>
-      <el-header>
-        <Navbar />
+      <el-header style="padding:0">
+        <Navbar :isSidebarCollapse="isSidebarCollapse" />
       </el-header>
       <el-main>
         <AppMain />
@@ -23,6 +23,11 @@ export default {
     AppMain,
     Navbar,
     Sidebar
+  },
+  data() {
+    return {
+      isSidebarCollapse: true
+    };
   }
 };
 </script>

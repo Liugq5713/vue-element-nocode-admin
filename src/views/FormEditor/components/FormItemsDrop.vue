@@ -33,29 +33,29 @@ export default {
   data() {
     return {
       form: {},
-      formItemsToDrop:[]
+      formItemsToDrop: []
     };
   },
-  watch:{
-    formItems(val){
-      this.formItemsToDrop=JSON.parse(JSON.stringify(val))
+  watch: {
+    formItems(val) {
+      this.formItemsToDrop = JSON.parse(JSON.stringify(val));
     }
   },
   //clickedIndex
   computed: {
-    ...mapGetters(["clickedIndex",'formItems'])
+    ...mapGetters(["clickedIndex", "formItems"])
   },
   methods: {
     genFormItem(val) {
-      this.$store.commit("setFormItems", this.formItemsToDrop);
+      this.$store.commit("SET_FORMITEMS", this.formItemsToDrop);
       if (val.added) {
-        this.$store.commit("setClickedIndex", val.added.newIndex);
-        this.$store.commit("setFormItemToHandle", val);
+        this.$store.commit("SET_CLICKED_INDEX", val.added.newIndex);
+        this.$store.commit("SET_FORMITEM_HANDLE", val);
       }
     },
     genFormItemByClick(idx, element) {
-      this.$store.commit("setClickedIndex", idx);
-      this.$store.commit("setFormItemToHandle", {
+      this.$store.commit("SET_CLICKED_INDEX", idx);
+      this.$store.commit("SET_FORMITEM_HANDLE", {
         type: "click",
         idx,
         element
