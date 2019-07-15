@@ -35,7 +35,7 @@ const defaultProps = {
   label: "",
   value: "",
   required: "",
-  type:''
+  type: ""
 };
 export default {
   components: {

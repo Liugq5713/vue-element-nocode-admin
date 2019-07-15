@@ -1,17 +1,17 @@
 <template>
   <el-container>
     <el-aside width="300px">
-      <FormItemsDrag />
+      <FormItemDrag />
       <JsonForm />
     </el-aside>
     <el-main>
       <FormAttr style="margin-bottom:10px" />
       <el-row :gutter="20">
-        <el-col :span="16">
-          <FormItemsDrop />
+        <el-col :span="20">
+          <FormItemDrop />
         </el-col>
-        <el-col :span="8">
-          <FormItemAttr />
+        <el-col :span="4">
+          <FormItemDropAttr />
         </el-col>
       </el-row>
     </el-main>
@@ -22,24 +22,24 @@
 <script>
 import { mapGetters } from "vuex";
 import FormAttr from "./components/FormAttr";
-import FormItemAttr from "./components/FormItemAttr";
-import FormItemsDrag from "./components/FormItemsDrag";
-import FormItemsDrop from "./components/FormItemsDrop";
+import FormItemDropAttr from "./components/FormItemDropAttr";
+import FormItemDrag from "./components/FormItemDrag";
+import FormItemDrop from "./components/FormItemDrop";
 import JsonForm from "./components/JsonForm";
 import FormCode from "./FormCode";
 
 export default {
   components: {
     FormAttr,
-    FormItemAttr,
-    FormItemsDrag,
-    FormItemsDrop,
     FormCode,
-    JsonForm
+    JsonForm,
+    FormItemDrag,
+    FormItemDrop,
+    FormItemDropAttr
   },
 
   computed: {
-    ...mapGetters(["formAttribute", "formItems", "formItem", "formItemAttribute"])
+    ...mapGetters(["formAttribute", "formItems", "formItem", "FormItemDropAttribute"])
   }
 };
 </script>
