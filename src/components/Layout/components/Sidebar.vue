@@ -8,8 +8,8 @@
       class="el-menu"
       :collapse="isSidebarCollapse"
     >
-      <img v-if="isSidebarCollapse" width="100%" :src="LogoWithNoTitle" alt srcset />
-      <img v-else width="100%" :src="logo" alt srcset />
+      <img v-show="isSidebarCollapse" width="100%" :src="LogoWithNoTitle" alt srcset />
+      <img v-show='!isSidebarCollapse' width="100%" :src="logo" alt srcset />
       <el-menu-item
         v-for="(menuItem,idx) in menuItems"
         :key="menuItem.path"
