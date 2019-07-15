@@ -5,7 +5,8 @@ const form = {
     formItems: [],
     formItemToHandle: [],
     formItem: {},
-    formItemAttribute: {}
+    formItemAttribute: {},
+    srcCode: ""
   },
   mutations: {
     SET_FORM_ATTRIBUTE(state, formAttribute) {
@@ -23,6 +24,9 @@ const form = {
     SET_FORMITEM_OF_ITEMS(state, newFormItem) {
       const { idx, formItem } = newFormItem;
       state.formItems.splice(idx, 1, formItem);
+    },
+    SET_SRC_CODE(state, srcCode) {
+      state.srcCode = srcCode;
     }
   }
 };

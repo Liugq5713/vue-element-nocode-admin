@@ -2,6 +2,7 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>{{ $t("form.attribute")}}</span>
+      <el-button style="float: right; padding: 3px 0" type="text" @click="copy">复制源代码</el-button>
     </div>
     <div>
       <el-form :inline="true" :model="form" class="demo-form-inline">
@@ -22,10 +23,19 @@
         </el-form-item>
       </el-form>
     </div>
+
+    <code class="code" style="position:absolute;top:-999999px">
+      <div style="overflow:auto">
+        <pre ref="srcCode">
+    {{srcFormCode}}
+    </pre>
+      </div>
+    </code>
   </el-card>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -38,6 +48,10 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters(["srcFormCode"])
+  },
+
   watch: {
     form: {
       handler: function(val) {
@@ -48,6 +62,26 @@ export default {
       },
       deep: true,
       immediate: true
+    }
+  },
+  methods: {
+    copy() {
+      const clipboardDiv = this.$refs["srcCode"];
+      clipboardDiv.focus();
+      window.getSelection().removeAllRanges();
+      var range = document.createRange();
+      range.setStartBefore(clipboardDiv.firstChild);
+      range.setEndAfter(clipboardDiv.lastChild);
+      window.getSelection().addRange(range);
+      try {
+        if (document.execCommand("copy")) {
+          this.$message.success("已复制到剪贴板");
+        } else {
+          this.$message.error("未能复制到剪贴板，请全选后右键复制");
+        }
+      } catch (err) {
+        this.$message.error("未能复制到剪贴板，请全选后右键复制");
+      }
     }
   }
 };

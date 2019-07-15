@@ -7,10 +7,10 @@
     <el-main>
       <FormAttr style="margin-bottom:10px" />
       <el-row :gutter="20">
-        <el-col :span="20">
+        <el-col :span="19">
           <FormItemDrop />
         </el-col>
-        <el-col :span="4">
+        <el-col :span="5">
           <FormItemDropAttr />
         </el-col>
       </el-row>

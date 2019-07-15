@@ -1,63 +1,16 @@
 <template>
-  <div class="code-container">
-    <Drawer :openDrawer="openDrawer" controlOffset="20vh" contentSize="600px" :controls="controls">
-      <template v-slot:control="{drawer}">
-        <el-button v-if="drawer.control.key==='copy'" size="mini" @click="copy">
-          <span style="writing-mode: vertical-rl;">
-            <i class="el-icon-copy-document" style="margin-bottom:4px"></i>
-            {{$t('code.copy')}}
-          </span>
-        </el-button>
-        <el-button size="mini" v-if="drawer.control.key==='look'" style="margin-left:-0px">
-          <span style="writing-mode: vertical-rl;">
-            <i
-              :class="drawer.show?'el-icon-arrow-right':'el-icon-arrow-left'"
-              class="el-icon-arrow-left"
-              style="margin-bottom:4px"
-            ></i>
-            {{drawer.show?'隐藏':'显示'}}代码
-          </span>
-        </el-button>
-        <el-button v-if="drawer.control.key==='github'" size="mini">
-          <a href="https://github.com/Liugq5713/vue-element-form-editor" target="_blank">
-            <img :src="github" width="13px" alt srcset />
-          </a>
-        </el-button>
-      </template>
-      <code class="code">
-        <div style="overflow:auto">
-          <pre>
-    {{srcCode}}
-    </pre>
-        </div>
-      </code>
-    </Drawer>
-    <!-- 为了粘贴出来有缩进的代码 -->
-    <code class="code" style="position:absolute;top:-999999px">
-      <div style="overflow:auto">
-        <pre ref="srcCode">
-    {{srcCode}}
-    </pre>
-      </div>
-    </code>
-  </div>
+  <div class="code-container"></div>
 </template>
 
 <script>
 /* eslint-disable no-useless-escape */
 import { mapGetters } from "vuex";
-import Drawer from "@/components/Drawer";
 
 import { genVueFileWrapper } from "./snippetVue";
-import github from "@/assets/github.svg";
 
 export default {
-  components: {
-    Drawer
-  },
   data() {
     return {
-      github,
       srcCode: "",
       fromItemsCode: "",
       refCode: "",
@@ -65,24 +18,7 @@ export default {
       dataFormData: {},
       dataFormRules: {},
       submitMethods: "",
-      validated: false,
-      controls: [
-        {
-          key: "copy",
-          show: "复制",
-          hidden: "复制"
-        },
-        {
-          key: "look",
-          show: "查看",
-          hidden: "隐藏"
-        },
-        {
-          key: "github",
-          show: "查看",
-          hidden: "隐藏"
-        }
-      ]
+      validated: false
     };
   },
   computed: {
@@ -116,6 +52,7 @@ export default {
         formItems: formItems
       };
       this.srcCode = genVueFileWrapper(data);
+      this.$store.commit("SET_SRC_CODE", this.srcCode);
       window.localStorage.removeItem("vue-element-form-gen-code");
       window.localStorage.setItem("vue-element-form-gen-code", this.srcCode);
     },
