@@ -7,6 +7,12 @@
           :class="[isSidebarCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold','iconStyle']"
         ></i>
       </el-menu-item>
+      <el-menu-item>
+        <el-avatar
+          :size="50"
+          src="https://wpimg.wallstcn.com/8bcb8140-55e6-4b78-bfbc-a6e9cfbe82d9.jpg"
+        ></el-avatar>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>

@@ -38,6 +38,20 @@ export default new Router({
       ]
     },
     {
+      path: "/table",
+      component: Layout,
+      meta: {
+        title: "表格生成",
+        icon: "el-icon-notebook-2"
+      },
+      children: [
+        {
+          path: "",
+          component: () => import("@/views/TableEditor")
+        }
+      ]
+    },
+    {
       path: "/code-editor",
       component: Layout,
       meta: {
