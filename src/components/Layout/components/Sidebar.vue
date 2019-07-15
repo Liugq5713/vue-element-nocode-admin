@@ -54,13 +54,4 @@ export default {
   height: 100%;
   background: #545c64;
 }
-a {
-  text-decoration: none;
-}
-.link {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  color: rgb(191, 203, 217) !important;
-}
 </style>
