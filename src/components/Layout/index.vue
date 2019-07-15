@@ -5,7 +5,7 @@
     </el-aside>
     <el-container>
       <el-header style="padding:0">
-        <Navbar :isSidebarCollapse="isSidebarCollapse" />
+        <Navbar v-model="isSidebarCollapse" />
       </el-header>
       <el-main>
         <AppMain />
@@ -35,6 +35,7 @@ export default {
 <style scoped>
 .container {
   height: 100%;
+  background-color: #f0f2f5;
 }
 .sidebar {
   height: 100%;

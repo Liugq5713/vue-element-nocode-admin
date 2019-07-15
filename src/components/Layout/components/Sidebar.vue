@@ -4,15 +4,18 @@
       <el-menu
         background-color="#545c64"
         text-color="#fff"
+        default-active="1"
         active-text-color="#ffd04b"
         class="el-menu"
         :collapse="isSidebarCollapse"
       >
         <img :src="logo" alt srcset />
-        <el-menu-item v-for="menuItem in menuItems" :key="menuItem.path" index="1">
+        <el-menu-item v-for="(menuItem,idx) in menuItems" :key="menuItem.path" :index="String(idx)">
           <router-link class="link" :to="menuItem.path" :underline="false">
-            <i :class="menuItem.meta.icon"></i>
-            {{menuItem.meta.title}}
+              <i :class="menuItem.meta.icon"></i>
+            <template >
+              <span slot="title">{{menuItem.meta.title}}</span>
+            </template>
           </router-link>
         </el-menu-item>
       </el-menu>
