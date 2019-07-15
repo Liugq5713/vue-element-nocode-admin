@@ -1,25 +1,24 @@
 <template>
   <div class="sidebar-wrapper">
-    <el-scrollbar class="sidebar-wrapper">
-      <el-menu
-        background-color="#545c64"
-        text-color="#fff"
-        default-active="1"
-        active-text-color="#ffd04b"
-        class="el-menu"
-        :collapse="isSidebarCollapse"
+    <el-menu
+      background-color="#545c64"
+      text-color="#fff"
+      default-active="0"
+      active-text-color="#ffd04b"
+      class="el-menu"
+      :collapse="isSidebarCollapse"
+    >
+      <img v-show="!isSidebarCollapse" :src="logo" alt srcset />
+      <el-menu-item
+        v-for="(menuItem,idx) in menuItems"
+        :key="menuItem.path"
+        @click="skipCurrent(menuItem.path)"
+        :index="String(idx)"
       >
-        <img :src="logo" alt srcset />
-        <el-menu-item v-for="(menuItem,idx) in menuItems" :key="menuItem.path" :index="String(idx)">
-          <router-link class="link" :to="menuItem.path" :underline="false">
-              <i :class="menuItem.meta.icon"></i>
-            <template >
-              <span slot="title">{{menuItem.meta.title}}</span>
-            </template>
-          </router-link>
-        </el-menu-item>
-      </el-menu>
-    </el-scrollbar>
+        <span slot="title">{{menuItem.meta.title}}</span>
+        <i :class="menuItem.meta.icon"></i>
+      </el-menu-item>
+    </el-menu>
   </div>
 </template>
 
@@ -41,6 +40,11 @@ export default {
   computed: {
     menuItems() {
       return this.$router.options.routes;
+    }
+  },
+  methods: {
+    skipCurrent(path) {
+      this.$router.push({ path });
     }
   }
 };
