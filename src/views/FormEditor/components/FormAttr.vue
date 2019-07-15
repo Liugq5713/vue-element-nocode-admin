@@ -2,6 +2,7 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>{{ $t("form.attribute")}}</span>
+      <el-button style="float: right; padding: 3px 10px" type="text" @click="skipToEditor">在线编辑</el-button>
       <el-button style="float: right; padding: 3px 0" type="text" @click="copy">复制源代码</el-button>
     </div>
     <div>
@@ -82,6 +83,9 @@ export default {
       } catch (err) {
         this.$message.error("未能复制到剪贴板，请全选后右键复制");
       }
+    },
+    skipToEditor() {
+      this.$router.push({ path: "code-editor" });
     }
   }
 };
