@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <el-card class="box-card">
     <div style="width:100%;">
       <el-form :model="form" label-width="120px">
         <draggable
@@ -19,7 +19,7 @@
         </draggable>
       </el-form>
     </div>
-  </div>
+  </el-card>
 </template>
 
 <script>

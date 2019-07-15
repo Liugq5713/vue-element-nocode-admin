@@ -1,9 +1,13 @@
 <template>
   <div class="navbar-container">
-    <i
-      @click="toggleSidebar"
-      :class="[isSidebarCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold','iconStyle']"
-    ></i>
+    <el-menu class="el-menu-demo" mode="horizontal">
+      <el-menu-item index="1" style="padding:0 !important">
+        <i
+          @click="toggleSidebar"
+          :class="[isSidebarCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold','iconStyle']"
+        ></i>
+      </el-menu-item>
+    </el-menu>
   </div>
 </template>
 
@@ -45,5 +49,9 @@ export default {
 .iconStyle {
   width: 50px;
   font-size: 24px;
+}
+
+.navbar-container >>> .el-menu--horizontal > .el-menu-item.is-active {
+  border-bottom: none !important;
 }
 </style>

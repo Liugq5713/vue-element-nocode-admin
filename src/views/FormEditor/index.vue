@@ -6,16 +6,14 @@
     </el-aside>
     <el-main>
       <FormAttr style="margin-bottom:10px" />
-      <el-card class="box-card">
-        <el-row :gutter="20">
-          <el-col :span="16">
-            <FormItemsDrop />
-          </el-col>
-          <el-col :span="8">
-            <FormItemAttr />
-          </el-col>
-        </el-row>
-      </el-card>
+      <el-row :gutter="20">
+        <el-col :span="16">
+          <FormItemsDrop />
+        </el-col>
+        <el-col :span="8">
+          <FormItemAttr />
+        </el-col>
+      </el-row>
     </el-main>
     <FormCode :form="formAttribute" :formItems="formItems" />
   </el-container>
