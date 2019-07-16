@@ -5,3 +5,5 @@ export const isObject = obj => {
 export const isArray = obj => {
   return Array.isArray(obj);
 };
+
+export * from './json-color'
