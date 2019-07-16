@@ -47,7 +47,7 @@ export default new Router({
       children: [
         {
           path: "",
-          component: () => import("@/views/TableEditor")
+          component: () => import("@/views/TableEditor/index.js")
         }
       ]
     },
