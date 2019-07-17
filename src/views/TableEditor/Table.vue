@@ -1,15 +1,13 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :span="6">
+      <el-col :span="5">
         <el-card class="box-card">
           <TableEditor @change="setTableData" />
         </el-card>
       </el-col>
-      <el-col :span="18">
-        <el-card class="box-card">
-          <TableExhibition :tableData="tableData" />
-        </el-card>
+      <el-col :span="19">
+        <TableExhibition :tableData="tableData" />
       </el-col>
     </el-row>
   </div>

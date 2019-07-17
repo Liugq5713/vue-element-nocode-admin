@@ -1,14 +1,21 @@
 <template>
   <div class="app-container">
-    <TableExhibitionBody :list="list" :headers="headers" />
+    <el-card class="box-card" style="margin-bottom:20px">
+      <TableExhibitionQuery />
+    </el-card>
+    <el-card class="box-card">
+      <TableExhibitionBody :list="list" :headers="headers" />
+    </el-card>
   </div>
 </template>
 
 <script>
 import TableExhibitionBody from "./TableExhibitionBody";
+import TableExhibitionQuery from "./TableExhibitionQuery";
 export default {
   components: {
-    TableExhibitionBody
+    TableExhibitionBody,
+    TableExhibitionQuery
   },
   props: {
     tableData: {
