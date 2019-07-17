@@ -13,6 +13,9 @@
         </el-col>
       </el-row>
     </el-card>
+    <pre style="background:#fff">
+      {{code}}
+    </pre>
   </div>
 </template>
 
@@ -20,6 +23,7 @@
 import TableExhibitionBody from "./TableExhibitionBody";
 import TableExhibitionQuery from "./TableExhibitionQuery";
 import TableExhibitionHeader from "./TableExhibitionHeader";
+import {genTableSnippet} from './snippetTable.js'
 export default {
   components: {
     TableExhibitionBody,
@@ -43,11 +47,18 @@ export default {
         }
       },
       immediate: true
+    },
+    headers:{
+      handler(val){
+        this.code= genTableSnippet(val)
+      },
+      deep:true
     }
   },
   data() {
     return {
       list: [],
+      code:'',
       headers: [],
       query: {
         limit: 20,

@@ -1,4 +1,5 @@
-export const genTableSnippet = () => {
+import {genTableColumnSnippet} from './snippetTableColumn'
+export const genTableSnippet = (headers) => {
   return `
   <template>
   <div class="app-container">
@@ -11,6 +12,7 @@ export const genTableSnippet = () => {
       >搜索</el-button>
     </div>
     <el-table :data="lists" border style="width: 100%">
+      ${genTableColumnSnippet(headers)}
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="editlist(scope.row)">编辑</el-button>

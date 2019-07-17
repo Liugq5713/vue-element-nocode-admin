@@ -1,8 +1,9 @@
 export const genTableColumnSnippet = headers => {
-  headers.map(header => {
+ return  headers.map(header => {
+    console.log('header', header)
     genTabeleColumSinppetTemplate(header.label)
     return genTableColumSnippetSimple(header.value,header.label);
-  });
+  }).join('\n      ');
 };
 
 const genTableColumSnippetSimple = (value,label)=>{
