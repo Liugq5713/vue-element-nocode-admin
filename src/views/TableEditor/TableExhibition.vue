@@ -1,17 +1,15 @@
 <template>
   <div class="app-container">
-    <el-table :data="list" border style="width: 100%">
-      <el-table-column label="操作" align="center">
-        <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="editdata(scope.row)">编辑</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <TableExhibitionBody :list="list" :headers="headers" />
   </div>
 </template>
 
 <script>
+import TableExhibitionBody from "./TableExhibitionBody";
 export default {
+  components: {
+    TableExhibitionBody
+  },
   props: {
     tableData: {
       type: Object,
@@ -21,14 +19,20 @@ export default {
   watch: {
     tableData: {
       handler(val) {
-        this.list = val.data && val.data.items;
+        this.list = val.data && val.data.items.slice(0, 3);
+        if (this.list) {
+          this.headers = Object.keys(this.list[0]).map(item => {
+            return { key: item, label: item };
+          });
+        }
       },
       immediate: true
     }
   },
   data() {
     return {
-      list: undefined,
+      list: [],
+      headers: [],
       query: {
         limit: 20,
         cursor: 1
@@ -38,7 +42,10 @@ export default {
   },
   created() {},
   methods: {
-    editdata() {}
+    editdata() {},
+    test(val) {
+      console.log("val", val);
+    }
   }
 };
 </script>
