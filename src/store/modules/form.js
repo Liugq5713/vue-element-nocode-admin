@@ -25,7 +25,7 @@ const form = {
       const { idx, formItem } = newFormItem;
       state.formItems.splice(idx, 1, formItem);
     },
-    SET_SRC_CODE(state, srcCode) {
+    SET_SRC_FORM_CODE(state, srcCode) {
       state.srcCode = srcCode;
     }
   }

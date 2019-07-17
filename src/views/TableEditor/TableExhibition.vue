@@ -23,7 +23,7 @@
 import TableExhibitionBody from "./TableExhibitionBody";
 import TableExhibitionQuery from "./TableExhibitionQuery";
 import TableExhibitionHeader from "./TableExhibitionHeader";
-import {genTableSnippet} from './snippetTable.js'
+import { genTableSnippet } from "./snippetTable.js";
 export default {
   components: {
     TableExhibitionBody,
@@ -48,17 +48,18 @@ export default {
       },
       immediate: true
     },
-    headers:{
-      handler(val){
-        this.code= genTableSnippet(val)
+    headers: {
+      handler(val) {
+        this.code = genTableSnippet(val);
+        this.$store.commit("SET_SRC_TABLE_CODE", this.code);
       },
-      deep:true
+      deep: true
     }
   },
   data() {
     return {
       list: [],
-      code:'',
+      code: "",
       headers: [],
       query: {
         limit: 20,
