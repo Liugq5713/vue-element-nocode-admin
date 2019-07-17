@@ -1,13 +1,14 @@
 <template>
   <div class="app-container">
-    <el-table :data="list" border style="width: 100%" @header-click="test">
+    <h3>表格展示区</h3>
+    <el-table :key="table_key" :data="list" border style="width: 100%" @header-click="test">
       <el-table-column
         v-for="header in headers"
-        :key="header.key"
+        :key="header.value"
         :label="header.label"
         align="center"
       >
-        <template slot-scope="{row}">{{row[header.key]}}</template>
+        <template slot-scope="{row}">{{row[header.value]}}</template>
       </el-table-column>
     </el-table>
   </div>
@@ -17,7 +18,7 @@
 export default {
   props: {
     list: {
-      type: Array,
+      type: null,
       required: true
     },
     headers: {
@@ -26,8 +27,8 @@ export default {
     }
   },
   watch: {
-    headers(val) {
-      console.log("val", val);
+    headers() {
+      this.table_key++;
     }
   },
   data() {
@@ -36,6 +37,7 @@ export default {
         limit: 20,
         cursor: 1
       },
+      table_key: 0,
       total: 0
     };
   },

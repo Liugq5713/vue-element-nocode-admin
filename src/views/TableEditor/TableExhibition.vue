@@ -4,7 +4,14 @@
       <TableExhibitionQuery />
     </el-card>
     <el-card class="box-card">
-      <TableExhibitionBody :list="list" :headers="headers" />
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <TableExhibitionHeader :headers.sync="headers" />
+        </el-col>
+        <el-col :span="18">
+          <TableExhibitionBody :list="list" :headers="headers" />
+        </el-col>
+      </el-row>
     </el-card>
   </div>
 </template>
@@ -12,9 +19,11 @@
 <script>
 import TableExhibitionBody from "./TableExhibitionBody";
 import TableExhibitionQuery from "./TableExhibitionQuery";
+import TableExhibitionHeader from "./TableExhibitionHeader";
 export default {
   components: {
     TableExhibitionBody,
+    TableExhibitionHeader,
     TableExhibitionQuery
   },
   props: {
@@ -29,7 +38,7 @@ export default {
         this.list = val.data && val.data.items.slice(0, 3);
         if (this.list) {
           this.headers = Object.keys(this.list[0]).map(item => {
-            return { key: item, label: item };
+            return { value: item, label: item };
           });
         }
       },
