@@ -7,7 +7,9 @@
    <a href="https://github.com/dongsuo/vue-data-board/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
+  <a href='https://travis-ci.org/Liugq5713/vue-element-nocode-admin' target="_blank" alt='travis ci'>
   <img alt='travis ci' src='https://travis-ci.org/Liugq5713/vue-element-nocode-admin.svg?branch=master'>
+  </a>
 </p>
 
 > element-ui 的代码可视化编辑器，自动生成表单代码，列表代码。不是一个可视化解决方案，更像是生成模板的工具
