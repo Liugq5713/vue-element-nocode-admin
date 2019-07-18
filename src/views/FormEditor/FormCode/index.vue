@@ -70,24 +70,6 @@ export default {
         }
       }
       return shouldOpen;
-    },
-    copy() {
-      const clipboardDiv = this.$refs["srcCode"];
-      clipboardDiv.focus();
-      window.getSelection().removeAllRanges();
-      var range = document.createRange();
-      range.setStartBefore(clipboardDiv.firstChild);
-      range.setEndAfter(clipboardDiv.lastChild);
-      window.getSelection().addRange(range);
-      try {
-        if (document.execCommand("copy")) {
-          this.$message.success("已复制到剪贴板");
-        } else {
-          this.$message.error("未能复制到剪贴板，请全选后右键复制");
-        }
-      } catch (err) {
-        this.$message.error("未能复制到剪贴板，请全选后右键复制");
-      }
     }
   }
 };
