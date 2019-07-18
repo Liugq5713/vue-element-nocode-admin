@@ -1,12 +1,20 @@
-# vue-element-form-editor
+<h1 align="center">Welcome to vue-element-form-editor 👋</h1>
+<p>
+  <img width="320" src="https://raw.githubusercontent.com//Liugq5713/vue-element-form-editor/master/src/assets/logo-with-title.png">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+</p>
 
-[项目预览地址](https://so-easy.cc/vue-element-form-editor/)
+> element-ui 的表单可视化编辑器，自动生成表单验证代码。不是一个可视化解决方案，更像是生成模板的工具。为解决笔者记不住 element-ui 表单验证写法而生
 
-element-ui 的表单可视化编辑器，自动生成表单验证代码。不是一个可视化解决方案，更像是生成模板的工具。为解决笔者记不住 element-ui 表单验证写法而生。
+## 🏠 [Homepage](https://so-easy.cc/vue-element-form-editor/)
 
-![项目展示](https://wpimg.wallstcn.com/f661c498-2e13-46b4-8c97-d8e1325b1d88.gif)
+## Install
 
-## 如何使用
+```sh
+npm install
+```
+
+## How to Use
 
 一份表单有两个需要编辑的地方，一个是表单本身的属性，比如表单对象，表单的 Ref（用于表单验证），另一个就是表单包含的表单元素。
 
@@ -40,13 +48,16 @@ element-ui 的表单可视化编辑器，自动生成表单验证代码。不是
 
 然后点击生成表单即可，默认生成 Input，可在表单元素编辑区修改
 
-## 计划
+## Author
 
-未来可能会增加新的表单资源，但是不会多，因为我觉得拖拖拽拽这些表单，可能还不如我自己手写代码来的快。
+👤 **sarva**
 
-增加一个表单资源(比较麻烦，待优化)
+- Github: [@Liugq5713](https://github.com/Liugq5713)
 
-- code.js 生成代码
-- FormItemAsset 添加资源
-- FormItem 文件夹里面增加组件
-- opt.js 增加选项
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
