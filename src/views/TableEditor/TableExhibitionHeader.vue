@@ -23,7 +23,8 @@
             <el-button type="primary" size="small" icon="el-icon-timer" @click="opt(header,'time')" circle></el-button>
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="该字段设为查询项" placement="top-start">
-            <el-button type="primary" size="small" icon="el-icon-search" @click="opt(header,'time')" circle></el-button>
+            <el-button type="info" v-if="header.query"  size="small" icon="el-icon-magic-stick" @click="query(header,false)" circle></el-button>
+            <el-button type="warning" v-else size="small"  icon="el-icon-search" @click="query(header,true)" circle></el-button>
           </el-tooltip>
           
           <div slot="reference" class="table-header-card">
@@ -78,6 +79,10 @@ export default {
     },
     opt(header,opt){
       header.opt=opt
+    },
+    query(header,query){
+      console.log('query', query)
+      header.query=query
     }
   }
 };
