@@ -1,10 +1,10 @@
-<h1 align="center">Welcome to vue-element-form-editor 👋</h1>
-<p>
-  <img width="320" src="https://raw.githubusercontent.com//Liugq5713/vue-element-form-editor/master/src/assets/logo-with-title.png">
+<h1 align="center">Welcome to vue-element-nocode-admin 👋</h1>
+<p align="center">
+  <img width="320" src="https://raw.githubusercontent.com/Liugq5713/vue-element-form-editor/master/src/assets/logo-with-title.png">
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> element-ui 的表单可视化编辑器，自动生成表单验证代码。不是一个可视化解决方案，更像是生成模板的工具。为解决笔者记不住 element-ui 表单验证写法而生
+> element-ui 的代码可视化编辑器，自动生成表单代码，列表代码。不是一个可视化解决方案，更像是生成模板的工具
 
 ## 🏠 [Homepage](https://so-easy.cc/vue-element-form-editor/)
 
@@ -15,6 +15,8 @@ npm install
 ```
 
 ## How to Use
+
+### 表单
 
 一份表单有两个需要编辑的地方，一个是表单本身的属性，比如表单对象，表单的 Ref（用于表单验证），另一个就是表单包含的表单元素。
 
@@ -47,6 +49,10 @@ npm install
 ```
 
 然后点击生成表单即可，默认生成 Input，可在表单元素编辑区修改
+
+### 表格
+
+将后端返回得数据粘贴到生成表单得输入框中，生成表单，然后编辑表格头即可，后续会加上表格查询
 
 ## Author
 
