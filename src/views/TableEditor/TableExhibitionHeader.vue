@@ -12,17 +12,16 @@
         <el-popover
           placement="right"
           trigger="focus">
-          <el-tooltip class="item" effect="dark" content="控制显示/隐藏" placement="top-start">
+
+          <el-tooltip class="item" effect="dark" :content="`该字段在表格中${header.show?'显示':'隐藏'}`" placement="top-start">
             <el-button v-if="header.show" type="info" icon="el-icon-close" size="small" circle @click='hide(header)'></el-button>
             <el-button  type="success" v-else icon="el-icon-check" @click="show(header)"  size="small" circle></el-button>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="该字段置于template标签内" placement="top-start">
-            <el-button size="small" type="primary" icon="el-icon-edit-outline" @click="opt(header,'template')" circle></el-button>
+          <el-tooltip class="item" effect="dark" :content="`该字段${header.opt===''? '未':''}置于template标签内`" placement="top-start">
+            <el-button size="small" type="primary" v-if="header.opt===''" icon="el-icon-coordinate" @click="opt(header,'template')" circle></el-button>
+            <el-button size="small" type="info" v-else icon="el-icon-coordinate" @click="opt(header,'')" circle></el-button>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="该字段处理为时间" placement="top-start">
-            <el-button type="primary" size="small" icon="el-icon-timer" @click="opt(header,'time')" circle></el-button>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="该字段设为查询项" placement="top-start">
+          <el-tooltip class="item" effect="dark" :content="`该字段${header.query?'是':'不是'}查询项`" placement="top-start">
             <el-button type="info" v-if="header.query"  size="small" icon="el-icon-magic-stick" @click="query(header,false)" circle></el-button>
             <el-button type="warning" v-else size="small"  icon="el-icon-search" @click="query(header,true)" circle></el-button>
           </el-tooltip>
@@ -39,6 +38,7 @@
               ></el-input>
             </div>
           </div>
+          
           </el-popover>
         </div>
     </draggable>
