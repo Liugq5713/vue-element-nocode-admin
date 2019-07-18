@@ -1,7 +1,12 @@
 <h1 align="center">Welcome to vue-element-nocode-admin 👋</h1>
 <p align="center">
-  <img width="320" src="https://raw.githubusercontent.com/Liugq5713/vue-element-form-editor/master/src/assets/logo-with-title.png">
+  <img  width="320" src="https://raw.githubusercontent.com/Liugq5713/vue-element-form-editor/master/src/assets/logo-with-title.png">
+</p>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+   <a href="https://github.com/dongsuo/vue-data-board/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
 </p>
 
 > element-ui 的代码可视化编辑器，自动生成表单代码，列表代码。不是一个可视化解决方案，更像是生成模板的工具
@@ -63,7 +68,3 @@ npm install
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

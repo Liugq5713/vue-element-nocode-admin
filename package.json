@@ -2,6 +2,22 @@
   "name": "vue-element-nocode-admin",
   "version": "0.1.0",
   "private": true,
+  "author": "sarva",
+  "keywords": [
+    "vue",
+    "element",
+    "vue-element-admin",
+    "nocode"
+  ],
+  "bugs": {
+    "url": "https://github.com/Liugq5713/vue-element-nocode-admin/issues"
+  },
+  "homepage": "https://github.com/Liugq5713/vue-element-nocode-admin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liugq5713/vue-element-nocode-admin.git"
+  },
+  "license": "MIT",
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
