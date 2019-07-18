@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div slot="header" class="clearfix">
+    <div slot="header" class="clearfix" style="margin-bottom:15px;">
       <span>生成表格</span>
       <el-button size="mini" type="primary" style="float:right" @click="gen">生成表格</el-button>
     </div>
