@@ -12,12 +12,12 @@
 export default {
   computed: {
     key() {
-      return this.$route.path;
+      console.log("this.$route.path", this.$route.path);
+      return this.$route.path + JSON.stringify(this.$route.query);
     }
   }
 };
 </script>
 
 <style scoped>
-
 </style>

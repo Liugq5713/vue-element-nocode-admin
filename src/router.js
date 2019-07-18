@@ -61,7 +61,7 @@ export default new Router({
       children: [
         {
           path: "",
-          component: () => import("./views/CodeEditor/index")
+          component: () => import("./views/Monaco/index")
         }
       ]
     }
