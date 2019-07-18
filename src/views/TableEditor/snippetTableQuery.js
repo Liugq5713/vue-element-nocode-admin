@@ -1,5 +1,5 @@
-export const genTableInputTrimQuery=(query)=>{
-  return `<el-input v-model.trim='query.' placeholder='请输入'  style='width:200px' @keyup.enter.native='' />`
+export const genTableInputTrimQuery=(query,changeCallback)=>{
+  return `<el-input v-model.trim='query.${query}' placeholder='请输入${query}'  style='width:200px' @keyup.enter.native='${changeCallback}' />`
 }
 
 export const genTableInputNumberQuery=(query,changeCallback)=>{
