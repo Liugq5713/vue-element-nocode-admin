@@ -39,7 +39,8 @@ export default {
         this.list = val.data && val.data.items.slice(0, 3);
         if (this.list) {
           this.headers = Object.keys(this.list[0]).map(item => {
-            return { value: item, label: item };
+            // opt 为需要对 字段的操作，''空就不操作，'time' 处理时间，'template' 将字段放在template 里面，方便后续操作
+            return { value: item, label: item,show:false,opt:'',query:true};
           });
         }
       },

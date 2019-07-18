@@ -1,14 +1,11 @@
+/* eslint-disable */
 <template>
   <div class="app-container">
     <h3>表格展示区</h3>
     <el-table :key="table_key" :data="list" border style="width: 100%" @header-click="test">
-      <el-table-column
-        v-for="header in headers"
-        :key="header.value"
-        :label="header.label"
-        align="center"
-      >
-        <template slot-scope="{row}">{{row[header.value]}}</template>
+        <!--  eslint-disable-next-line -->
+      <el-table-column v-for="header in headers" v-if='header.show' :key="header.value" :label="header.label" align="center">
+        <template  slot-scope="{row}">{{row[header.value]}}</template>
       </el-table-column>
     </el-table>
   </div>
