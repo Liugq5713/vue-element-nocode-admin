@@ -7,7 +7,7 @@
         style="float: right; padding: 3px 0"
         type="text"
         @click="handleClipboard(srcFormCode,$event)"
-      >复制源代码</el-button>
+      >复制代码</el-button>
     </div>
     <div>
       <el-form :inline="true" :model="form" class="demo-form-inline">
@@ -74,7 +74,7 @@ export default {
         });
     },
     skipToEditor() {
-      this.$router.push({ path: "code-editor" });
+      this.$router.push("code-editor?code=form");
     }
   }
 };

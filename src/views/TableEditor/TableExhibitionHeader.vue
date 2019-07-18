@@ -48,9 +48,8 @@ export default {
     };
   },
   methods: {
-    set(val) {
+    set() {
       this.$emit("update:headers", this.tableHeaders);
-      console.log("val", val);
     }
   }
 };

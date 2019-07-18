@@ -13,9 +13,6 @@
         </el-col>
       </el-row>
     </el-card>
-    <pre style="background:#fff">
-      {{code}}
-    </pre>
   </div>
 </template>
 
@@ -52,6 +49,8 @@ export default {
       handler(val) {
         this.code = genTableSnippet(val);
         this.$store.commit("SET_SRC_TABLE_CODE", this.code);
+        window.localStorage.removeItem("vue-element-table-gen-code");
+        window.localStorage.setItem("vue-element-table-gen-code", this.code);
       },
       deep: true
     }

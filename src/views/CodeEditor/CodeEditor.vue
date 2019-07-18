@@ -1,5 +1,5 @@
 <template>
-  <div class="codemirror">
+  <div class="codemirror" :key="codemirrorKey">
     <!-- codemirror -->
     <codemirror v-model="code" style="height:100vh" :options="cmOption"></codemirror>
   </div>
@@ -102,15 +102,33 @@ export default {
         matchBrackets: true,
         showCursorWhenSelecting: true,
         theme: "monokai",
-        extraKeys: { Ctrl: "autocomplete" }
+        extraKeys: { Ctrl: "autocomplete" },
+        codemirrorKey: 0
       }
     };
   },
-  mounted() {
-    window.addEventListener("storage", () => {
-      this.code = window.localStorage.getItem("vue-element-form-gen-code");
-    });
-    this.code = window.localStorage.getItem("vue-element-form-gen-code");
+  watch: {
+    codeType: {
+      handler(val) {
+        if (val === "table") {
+          window.addEventListener("storage", () => {
+            this.code = window.localStorage.getItem("vue-element-table-gen-code");
+          });
+          this.code = window.localStorage.getItem("vue-element-table-gen-code");
+        } else {
+          window.addEventListener("storage", () => {
+            this.code = window.localStorage.getItem("vue-element-form-gen-code");
+          });
+          this.code = window.localStorage.getItem("vue-element-form-gen-code");
+        }
+      },
+      immediate: true
+    }
+  },
+  computed: {
+    codeType() {
+      return this.$route.query.code;
+    }
   },
   beforeDestroy() {
     window.removeEventListener("storage");
