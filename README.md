@@ -11,7 +11,7 @@
 
 > element-ui 的代码可视化编辑器，自动生成表单代码，列表代码。不是一个可视化解决方案，更像是生成模板的工具
 
-## 🏠 [Homepage](https://so-easy.cc/vue-element-form-editor/)
+## 🏠 [Homepage](https://so-easy.cc/vue-element-nocode-admin/)
 
 ## Install
 
