@@ -2,6 +2,12 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>{{ $t("form.attribute")}}</span>
+      <el-button style="float: right; padding: 3px 10px" type="text" @click="skipToEditor">在线编辑</el-button>
+      <el-button
+        style="float: right; padding: 3px 0"
+        type="text"
+        @click="handleClipboard(srcFormCode,$event)"
+      >复制代码</el-button>
     </div>
     <div>
       <el-form :inline="true" :model="form" class="demo-form-inline">
@@ -26,6 +32,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { handleClipboard } from "@/utils";
 
 export default {
   data() {
@@ -39,16 +47,34 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters(["srcFormCode"])
+  },
+
   watch: {
     form: {
       handler: function(val) {
-        this.$store.commit("setFormAttribute", {
+        this.$store.commit("SET_FORM_ATTRIBUTE", {
           ...val,
           ref: val.validated && val.ref
         });
       },
       deep: true,
       immediate: true
+    }
+  },
+  methods: {
+    handleClipboard(text, evnet) {
+      handleClipboard(text, evnet)
+        .then(() => {
+          this.$message.success("已经复制到剪贴板");
+        })
+        .catch(() => {
+          this.$message.error("未能复制到剪贴板");
+        });
+    },
+    skipToEditor() {
+      this.$router.push("code-editor?code=form");
     }
   }
 };

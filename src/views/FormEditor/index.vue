@@ -1,53 +1,45 @@
 <template>
   <el-container>
-    <el-header style="padding:0;height: 50px; ">
-      <Header />
-    </el-header>
-    <el-container>
-      <el-aside width="300px">
-        <FormItemsDrag />
-        <JsonForm />
-      </el-aside>
-      <el-main>
-        <FormAttr style="margin-bottom:10px" />
-        <el-card class="box-card">
-          <el-row :gutter="20">
-            <el-col :span="16">
-              <FormItemsDrop />
-            </el-col>
-            <el-col :span="8">
-              <FormItemAttr  />
-            </el-col>
-          </el-row>
-        </el-card>
-      </el-main>
-      <FormCode :form="formAttribute" :formItems="formItems" />
-    </el-container>
+    <el-aside width="300px">
+      <FormItemDrag />
+      <JsonForm />
+    </el-aside>
+    <el-main>
+      <FormAttr style="margin-bottom:10px" />
+      <el-row :gutter="20">
+        <el-col :span="19">
+          <FormItemDrop />
+        </el-col>
+        <el-col :span="5">
+          <FormItemDropAttr />
+        </el-col>
+      </el-row>
+    </el-main>
+    <FormCode :form="formAttribute" :formItems="formItems" />
   </el-container>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Header from "@/components/Header";
-import FormAttr from './components/FormAttr'
-import FormItemAttr from './components/FormItemAttr'
-import FormItemsDrag from './components/FormItemsDrag'
-import FormItemsDrop from './components/FormItemsDrop'
+import FormAttr from "./components/FormAttr";
+import FormItemDropAttr from "./components/FormItemDropAttr";
+import FormItemDrag from "./components/FormItemDrag";
+import FormItemDrop from "./components/FormItemDrop";
 import JsonForm from "./components/JsonForm";
 import FormCode from "./FormCode";
 
 export default {
   components: {
-    Header,
- FormAttr,
- FormItemAttr,
- FormItemsDrag,
- FormItemsDrop,
+    FormAttr,
     FormCode,
-    JsonForm
+    JsonForm,
+    FormItemDrag,
+    FormItemDrop,
+    FormItemDropAttr
   },
+
   computed: {
-    ...mapGetters(["formAttribute", "formItems", "formItem", "formItemAttribute"])
+    ...mapGetters(["formAttribute", "formItems", "formItem", "FormItemDropAttribute"])
   }
 };
 </script>

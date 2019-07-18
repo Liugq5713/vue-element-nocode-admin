@@ -5,24 +5,28 @@ const form = {
     formItems: [],
     formItemToHandle: [],
     formItem: {},
-    formItemAttribute: {}
+    formItemAttribute: {},
+    srcCode: ""
   },
   mutations: {
-    setFormAttribute(state, formAttribute) {
+    SET_FORM_ATTRIBUTE(state, formAttribute) {
       state.formAttribute = { ...formAttribute };
     },
-    setFormItems(state, formItems) {
+    SET_FORMITEMS(state, formItems) {
       state.formItems = JSON.parse(JSON.stringify(formItems));
     },
-    setClickedIndex(state, clickedIndex) {
+    SET_CLICKED_INDEX(state, clickedIndex) {
       state.clickedIndex = clickedIndex;
     },
-    setFormItemToHandle(state, formItemToHandle) {
+    SET_FORMITEM_HANDLE(state, formItemToHandle) {
       state.formItemToHandle = { ...formItemToHandle };
     },
-    setItemInFormItems(state, newFormItem) {
+    SET_FORMITEM_OF_ITEMS(state, newFormItem) {
       const { idx, formItem } = newFormItem;
       state.formItems.splice(idx, 1, formItem);
+    },
+    SET_SRC_FORM_CODE(state, srcCode) {
+      state.srcCode = srcCode;
     }
   }
 };

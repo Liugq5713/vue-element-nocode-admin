@@ -4,6 +4,9 @@ const getters = {
   formItems: state => state.form.formItems,
   formItemToHandle: state => state.form.formItemToHandle,
   formItem: state => state.form.formItem,
-  formItemAttribute: state => state.form.formItemAttribute
+  formItemAttribute: state => state.form.formItemAttribute,
+
+  srcFormCode: state => state.form.srcCode,
+  srcTableCode: state => state.table.srcCode,
 };
 export default getters;
