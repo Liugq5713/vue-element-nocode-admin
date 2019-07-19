@@ -3,25 +3,25 @@ export const genTableColumnSnippet = headers => {
     return header.show
   })
     .map(header => {
-      if(timeFieldNeedHandle[header.value]||header.opt==='template'){
-        return genTabeleColumSinppetTemplate(header.value,header.label);
+      if(timeFieldNeedHandle[header.key]||header.opt==='template'){
+        return genTabeleColumSinppetTemplate(header.key,header.label);
       }else{
-        return genTableColumSnippetSimple(header.value, header.label);
+        return genTableColumSnippetSimple(header.key, header.label);
       }
     })
     .join("\n      ");
 };
 
-const genTableColumSnippetSimple = (value, label) => {
-  return `<el-table-column prop='${value}' label='${label}' align='center' />`;
+const genTableColumSnippetSimple = (key, label) => {
+  return `<el-table-column prop='${key}' label='${label}' align='center' />`;
 };
 
-const genTabeleColumSinppetTemplate = (value, label) => {
+const genTabeleColumSinppetTemplate = (key, label) => {
   let val=''
-  if(timeFieldNeedHandle[value]){
-    val = `parseTime(row.${value})`
+  if(timeFieldNeedHandle[key]){
+    val = `parseTime(row.${key})`
   }else{
-    val = `${value}`
+    val = `${key}`
   }
   return `<el-table-column label='${label}'  align='center'>
           <template slot-scope={row}>
