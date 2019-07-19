@@ -8,7 +8,7 @@
       @start="drag=true"
       @end="drag=false"
     >
-      <div v-for="header in tableHeaders" :key="header.value">
+      <div v-for="header in tableHeaders" :key="header.key">
         <el-popover
           placement="right"
           trigger="focus">
@@ -27,8 +27,8 @@
           </el-tooltip>
           
           <div slot="reference" class="table-header-card">
-            <el-tag type='success' v-if='header.show'>{{header.value}}</el-tag>
-            <el-tag type='info' v-else>{{header.value}}</el-tag>
+            <el-tag type='success' v-if='header.show'>{{header.key}}</el-tag>
+            <el-tag type='info' v-else>{{header.key}}</el-tag>
             <div>
               <el-input
                 size="small"

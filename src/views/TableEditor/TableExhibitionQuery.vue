@@ -2,7 +2,7 @@
   <div class="table-query">
     <div>
       查询项
-      <span v-for="header in headers" :key='header.value'>
+      <span v-for="header in headers" :key='header.key'>
       <el-tag v-if="header.query" type='primary' style="margin-left:10px" >{{header.label}}</el-tag>
       </span>
     </div>

@@ -13,7 +13,7 @@
         "status": "ON_SALE",
         "allow_associate": false,
         "unlimited_stock": true,
-        "introduction": "\u003cp\u003e商品说明",
+        "introduction": "商品说明",
         "created_at": 1557826153,
         "shipping_type": "address"
       },
@@ -27,7 +27,7 @@
         "status": "ON_SALE",
         "allow_associate": false,
         "unlimited_stock": true,
-        "introduction": "\u003cp\u003e商品说明",
+        "introduction": "商品说明",
         "created_at": 1557826153,
         "shipping_type": "address"
       },
@@ -41,7 +41,7 @@
         "status": "ON_SALE",
         "allow_associate": false,
         "unlimited_stock": true,
-        "introduction": "\u003cp\u003e商品说明",
+        "introduction": "商品说明",
         "created_at": 1557826153,
         "shipping_type": "address"
       }
