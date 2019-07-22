@@ -25,7 +25,7 @@ const genTabeleColumSinppetTemplate = (key, label) => {
   }
   return `<el-table-column label='${label}'  align='center'>
           <template slot-scope={row}>
-            {{ ${val} }}
+            {{ row.${val} }}
           </template>
         </el-table-column>`;
 };
