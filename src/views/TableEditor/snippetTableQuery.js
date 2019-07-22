@@ -1,22 +1,23 @@
-export const genTableQuery = (headers,changeCallback) => {
-  headers
+export const genTableQuery = (headers, changeCallback) => {
+  return headers
     .filter(header => {
       return header.query;
     })
     .map(header => {
       if (typeof header.value === "number") {
-        genTableInputNumberQuery(header.key, changeCallback);
+        return genTableInputNumberQuery(header.key, changeCallback);
       }
       if (typeof header.value === "string") {
-        genTableInputTrimQuery(header.key, changeCallback);
+        return genTableInputTrimQuery(header.key, changeCallback);
       }
       if (typeof header.value === "boolean") {
-        genTableCheckBoxQuery(header.key, changeCallback);
+        return genTableCheckBoxQuery(header.key, changeCallback);
       }
       if (header.key === "start_time" || header.key === "end_time") {
-        genTableRangeTimeQuery(changeCallback);
+        return genTableRangeTimeQuery(changeCallback);
       }
-    });
+    })
+    .join("\n      ");
 };
 
 const genTableInputTrimQuery = (query, changeCallback) => {

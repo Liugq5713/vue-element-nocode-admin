@@ -1,11 +1,12 @@
 export const genTableColumnSnippet = headers => {
-  return headers.filter(header=>{
-    return header.show
-  })
+  return headers
+    .filter(header => {
+      return header.show;
+    })
     .map(header => {
-      if(timeFieldNeedHandle[header.key]||header.opt==='template'){
-        return genTabeleColumSinppetTemplate(header.key,header.label);
-      }else{
+      if (timeFieldNeedHandle[header.key] || header.opt === "template") {
+        return genTabeleColumSinppetTemplate(header.key, header.label);
+      } else {
         return genTableColumSnippetSimple(header.key, header.label);
       }
     })
@@ -17,11 +18,11 @@ const genTableColumSnippetSimple = (key, label) => {
 };
 
 const genTabeleColumSinppetTemplate = (key, label) => {
-  let val=''
-  if(timeFieldNeedHandle[key]){
-    val = `parseTime(row.${key})`
-  }else{
-    val = `${key}`
+  let val = "";
+  if (timeFieldNeedHandle[key]) {
+    val = `parseTime(row.${key})`;
+  } else {
+    val = `${key}`;
   }
   return `<el-table-column label='${label}'  align='center'>
           <template slot-scope={row}>
@@ -30,12 +31,11 @@ const genTabeleColumSinppetTemplate = (key, label) => {
         </el-table-column>`;
 };
 
-const timeFieldNeedHandle ={
-  created_at:true,
-  create_time:true,
-  updated_at:true,
-  update_time:true,
-  start_time:true,
-  end_time:true
-
-}
+const timeFieldNeedHandle = {
+  created_at: true,
+  create_time: true,
+  updated_at: true,
+  update_time: true,
+  start_time: true,
+  end_time: true
+};
