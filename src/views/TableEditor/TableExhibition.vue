@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-card class="box-card" style="margin-bottom:20px">
-      <TableExhibitionQuery :headers="headers"/>
+      <TableExhibitionQuery :headers="headers" />
     </el-card>
     <el-card class="box-card">
       <el-row :gutter="20">
@@ -40,7 +40,14 @@ export default {
         if (this.list) {
           this.headers = Object.keys(this.list[0]).map(item => {
             // opt 为需要对 字段的操作，''空就不操作，'time' 处理时间，'template' 将字段放在template 里面，方便后续操作
-            return { key: item, label: item,show:true,opt:'',query:false};
+            return {
+              value: this.list[0][item],
+              key: item,
+              label: item,
+              show: true,
+              opt: "",
+              query: false
+            };
           });
         }
       },

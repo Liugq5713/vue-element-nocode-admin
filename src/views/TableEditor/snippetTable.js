@@ -1,9 +1,12 @@
 import {genTableColumnSnippet} from './snippetTableColumn'
-export const genTableSnippet = (headers) => {
+import { genTableQuery }from './snippetTableQuery'
+
+export const genTableSnippet = (headers,changeCallback='getList') => {
   return `
   <template>
   <div class="app-container">
     <div style="margin-bottom: 20px">
+      ${genTableQuery(headers,changeCallback)}
       <el-button
         type="primary"
         style="margin-left: 10px"
