@@ -4,7 +4,10 @@ import store from "./store";
 import i18n from "./lang";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+
 import router from "./router";
+
+import '@/style/utils.css'
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, {
