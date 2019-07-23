@@ -5,11 +5,17 @@
       text-color="#fff"
       default-active="0"
       active-text-color="#ffd04b"
-      class="el-menu"
+      class="el-menu-vertical-demo el-menu"
       :collapse="isSidebarCollapse"
     >
-      <img v-if="isSidebarCollapse" width="100%" :src="LogoWithNoTitle" alt srcset />
-      <img v-if="!isSidebarCollapse" width="100%" :src="logo" alt srcset />
+    <!-- todo -->
+      <transition name='left'>
+        <img v-if="isSidebarCollapse" width="100%" :src="LogoWithNoTitle" alt srcset />
+      </transition>
+      <transition name='top'>
+        <img v-if="!isSidebarCollapse" width="100%" :src="logo" alt srcset />
+      </transition>
+
       <el-menu-item
         v-for="(menuItem,idx) in menuItems"
         :key="menuItem.path"
@@ -37,7 +43,8 @@ export default {
   data() {
     return {
       logo,
-      LogoWithNoTitle
+      LogoWithNoTitle,
+        isCollapse: true
     };
   },
   computed: {
@@ -57,6 +64,34 @@ export default {
   height: 100%;
   background: #545c64;
 }
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+}
+
+
 </style>
+
+<style>
+   /* .left-enter, .left-leave-to {
+      transform: translate3d(-100%, 0, 0)
+    }
+    .left-leave, .left-enter-to {
+      transform: translate3d(0, 0, 0)
+    }
+    .left-enter-active, .left-leave-active {
+      transition: all .2s
+    }
+    .top-enter, .top-leave-to {
+      transform: translate3d(0, -100%, 0)
+    }
+    .top-leave, .top-enter-to {
+      transform: translate3d(0, 0, 0)
+    }
+    .top-enter-active, .top-leave-active {
+      transition: all .2s
+    } */
+</style>
+
 
 
