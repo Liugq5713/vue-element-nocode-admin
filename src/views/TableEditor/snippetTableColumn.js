@@ -22,11 +22,11 @@ const genTabeleColumSinppetTemplate = (key, label) => {
   if (timeFieldNeedHandle[key]) {
     val = `parseTime(row.${key})`;
   } else {
-    val = `${key}`;
+    val = `row.${key}`;
   }
   return `<el-table-column label='${label}'  align='center'>
           <template slot-scope={row}>
-            {{ row.${val} }}
+            {{ ${val} }}
           </template>
         </el-table-column>`;
 };

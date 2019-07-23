@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div style="width:100%;">
-      <el-form :model="form" label-width="120px">
+      <el-form :model="form" label-width="140px">
         <draggable
           class="dragArea list-group"
           :options="{group: 'formItemsToDrop'}"
