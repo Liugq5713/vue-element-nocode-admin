@@ -4,13 +4,13 @@
       <div slot="header">
         <span>标签组</span>
       </div>
-        <template v-for="opt in opts">
-          <el-button
-            :type="opt.tagType"
-            :key="opt.value"
-            @click="tt"
-          >{{opt[0].category}}</el-button>
-        </template>
+      <template v-for="opt in opts">
+        <el-button
+          :type="opt.tagType"
+          :key="opt.value"
+          @click="addOptionsToCopy(opt)"
+        >{{opt[0].category}}</el-button>
+      </template>
     </el-card>
     <el-card class="box-card my-1">
       <div slot="header">
@@ -21,7 +21,7 @@
           size="mini"
           :type="opt.tagType"
           :key="opt.value"
-          @click="tt"
+          @click="addOptionsToCopy(opt)"
         >{{opt.label}} [ {{opt.value}} ]</el-button>
       </template>
     </el-card>
@@ -31,6 +31,11 @@
 <script>
 import * as opts from "./opts.js";
 export default {
+  props: {
+    optionsToCopy: {
+      type: null
+    }
+  },
   data() {
     return {
       opts
@@ -46,8 +51,8 @@ export default {
     }
   },
   methods: {
-    tt() {
-      console.log(this.opts);
+    addOptionsToCopy(opt) {
+      this.$emit("update:optionsToCopy", opt);
     }
   }
 };
