@@ -3,18 +3,18 @@
     <el-menu
       background-color="#545c64"
       text-color="#fff"
-      default-active="0"
+      :default-active="$route.path"
       active-text-color="#ffd04b"
       class="el-menu-vertical-demo el-menu"
       :collapse="isSidebarCollapse"
     >
-      <img  style="width:63px;height:63px" :src="isSidebarCollapse?LogoWithNoTitle:logo" alt srcset />
+      <img width="100%" :src="isSidebarCollapse?LogoWithNoTitle:logo" alt srcset />
 
       <el-menu-item
-        v-for="(menuItem,idx) in menuItems"
+        v-for="menuItem in menuItems"
         :key="menuItem.path"
         @click="skipCurrent(menuItem.path)"
-        :index="String(idx)"
+        :index="String(menuItem.path)"
       >
         <span slot="title">{{menuItem.meta.title}}</span>
         <i :class="menuItem.meta.icon"></i>
