@@ -8,13 +8,7 @@
       class="el-menu-vertical-demo el-menu"
       :collapse="isSidebarCollapse"
     >
-    <!-- todo -->
-      <transition name='left'>
-        <img v-if="isSidebarCollapse" width="100%" :src="LogoWithNoTitle" alt srcset />
-      </transition>
-      <transition name='top'>
-        <img v-if="!isSidebarCollapse" width="100%" :src="logo" alt srcset />
-      </transition>
+      <img  style="width:63px;height:63px" :src="isSidebarCollapse?LogoWithNoTitle:logo" alt srcset />
 
       <el-menu-item
         v-for="(menuItem,idx) in menuItems"

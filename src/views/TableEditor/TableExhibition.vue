@@ -31,6 +31,10 @@ export default {
     tableData: {
       type: Object,
       required: true
+    },
+    getTableAPI:{
+      type:String,
+      required:true
     }
   },
   watch: {
@@ -55,7 +59,7 @@ export default {
     },
     headers: {
       handler(val) {
-        this.code = genTableSnippet(val);
+        this.code = genTableSnippet(val,this.getTableAPI);
         this.$store.commit("SET_SRC_TABLE_CODE", this.code);
         window.localStorage.removeItem("vue-element-table-gen-code");
         window.localStorage.setItem("vue-element-table-gen-code", this.code);

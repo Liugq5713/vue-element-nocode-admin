@@ -3,11 +3,11 @@
     <el-row :gutter="20">
       <el-col :span="5">
         <el-card class="box-card">
-          <TableEditor @change="setTableData" />
+          <TableEditor :getTableAPI.sync='getTableAPI' @change="setTableData" />
         </el-card>
       </el-col>
       <el-col :span="19">
-        <TableExhibition :tableData="tableData" />
+        <TableExhibition :getTableAPI='getTableAPI' :tableData="tableData" />
       </el-col>
     </el-row>
   </div>
@@ -23,7 +23,8 @@ export default {
   },
   data() {
     return {
-      tableData: {}
+      tableData: {},
+      getTableAPI:'',
     };
   },
   methods: {

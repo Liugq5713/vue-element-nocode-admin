@@ -11,14 +11,14 @@ export const genTableSnippet = (headers,changeCallback='getList') => {
         type="primary"
         style="margin-left: 10px"
         icon="el-icon-search"
-        @click="getListByQuery"
+        @click="${changeCallback}ByQuery"
       >搜索</el-button>
     </div>
     <el-table :data="lists" border style="width: 100%">
       ${genTableColumnSnippet(headers)}
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="editlist(scope.row)">编辑</el-button>
+          <el-button size="mini" type="primary" @click="editList(scope.row)">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -26,13 +26,13 @@ export const genTableSnippet = (headers,changeCallback='getList') => {
       :total="total"
       :page.sync="query.cursor"
       :limit.sync="query.limit"
-      @pagination="getList"
+      @pagination="${changeCallback}"
     />
   </div>
 </template>
 
 <script>
-import { getList } from "./api.js";
+import { ${changeCallback} } from "./api.js";
 
 export default {
   data() {
@@ -46,19 +46,19 @@ export default {
     };
   },
   created() {
-    this.getList();
+    this.${changeCallback}();
   },
   methods: {
-    async getList() {
+    async ${changeCallback}() {
       const res = await getList(this.query);
       this.lists = res.data.items;
       this.total = res.data.total_count;
     },
-    getListByQuery() {
+    ${changeCallback}ByQuery() {
       this.query.cursor = 1;
       this.getList();
     },
-    editlist(list) {
+    editList(list) {
       console.log("list", list);
     }
   }
