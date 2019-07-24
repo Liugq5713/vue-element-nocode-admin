@@ -17,7 +17,7 @@
             <el-button v-if="header.show" type="info" icon="el-icon-close" size="small" circle @click='hide(header)'></el-button>
             <el-button  type="success" v-else icon="el-icon-check" @click="show(header)"  size="small" circle></el-button>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" :content="`该字段${header.opt===''? '未':''}置于template标签内`" placement="top-start">
+          <el-tooltip class="item" effect="dark" :content="`该字段${header.opt===''? '未':''}置于template标签内，置于template方便自定义`" placement="top-start">
             <el-button size="small" type="primary" v-if="header.opt===''" icon="el-icon-coordinate" @click="opt(header,'template')" circle></el-button>
             <el-button size="small" type="info" v-else icon="el-icon-coordinate" @click="opt(header,'')" circle></el-button>
           </el-tooltip>

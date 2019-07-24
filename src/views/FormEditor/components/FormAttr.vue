@@ -17,11 +17,11 @@
         <el-form-item label="更新方法">
           <el-input v-model.trim="form.method" style="width:150px" placeholder="更新方法"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-checkbox style="width:150px" v-model="form.validated" label="true">需要验证</el-checkbox>
-        </el-form-item>
         <el-form-item label="表单Ref">
           <el-input v-model.trim="form.ref" style="width:150px;" placeholder="表单的Ref值"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-checkbox  v-model="form.validated" label="true">需要验证</el-checkbox>
         </el-form-item>
         <el-form-item>
           <el-checkbox style="width:150px;margin:0 1px" v-model="form.confirmed" label="true">双重确认</el-checkbox>
