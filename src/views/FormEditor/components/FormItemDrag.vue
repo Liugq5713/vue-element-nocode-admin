@@ -1,8 +1,5 @@
 <template>
   <el-card class="box-card" style="margin-top:10px">
-    <div slot="header" class="clearfix">
-      <span>{{ $t("form.itemsAsset") }}</span>
-    </div>
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item
         v-for="(form,idx) in forms"

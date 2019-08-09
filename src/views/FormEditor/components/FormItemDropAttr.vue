@@ -1,10 +1,7 @@
 <template>
   <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span>{{$t('form.itemAttribute')}}</span>
-    </div>
-    <el-form :model="formItemAttribute">
-      <el-form-item>
+    <el-form :model="formItemAttribute" label-width='80px'>
+      <el-form-item label='表单元素'>
         <el-select
           v-model="formItemElement.type"
           placeholder="请选择表单元素类型"
@@ -19,21 +16,21 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item>
+      <el-form-item label='label'>
         <el-input
           v-model.trim="formItemAttribute.label"
           placeholder="请输入label"
           @change="setFormItemAttribute"
         ></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item label='value'>
         <el-input
           v-model.trim="formItemAttribute.value"
           placeholder="请输入value"
           @change="setFormItemAttribute"
         ></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item label='数据验证'>
         <el-checkbox
           v-model="formItemAttribute.required"
           label="true"
@@ -44,6 +41,7 @@
           style="width:150px"
           clearable
           placeholder="数据类型"
+          size='small'
           @change="setFormItemAttribute"
         >
           <el-option

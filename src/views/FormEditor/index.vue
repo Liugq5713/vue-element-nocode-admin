@@ -5,15 +5,25 @@
       <JsonForm />
     </el-aside>
     <el-main>
-      <FormAttr style="margin-bottom:10px" />
+     
       <el-row :gutter="20">
-        <el-col :span="19">
+        <el-col :span="14">
           <FormItemDrop />
         </el-col>
-        <el-col :span="5">
-          <FormItemDropAttr />
+        <el-col :span="10">
+          <el-card class='box-card'>
+            <el-tabs v-model="activeName" type="card">
+              <el-tab-pane label="表单项属性" name="item">
+             <FormItemDropAttr />
+            </el-tab-pane>
+            <el-tab-pane label="表单属性" name="form">
+              <FormAttr style="margin-bottom:10px" />
+            </el-tab-pane>
+          </el-tabs>
+          </el-card>
         </el-col>
       </el-row>
+        
     </el-main>
     <FormCode :form="formAttribute" :formItems="formItems" />
   </el-container>
@@ -37,7 +47,11 @@ export default {
     FormItemDrop,
     FormItemDropAttr
   },
-
+data(){
+  return {
+activeName:"item"
+  }
+},
   computed: {
     ...mapGetters(["formAttribute", "formItems", "formItem", "FormItemDropAttribute"])
   }

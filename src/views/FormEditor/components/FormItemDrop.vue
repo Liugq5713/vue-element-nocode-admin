@@ -1,5 +1,13 @@
 <template>
   <el-card class="box-card">
+     <div slot="header" class="clearfix">
+      <el-button style="float: right; padding: 3px 10px" type="text" @click="skipToEditor">在线编辑</el-button>
+      <el-button
+        style="float: right; padding: 3px 0"
+        type="text"
+        @click="handleClipboard(srcFormCode,$event)"
+      >复制代码</el-button>
+    </div>
     <div style="width:100%;">
       <el-form :model="form" label-width="140px">
         <draggable
@@ -12,7 +20,7 @@
           <div class="list-group-item" v-for="(formItem,idx) in formItemsToDrop" :key="idx">
             <div @click="genFormItemByClick(idx,formItem)" :class="{selected:idx===clickedIndex}">
               <el-form-item :label="formItem&&formItem.props.label||'表单label'">
-                <component v-if="formItem" v-bind:is="formItem.type"></component>
+                <component style="width:90%" v-if="formItem" v-bind:is="formItem.type"></component>
               </el-form-item>
             </div>
           </div>
@@ -25,6 +33,7 @@
 <script>
 import draggable from "vuedraggable";
 import { mapGetters } from "vuex";
+import { handleClipboard } from "@/utils";
 
 export default {
   components: {
@@ -43,7 +52,7 @@ export default {
   },
   //clickedIndex
   computed: {
-    ...mapGetters(["clickedIndex", "formItems"])
+    ...mapGetters(["clickedIndex", "formItems", "srcFormCode"])
   },
   methods: {
     genFormItem(val) {
@@ -60,6 +69,18 @@ export default {
         idx,
         element
       });
+    },
+    handleClipboard(text, evnet) {
+      handleClipboard(text, evnet)
+        .then(() => {
+          this.$message.success("已经复制到剪贴板");
+        })
+        .catch(() => {
+          this.$message.error("未能复制到剪贴板");
+        });
+    },
+    skipToEditor() {
+      this.$router.push("code-editor?code=form");
     }
   }
 };
@@ -89,8 +110,7 @@ export default {
 }
 
 .selected {
-  background-color: rgb(253, 247, 247);
-  border: #f8d2d2 solid 1px;
+  border: 1px dashed #409eff;
   border-radius: 3%;
 }
 </style>
