@@ -22,6 +22,7 @@
               <el-form-item :label="formItem&&formItem.props.label||'表单label'">
                 <component style="width:90%" v-if="formItem" v-bind:is="formItem.type"></component>
               </el-form-item>
+              <el-button @click="deleteFormItemByClick(idx)" v-if="idx===clickedIndex" type="danger" size="mini"  icon="el-icon-delete" style="position:absolute;top:0;right:0" ></el-button>
             </div>
           </div>
         </draggable>
@@ -70,6 +71,9 @@ export default {
         element
       });
     },
+    deleteFormItemByClick(clickedIndex) {
+      this.$store.commit("DELETE_FORM_ITEM", clickedIndex);
+    },
     handleClipboard(text, evnet) {
       handleClipboard(text, evnet)
         .then(() => {
@@ -112,5 +116,6 @@ export default {
 .selected {
   border: 1px dashed #409eff;
   border-radius: 3%;
+  position: relative;
 }
 </style>
