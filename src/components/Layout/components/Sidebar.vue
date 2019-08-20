@@ -1,22 +1,31 @@
 <template>
   <div class="sidebar-wrapper">
-    <img style="float:left" height="60px" :src="logo" alt srcset />
+    <a
+      href="https://github.com/Liugq5713/vue-element-nocode-admin"
+      target="_blank"
+    >
+      <img
+        style="float:left;margin-left:10px;"
+        height="60px"
+        :src="logo"
+        alt
+        srcset
+      >
+    </a>
     <el-menu
-    style="float:right"
+      style="float:right"
       :default-active="$route.path"
       active-text-color="#2052af"
       mode="horizontal"
     >
-
-
       <el-menu-item
         v-for="menuItem in menuItems"
         :key="menuItem.path"
-        @click="skipCurrent(menuItem.path)"
         :index="String(menuItem.path)"
+        @click="skipCurrent(menuItem.path)"
       >
-        <span slot="title">{{menuItem.meta.title}}</span>
-        <i :class="menuItem.meta.icon"></i>
+        <span slot="title">{{ menuItem.meta.title }}</span>
+        <i :class="menuItem.meta.icon" />
       </el-menu-item>
     </el-menu>
   </div>
