@@ -1,15 +1,25 @@
 <template>
-  <el-card class="box-card" style="margin-top:10px">
-      <span
-        v-for="(form,idx) in forms"
-        :key="idx"
-      >
-      <template  v-for="(element,idx) in form.specs">
-            <el-button round :key="idx" @click="addFormItem(element)" size="small" style="margin:10px;padding: 10px" plain>
-                {{element.title}}
-            </el-button>
+  <el-card
+    class="box-card"
+    style="margin-top:10px"
+  >
+    <span
+      v-for="(form,idx) in forms"
+      :key="idx"
+    >
+      <template v-for="(element,index) in form.specs">
+        <el-button
+          :key="index"
+          round
+          size="small"
+          style="margin:10px;padding: 10px"
+          plain
+          @click="addFormItem(element)"
+        >
+          {{ element.title }}
+        </el-button>
       </template>
-      </span>
+    </span>
   </el-card>
 </template>
 

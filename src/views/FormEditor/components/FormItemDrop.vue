@@ -78,14 +78,14 @@ export default {
       formItemsToDrop: []
     };
   },
+    //clickedIndex
+  computed: {
+    ...mapGetters(["clickedIndex", "formItems", "srcFormCode"])
+  },
   watch: {
     formItems(val) {
       this.formItemsToDrop = JSON.parse(JSON.stringify(val));
     }
-  },
-  //clickedIndex
-  computed: {
-    ...mapGetters(["clickedIndex", "formItems", "srcFormCode"])
   },
   methods: {
     genFormItem(val) {

@@ -1,23 +1,24 @@
 <template>
   <div>
-    <div id="monaco" style="height:100vh"></div>
+    <div
+      id="monaco"
+      style="height:100vh"
+    />
   </div>
 </template>
 
 <script>
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 export default {
-  mounted() {
-    monaco.editor.setTheme("vs-dark");
-    this.monacoInstance = monaco.editor.create(document.getElementById("monaco"), {
-      value: this.code,
-      language: "javascript"
-    });
-  },
   data() {
     return {
       monacoInstance: ""
     };
+  },
+  computed: {
+    codeType() {
+      return this.$route.query.code;
+    }
   },
   watch: {
     codeType: {
@@ -37,10 +38,15 @@ export default {
       immediate: true
     }
   },
-  computed: {
-    codeType() {
-      return this.$route.query.code;
-    }
+  mounted() {
+    monaco.editor.setTheme("vs-dark");
+    this.monacoInstance = monaco.editor.create(document.getElementById("monaco"), {
+      value: this.code,
+      language: "javascript"
+    });
+  },
+  beforeDestroy() {
+    this.monacoInstance.dispose();
   },
   methods: {
     getLocalTableCode() {
@@ -49,9 +55,6 @@ export default {
     getLocalFormCode() {
       this.code = window.localStorage.getItem("vue-element-form-gen-code");
     }
-  },
-  beforeDestroy() {
-    this.monacoInstance.dispose();
   }
 };
 </script>

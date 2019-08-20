@@ -1,12 +1,12 @@
 <template>
-    <el-container>
-      <el-header style="padding:0">
-        <Sidebar :isSidebarCollapse="isSidebarCollapse" />
-      </el-header>
-      <el-main>
-        <AppMain />
-      </el-main>
-    </el-container>
+  <el-container>
+    <el-header style="padding:0">
+      <Sidebar :is-sidebar-collapse="isSidebarCollapse" />
+    </el-header>
+    <el-main>
+      <AppMain />
+    </el-main>
+  </el-container>
 </template>
 
 <script>
