@@ -5,7 +5,7 @@
       <JsonForm />
     </el-aside>
     <el-main>
-     
+
       <el-row :gutter="20">
         <el-col :span="14">
           <FormItemDrop />
@@ -23,7 +23,7 @@
           </el-card>
         </el-col>
       </el-row>
-        
+
     </el-main>
     <FormCode :form="formAttribute" :formItems="formItems" />
   </el-container>
@@ -49,11 +49,11 @@ export default {
   },
 data(){
   return {
-activeName:"item"
+    activeName:"item"
   }
 },
   computed: {
-    ...mapGetters(["formAttribute", "formItems", "formItem", "FormItemDropAttribute"])
+    ...mapGetters(["formAttribute", "formItems", "formItem"])
   }
 };
 </script>

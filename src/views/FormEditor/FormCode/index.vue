@@ -25,7 +25,7 @@ export default {
     ...mapGetters(["formAttribute", "formItems"])
   },
   watch: {
-    form: {
+    formAttribute: {
       handler(val) {
         this.genVueFile(val, this.formItems);
       },

@@ -1,33 +1,20 @@
 <template>
   <el-card class="box-card" style="margin-top:10px">
-    <el-collapse v-model="activeName" accordion>
-      <el-collapse-item
+      <span
         v-for="(form,idx) in forms"
-        :title="form.title"
         :key="idx"
-        :name="form.type"
       >
-        <draggable
-          class="dragArea list-group"
-          :list="form.specs"
-          :group="{ name: 'formItemsToDrop', pull: 'clone', put: false }"
-          :clone="cloneFormItem"
-        >
-          <div class="list-group-item" v-for="(element,idx) in form.specs" :key="idx">
-            <el-button size="small" style="margin:10px;padding: 10px" plain>
-              <component v-bind:is="element.type" size="mini"></component>
+      <template  v-for="(element,idx) in form.specs">
+            <el-button round :key="idx" @click="addFormItem(element)" size="small" style="margin:10px;padding: 10px" plain>
+                {{element.title}}
             </el-button>
-          </div>
-        </draggable>
-      </el-collapse-item>
-    </el-collapse>
+      </template>
+      </span>
   </el-card>
 </template>
 
 
 <script>
-import draggable from "vuedraggable";
-
 const defaultProps = {
   label: "",
   value: "",
@@ -36,7 +23,6 @@ const defaultProps = {
 };
 export default {
   components: {
-    draggable
   },
   data() {
     return {
@@ -47,12 +33,12 @@ export default {
           specs: [
             {
               type: "EInputTrim",
-              title: "Input Trim输入框",
+              title: "Input Trim",
               props: { ...defaultProps }
             },
             {
               type: "EInputNum",
-              title: "Input Number输入框",
+              title: "Input Number",
               props: { ...defaultProps }
             }
           ]
@@ -63,7 +49,7 @@ export default {
           specs: [
             {
               type: "ERadio",
-              title: "基础用法",
+              title: "Radio",
               props: { ...defaultProps }
             }
           ]
@@ -74,7 +60,7 @@ export default {
           specs: [
             {
               type: "ECheckbox",
-              title: "Checkbox 单选框组",
+              title: "Checkbox ",
               props: { ...defaultProps }
             }
           ]
@@ -85,7 +71,7 @@ export default {
           specs: [
             {
               type: "ESelect",
-              title: "Select 单选框组",
+              title: "Select",
               props: { ...defaultProps }
             }
           ]
@@ -96,7 +82,7 @@ export default {
           specs: [
             {
               type: "ESwitch",
-              title: "Switch 单选框组",
+              title: "Switch ",
               props: { ...defaultProps }
             }
           ]
@@ -106,8 +92,8 @@ export default {
     };
   },
   methods: {
-    cloneFormItem(val) {
-      return { ...val };
+    addFormItem(val) {
+      this.$store.commit("ADD_FORMITEM_OF_ITEMS", val);
     }
   }
 };

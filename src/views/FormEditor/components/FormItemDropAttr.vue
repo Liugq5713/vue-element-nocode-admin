@@ -97,7 +97,7 @@ export default {
   methods: {
     setFormItemAttribute() {
       if (this.opt === "add" || this.opt === "click") {
-        this.$store.commit("SET_FORMITEM_OF_ITEMS", {
+        this.$store.commit("UPDATE_FORMITEM_OF_ITEMS", {
           idx: this.idx,
           formItem: {
             ...this.formItemElement,

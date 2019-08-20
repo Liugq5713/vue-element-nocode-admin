@@ -3,7 +3,7 @@ const form = {
     clickedIndex: -1,
     formAttribute: {},
     formItems: [],
-    formItemToHandle: [],
+    formItemToHandle: {},
     formItem: {},
     formItemAttribute: {},
     srcCode: ""
@@ -13,7 +13,7 @@ const form = {
       state.formAttribute = { ...formAttribute };
     },
     SET_FORMITEMS(state, formItems) {
-      state.formItems = JSON.parse(JSON.stringify(formItems));
+      state.formItems = formItems;
     },
     SET_CLICKED_INDEX(state, clickedIndex) {
       state.clickedIndex = clickedIndex;
@@ -21,7 +21,16 @@ const form = {
     SET_FORMITEM_HANDLE(state, formItemToHandle) {
       state.formItemToHandle = { ...formItemToHandle };
     },
-    SET_FORMITEM_OF_ITEMS(state, newFormItem) {
+    ADD_FORMITEM_OF_ITEMS(state, newFormItem) {
+      state.formItems.push(newFormItem);
+      state.formItemToHandle = {
+        type: "click",
+        idx: state.formItems.length - 1,
+        element: newFormItem
+      };
+      state.clickedIndex = state.formItems.length - 1;
+    },
+    UPDATE_FORMITEM_OF_ITEMS(state, newFormItem) {
       const { idx, formItem } = newFormItem;
       state.formItems.splice(idx, 1, formItem);
     },
