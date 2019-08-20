@@ -1,28 +1,60 @@
 <template>
   <el-card class="box-card">
-     <div slot="header" class="clearfix">
-      <el-button style="float: right; padding: 3px 10px" type="text" @click="skipToEditor">在线编辑</el-button>
+    <div
+      slot="header"
+      class="clearfix"
+    >
+      <el-button
+        style="float: right; padding: 3px 10px"
+        type="text"
+        @click="skipToEditor"
+      >
+        在线编辑
+      </el-button>
       <el-button
         style="float: right; padding: 3px 0"
         type="text"
         @click="handleClipboard(srcFormCode,$event)"
-      >复制代码</el-button>
+      >
+        复制代码
+      </el-button>
     </div>
     <div style="width:100%;">
-      <el-form :model="form" label-width="140px">
+      <el-form
+        :model="form"
+        label-width="140px"
+      >
         <draggable
           class="dragArea list-group"
           :options="{group: 'formItemsToDrop'}"
-          v-bind:class="{ bigDragArea: formItemsToDrop.length===0 }"
+          :class="{ bigDragArea: formItemsToDrop.length===0 }"
           :list="formItemsToDrop"
           @change="genFormItem"
         >
-          <div class="list-group-item" v-for="(formItem,idx) in formItemsToDrop" :key="idx">
-            <div @click="genFormItemByClick(idx,formItem)" :class="{selected:idx===clickedIndex}">
+          <div
+            v-for="(formItem,idx) in formItemsToDrop"
+            :key="idx"
+            class="list-group-item"
+          >
+            <div
+              :class="{selected:idx===clickedIndex}"
+              @click="genFormItemByClick(idx,formItem)"
+            >
               <el-form-item :label="formItem&&formItem.props.label||'表单label'">
-                <component style="width:90%" v-if="formItem" v-bind:is="formItem.type"></component>
+                <component
+                  :is="formItem.type"
+                  v-if="formItem"
+                  style="width:90%"
+                />
               </el-form-item>
-              <el-button @click="deleteFormItemByClick(idx)" v-if="idx===clickedIndex" type="danger" size="mini"  icon="el-icon-delete" style="position:absolute;top:0;right:0" ></el-button>
+              <el-button
+                v-if="idx===clickedIndex"
+                type="danger"
+                size="mini"
+                icon="el-icon-delete"
+                style="position:absolute;top:0;right:0"
+                @click="deleteFormItemByClick(idx)"
+              />
             </div>
           </div>
         </draggable>
@@ -97,7 +129,7 @@ export default {
 }
 
 .bigDragArea::after {
-  content: "请将表单元素拖拽此处";
+  content: "请点击表单元素";
   height: 200px;
   font-size: 30px;
   color: #858585;

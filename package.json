@@ -21,7 +21,14 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service serve"
+    "dev": "vue-cli-service serve",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -43,6 +50,8 @@
     "clipboard": "^2.0.4",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
     "vue-codemirror": "^4.0.6",
     "vue-template-compiler": "^2.5.21"
   },
