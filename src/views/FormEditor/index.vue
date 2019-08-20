@@ -1,13 +1,13 @@
 <template>
   <el-container>
     <el-aside width="300px">
-      <FormItemDrag />
+      <FormItemAsset />
       <JsonForm />
     </el-aside>
     <el-main>
       <el-row :gutter="20">
         <el-col :span="14">
-          <FormItemDrop />
+          <FormItems />
         </el-col>
         <el-col :span="10">
           <el-card class="box-card">
@@ -16,7 +16,7 @@
                 label="表单项属性"
                 name="item"
               >
-                <FormItemDropAttr />
+                <FormItemAttr />
               </el-tab-pane>
               <el-tab-pane
                 label="表单属性"
@@ -39,9 +39,9 @@
 <script>
 import { mapGetters } from "vuex";
 import FormAttr from "./components/FormAttr";
-import FormItemDropAttr from "./components/FormItemDropAttr";
-import FormItemDrag from "./components/FormItemDrag";
-import FormItemDrop from "./components/FormItemDrop";
+import FormItemAttr from "./components/FormItemAttr";
+import FormItemAsset from "./components/FormItemAsset";
+import FormItems from "./components/FormItems";
 import JsonForm from "./components/JsonForm";
 import FormCode from "./FormCode";
 
@@ -50,9 +50,9 @@ export default {
     FormAttr,
     FormCode,
     JsonForm,
-    FormItemDrag,
-    FormItemDrop,
-    FormItemDropAttr
+    FormItemAsset,
+    FormItems,
+    FormItemAttr
   },
 data(){
   return {
