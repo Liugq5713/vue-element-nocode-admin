@@ -51,8 +51,8 @@
                 v-if="idx===clickedIndex"
                 type="danger"
                 size="mini"
-                icon="el-icon-delete"
-                style="position:absolute;top:0;right:0"
+                icon="el-icon-minus"
+                style="position:absolute;top:10px;right:-10px"
                 @click="deleteFormItemByClick(idx)"
               />
             </div>
