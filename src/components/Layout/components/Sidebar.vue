@@ -1,14 +1,13 @@
 <template>
   <div class="sidebar-wrapper">
+    <img style="float:left" height="60px" :src="logo" alt srcset />
     <el-menu
-      background-color="#545c64"
-      text-color="#fff"
+    style="float:right"
       :default-active="$route.path"
-      active-text-color="#ffd04b"
-      class="el-menu-vertical-demo el-menu"
-      :collapse="isSidebarCollapse"
+      active-text-color="#2052af"
+      mode="horizontal"
     >
-      <img width="100%" :src="isSidebarCollapse?LogoWithNoTitle:logo" alt srcset />
+
 
       <el-menu-item
         v-for="menuItem in menuItems"
@@ -56,18 +55,13 @@ export default {
 <style scoped>
 .sidebar-wrapper {
   height: 100%;
-  background: #545c64;
+  background: #fff;
+  border-bottom: 1px solid #dcdfe6;
 }
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-}
-
-
 </style>
 
 <style>
-   /* .left-enter, .left-leave-to {
+/* .left-enter, .left-leave-to {
       transform: translate3d(-100%, 0, 0)
     }
     .left-leave, .left-enter-to {
