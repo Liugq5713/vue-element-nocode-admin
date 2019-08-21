@@ -51,20 +51,20 @@ export default new Router({
         }
       ]
     },
-    {
-      path: "/option-editor",
-      component: Layout,
-      meta: {
-        title: "标签编辑",
-        icon: "el-icon-s-flag"
-      },
-      children: [
-        {
-          path: "",
-          component: () => import("./views/OptionEditor/index")
-        }
-      ]
-    },
+    // {
+    //   path: "/option-editor",
+    //   component: Layout,
+    //   meta: {
+    //     title: "标签编辑",
+    //     icon: "el-icon-s-flag"
+    //   },
+    //   children: [
+    //     {
+    //       path: "",
+    //       component: () => import("./views/OptionEditor/index")
+    //     }
+    //   ]
+    // },
     {
       path: "/code-editor",
       component: Layout,
