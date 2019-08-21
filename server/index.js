@@ -8,10 +8,24 @@ const app = new Koa();
 app.use(bodyParser());
 const router = new Router();
 
+let pwd = path.resolve("./");
+
 router.get("/api/pwd", ctx => {
   ctx.body = {
     data: {
-      path: path.resolve("./")
+      pwd
+    }
+  };
+});
+
+router.get("/api/dirs", ctx => {
+  console.log("TCL: ctx.query.pwd", ctx.query.pwd);
+  const files = fs.readdirSync(ctx.query.pwd).filter(file => {
+    return fs.statSync(`${ctx.query.pwd}/${file}`).isDirectory() && !file.includes(".") && file !== "node_modules";
+  });
+  ctx.body = {
+    data: {
+      files: files
     }
   };
 });
