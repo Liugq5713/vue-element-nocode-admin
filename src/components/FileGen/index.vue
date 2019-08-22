@@ -28,7 +28,17 @@ export default {
   },
   methods:{
     genLocalFile(){
-console.log("TCL: genLocalFile -> this.srcCode", this.srcCode)
+      fetch('/api/genlocalfile',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({code:this.srcCode})
+        }).then(res=>res.json()).then(res=>{
+        if(res.status==='success'){
+          this.$message.success( '生成成功')
+        }
+      })
     }
   }
 }

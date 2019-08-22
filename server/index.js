@@ -20,6 +20,7 @@ router.get("/api/pwd", ctx => {
 
 router.get("/api/dirs", ctx => {
   console.log("TCL: ctx.query.pwd", ctx.query.pwd);
+  pwd = ctx.query.pwd;
   const files = fs.readdirSync(ctx.query.pwd).filter(file => {
     return fs.statSync(`${ctx.query.pwd}/${file}`).isDirectory() && !file.includes(".") && file !== "node_modules";
   });
@@ -30,16 +31,10 @@ router.get("/api/dirs", ctx => {
   };
 });
 
-router.post("/api/post", (ctx, next) => {
-  console.log(ctx.request.body, next);
-  fs.writeFileSync("./test.js", JSON.stringify(ctx.request.body));
-
+router.post("/api/genlocalfile", ctx => {
+  fs.writeFileSync(`${pwd}/test.vue`, ctx.request.body.code);
   ctx.body = {
-    status: true,
-    data: {
-      name: "jk",
-      age: 25
-    }
+    status: "success"
   };
 });
 
