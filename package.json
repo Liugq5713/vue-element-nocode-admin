@@ -2,7 +2,7 @@
   "name": "ele-cli",
   "version": "0.1.0",
   "author": "sarva",
-  "description": "element-ui 的代码可视化编辑脚手架",
+  "description": "a cli help you gen element form page quick",
   "bin": {
     "ele": "./bin/index.js"
   },
