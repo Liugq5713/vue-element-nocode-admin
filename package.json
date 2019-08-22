@@ -1,8 +1,11 @@
 {
   "name": "vue-element-nocode-admin",
   "version": "0.1.0",
-  "private": true,
   "author": "sarva",
+  "description": "element-ui 的代码可视化编辑",
+  "bin": {
+    "ick": "./bin/toy.js"
+  },
   "keywords": [
     "vue",
     "element",
@@ -21,7 +24,9 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service serve"
+    "client": "vue-cli-service serve",
+    "dev": "concurrently 'npm run client' 'npm run server'",
+    "server": "nodemon ./app.js --prefix server"
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
@@ -30,6 +35,7 @@
     ]
   },
   "dependencies": {
+    "commander": "^3.0.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.10.1",
     "highlight.js": "^9.15.8",
@@ -47,10 +53,12 @@
     "babel-eslint": "^10.0.1",
     "babel-preset-vue-app": "^2.0.0",
     "clipboard": "^2.0.4",
+    "concurrently": "^4.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "husky": "^3.0.4",
     "lint-staged": "^9.2.3",
+    "nodemon": "^1.19.1",
     "vue-codemirror": "^4.0.6",
     "vue-template-compiler": "^2.5.21"
   },

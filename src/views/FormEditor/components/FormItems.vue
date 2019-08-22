@@ -18,6 +18,7 @@
       >
         复制代码
       </el-button>
+      <FileGen />
     </div>
     <div style="width:100%;">
       <el-form
@@ -65,12 +66,14 @@
 
 <script>
 import draggable from "vuedraggable";
+import FileGen from '@/components/FileGen'
 import { mapGetters } from "vuex";
 import { handleClipboard } from "@/utils";
 
 export default {
   components: {
-    draggable
+    draggable,
+    FileGen
   },
   data() {
     return {

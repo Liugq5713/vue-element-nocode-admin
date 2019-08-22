@@ -6,22 +6,27 @@
     <el-main>
       <AppMain />
     </el-main>
+    <Footer />
   </el-container>
 </template>
 
 <script>
 import AppMain from "./components/AppMain";
 import Sidebar from "./components/Sidebar";
+import Footer from './components/Footer'
 export default {
   components: {
     AppMain,
-    Sidebar
+    Sidebar,
+    Footer
   },
   data() {
     return {
       isSidebarCollapse: true
     };
-  }
+  },
+
+
 };
 </script>
 
