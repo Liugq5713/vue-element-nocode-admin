@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="footer">
-      <div @click="getDir">
+      <div @click="editDir">
         <i class="el-icon-folder" />
         {{ pwd }}
       </div>
@@ -80,17 +80,17 @@
     getDir(){
       const dir_path = '/'+this.file_path_segments.join('/')
       fetch(`/api/dirs?pwd=${dir_path}`).then(res=>res.json()).then(res=>{
-          this.dialogFormVisible=true
           this.fileTree=res.data.files
-          console.log("TCL: getDir -> res.data.files", res.data.files)
         })
     },
     addFilePathSegment(file_path){
-      console.log("TCL: addFilePathSegment -> file_path", file_path)
       this.file_path_segments.push(file_path)
     },
     skipFilePathSegment(file_path,idx){
       this.file_path_segments=this.file_path_segments.slice(0,idx+1)
+    },
+    editDir(){
+      this.dialogFormVisible=true
     },
     ensurePWD(){
       this.pwd= '/'+this.file_path_segments.join('/')
