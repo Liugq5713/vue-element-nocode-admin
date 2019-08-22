@@ -7,6 +7,6 @@ cache:
     - node_modules
 branches:
   only:
-    - master
+    - preview
 notifications:
   email: false
