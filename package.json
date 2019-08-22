@@ -1,10 +1,10 @@
 {
-  "name": "vue-element-nocode-admin",
+  "name": "ele-cli",
   "version": "0.1.0",
   "author": "sarva",
-  "description": "element-ui 的代码可视化编辑",
+  "description": "element-ui 的代码可视化编辑脚手架",
   "bin": {
-    "ick": "./bin/toy.js"
+    "ele": "./bin/index.js"
   },
   "keywords": [
     "vue",
