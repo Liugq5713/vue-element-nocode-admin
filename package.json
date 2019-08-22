@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "author": "sarva",
+  "bin": {
+    "ick": "./bin/toy.js"
+  },
   "keywords": [
     "vue",
     "element",
@@ -32,6 +35,7 @@
     ]
   },
   "dependencies": {
+    "commander": "^3.0.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.10.1",
     "highlight.js": "^9.15.8",
