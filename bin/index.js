@@ -7,7 +7,7 @@ program.version(pkg.version);
 
 program.command("ui").action(function() {
   process.chdir(path.join(__dirname, ".."));
-  exec("npm run dev", { stdio: "inherit" });
+  exec("npm run client", { stdio: "inherit" });
 });
 
 program.command("").action(function() {
