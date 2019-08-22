@@ -1,21 +1,17 @@
 #!/usr/bin/env node
 const exec = require("child_process").execSync;
-var program = require("commander");
+const program = require("commander");
+const pkg = require("../package.json");
+const path = require("path");
+program.version(pkg.version);
 
-program.version("0.1.0");
+program.command("ui").action(function() {
+  process.chdir(path.join(__dirname, ".."));
+  exec("npm run dev", { stdio: "inherit" });
+});
 
-program
-  .command("ui [env]")
-  .description("run setup commands for all envs")
-  .action(function(env, options) {
-    var mode = options.setup_mode || "normal";
-    env = env || "all";
-    exec("npm run dev", { stdio: "inherit" });
-    console.log("setup for %s env(s) with %s mode", env, mode);
-  });
-
-program.command("*").action(function(env) {
-  console.log('deploying "%s"', env);
+program.command("").action(function() {
+  console.log("i am run");
 });
 
 program.parse(process.argv);
