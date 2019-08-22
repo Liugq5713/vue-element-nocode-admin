@@ -2,14 +2,13 @@ const Koa = require("koa");
 const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
 const fs = require("fs");
-const path = require("path");
 
 const app = new Koa();
 app.use(bodyParser());
 const router = new Router();
 
-let pwd = path.resolve("./");
-
+let pwd = process.execPath;
+console.log("test", pwd);
 router.get("/api/pwd", ctx => {
   ctx.body = {
     data: {

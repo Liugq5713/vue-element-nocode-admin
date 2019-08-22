@@ -10,7 +10,7 @@ program.command("ui").action(function() {
   exec("npm run dev", { stdio: "inherit" });
 });
 
-program.command("").action(function() {
+program.command("*").action(function() {
   console.log("i am run");
 });
 
