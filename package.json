@@ -26,7 +26,7 @@
     "lint": "vue-cli-service lint",
     "client": "vue-cli-service serve",
     "dev": "concurrently 'npm run client' 'npm run server'",
-    "server": "nodemon ./app.js --prefix server"
+    "server": "node ./app.js --prefix server"
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
