@@ -1,8 +1,8 @@
 {
   "name": "vue-element-nocode-admin",
   "version": "0.1.0",
-  "private": true,
   "author": "sarva",
+  "description": "element-ui 的代码可视化编辑",
   "bin": {
     "ick": "./bin/toy.js"
   },
