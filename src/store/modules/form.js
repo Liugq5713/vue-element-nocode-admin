@@ -38,7 +38,6 @@ const form = {
       state.srcCode = srcCode;
     },
     DELETE_FORM_ITEM(state, clickedIndex) {
-      console.log("TCL: DELETE_FORM_ITEM -> clickedIndex", clickedIndex);
       state.formItems.splice(clickedIndex, 1);
     }
   }

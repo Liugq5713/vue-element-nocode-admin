@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to vue-element-nocode-admin 👋</h1>
+<h1 align="center">Welcome to ele-cli 👋</h1>
 <p align="center">
   <img  width="320" src="https://raw.githubusercontent.com/Liugq5713/vue-element-form-editor/master/src/assets/logo-with-title.png">
 </p>
@@ -17,6 +17,8 @@
 > 命令行工具还未完成，npm 上的包不能使用，我先把名字占了
 
 ## 🏠 [Homepage](https://so-easy.cc/vue-element-nocode-admin/)
+
+> 网页版本，在`preview`分支
 
 ## Install
 
