@@ -1,6 +1,6 @@
 {
   "name": "ele-cli",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "author": "sarva",
   "description": "a cli help you gen element form page quick",
   "bin": {
