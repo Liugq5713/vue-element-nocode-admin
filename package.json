@@ -25,7 +25,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "client": "vue-cli-service serve",
-    "dev": "concurrently 'npm run client' 'npm run server'",
+    "dist": "http-server dist -o",
+    "dev": "concurrently 'npm run dist' 'npm run server'",
     "server": "nodemon ./server/index.js --prefix server"
   },
   "lint-staged": {
@@ -35,19 +36,19 @@
     ]
   },
   "dependencies": {
+    "@vue/cli-service": "^3.6.0",
     "commander": "^3.0.0",
+    "concurrently": "^4.1.2",
     "core-js": "^2.6.5",
     "element-ui": "^2.10.1",
-    "highlight.js": "^9.15.8",
+    "http-server": "^0.11.1",
     "monaco-editor": "^0.17.1",
+    "nodemon": "^1.19.1",
     "vue": "^2.6.10",
     "vue-i18n": "^8.11.2",
     "vue-router": "^3.0.3",
     "vuedraggable": "^2.20.0",
-    "vuex": "^3.1.1",
-    "@vue/cli-service": "^3.6.0",
-    "concurrently": "^4.1.2",
-    "nodemon": "^1.19.1"
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
