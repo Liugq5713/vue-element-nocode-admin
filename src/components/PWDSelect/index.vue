@@ -61,7 +61,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["pwd", "pwd_segments"])
+    ...mapGetters(["pwd", "pwd_segments", "custom_pwds"])
   },
   watch: {
     pwd_segments: {
@@ -94,14 +94,7 @@ export default {
       this.$emit("done");
     },
     setCustomPWD() {
-      const custom_pwds_str = localStorage.getItem("ele-cli-custom_pwd_list");
-      if (custom_pwds_str) {
-        const custom_pwds = JSON.parse(custom_pwds_str);
-        custom_pwds.push(`/${this.pwd_segments.join("/")}`);
-        localStorage.setItem("ele-cli-custom_pwd_list", JSON.stringify(custom_pwds));
-      } else {
-        localStorage.setItem("ele-cli-custom_pwd_list", JSON.stringify([`/${this.pwd_segments.join("/")}`]));
-      }
+      this.$store.commit("ADD_CUSTOM_PWDS", `/${this.pwd_segments.join("/")}`);
       this.$message.success("收藏成功");
     }
   }

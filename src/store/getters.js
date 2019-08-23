@@ -10,6 +10,7 @@ const getters = {
   srcTableCode: state => state.table.srcCode,
 
   pwd: state => state.path.pwd,
-  pwd_segments: state => state.path.pwd_segments
+  pwd_segments: state => state.path.pwd_segments,
+  custom_pwds: state => state.path.custom_pwds
 };
 export default getters;

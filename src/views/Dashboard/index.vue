@@ -6,11 +6,25 @@
       >
         <span>常用生成文件路径</span>
       </div>
+      <div>
+        当前生成路径：{{ pwd }}
+      </div>
+      <div>收藏的路径</div>
       <div
         v-for="(pwd,idx) in custom_pwds"
         :key="idx"
       >
         {{ pwd }}
+        <el-button
+          size="mini"
+          icon="el-icon-check"
+          @click="setPWD(pwd)"
+        />
+        <el-button
+          size="mini"
+          icon="el-icon-close"
+          @click="remvoeCustomPWD(idx)"
+        />
       </div>
     </el-card>
   </div>
@@ -21,33 +35,25 @@ import { mapGetters } from "vuex";
 
 export default {
   data() {
-    return {
-      custom_pwds: []
-    };
+    return {};
   },
   computed: {
-    ...mapGetters(["pwd", "pwd_segments"])
+    ...mapGetters(["pwd", "pwd_segments", "custom_pwds"])
   },
   created() {
     const custom_pwds_str = localStorage.getItem("ele-cli-custom_pwd_list");
     if (custom_pwds_str) {
-      this.custom_pwds = JSON.parse(custom_pwds_str);
+      const custom_pwds = JSON.parse(custom_pwds_str);
+      this.$store.commit("SET_CUSTOM_PWDS", custom_pwds);
+      this.$store.commit("SET_PWD", custom_pwds[0]);
     }
   },
   methods: {
-    test() {
-      fetch("/api/post", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json"
-        },
-        redirect: "follow", // manual, *follow, error
-        referrer: "no-referrer", // no-referrer, *client
-        body: JSON.stringify({ test: "我喜欢你" }) // body data type must match "Content-Type" header
-      });
+    setPWD(pwd) {
+      this.$store.commit("SET_PWD", pwd);
+    },
+    remvoeCustomPWD(idx) {
+      this.custom_pwds.splice(idx, 1);
     }
   }
 };
