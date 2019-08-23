@@ -26,6 +26,7 @@
     "lint": "vue-cli-service lint",
     "client": "vue-cli-service serve",
     "dist": "http-server dist -o -P http://localhost:3000",
+    "serve": "concurrently 'npm run client' 'npm run server'",
     "dev": "concurrently 'npm run dist' 'npm run server'",
     "server": "node ./server.js"
   },

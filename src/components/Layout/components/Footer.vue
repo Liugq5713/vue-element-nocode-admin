@@ -12,6 +12,15 @@
     >
       <div style="margin-bottom:10px;">
         <el-tag
+          type="info"
+          size="small"
+          style="margin-right:3px"
+          effect="dark"
+          @click="setFilePathSegment('/')"
+        >
+          <i class="el-icon-monitor" />
+        </el-tag>
+        <el-tag
           v-for="(item,idx) in file_path_segments"
           :key="idx"
           type="info"
@@ -85,6 +94,9 @@
     },
     addFilePathSegment(file_path){
       this.file_path_segments.push(file_path)
+    },
+    setFilePathSegment(){
+      this.file_path_segments=[]
     },
     skipFilePathSegment(file_path,idx){
       this.file_path_segments=this.file_path_segments.slice(0,idx+1)
