@@ -7,7 +7,7 @@ const app = new Koa();
 app.use(bodyParser());
 const router = new Router();
 
-let pwd = process.execPath;
+let pwd = __dirname;
 console.log("test", pwd);
 router.get("/api/pwd", ctx => {
   ctx.body = {
