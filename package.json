@@ -53,11 +53,11 @@
     "@vue/cli-plugin-babel": "^3.6.0",
     "babel-eslint": "^10.0.1",
     "babel-preset-vue-app": "^2.0.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "@vue/cli-plugin-eslint": "^3.6.0",
+    "clipboard": "^2.0.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-eslint": "^3.6.0",
-    "clipboard": "^2.0.4",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "husky": "^3.0.4",
