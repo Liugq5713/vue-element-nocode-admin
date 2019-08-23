@@ -1,6 +1,6 @@
 <template>
   <el-button
-    style="float: right; padding: 3px 0"
+    v-bind="$attrs"
     type="text"
     @click="genLocalFile(srcFormCode,$event)"
   >

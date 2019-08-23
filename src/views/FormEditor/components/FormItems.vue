@@ -5,20 +5,13 @@
       class="clearfix"
     >
       <el-button
-        style="float: right; padding: 3px 10px"
-        type="text"
-        @click="skipToEditor"
-      >
-        在线编辑
-      </el-button>
-      <el-button
         style="float: right; padding: 3px 0"
         type="text"
         @click="handleClipboard(srcFormCode,$event)"
       >
         复制代码
       </el-button>
-      <FileGen />
+      <FileGen style="float: right; padding: 3px 0" />
     </div>
     <div style="width:100%;">
       <el-form
@@ -118,9 +111,6 @@ export default {
           this.$message.error("未能复制到剪贴板");
         });
     },
-    skipToEditor() {
-      this.$router.push("code-editor?code=form");
-    }
   }
 };
 </script>

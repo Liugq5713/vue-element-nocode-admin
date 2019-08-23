@@ -50,7 +50,7 @@ export default new Router({
           component: () => import("@/views/TableEditor/index.js")
         }
       ]
-    },
+    }
     // {
     //   path: "/option-editor",
     //   component: Layout,
@@ -65,19 +65,19 @@ export default new Router({
     //     }
     //   ]
     // },
-    {
-      path: "/code-editor",
-      component: Layout,
-      meta: {
-        title: "在线编辑器",
-        icon: "el-icon-s-platform"
-      },
-      children: [
-        {
-          path: "",
-          component: () => import("./views/Monaco/index")
-        }
-      ]
-    }
+    // {
+    //   path: "/code-editor",
+    //   component: Layout,
+    //   meta: {
+    //     title: "在线编辑器",
+    //     icon: "el-icon-s-platform"
+    //   },
+    //   children: [
+    //     {
+    //       path: "",
+    //       component: () => import("./views/Monaco/index")
+    //     }
+    //   ]
+    // }
   ]
 });

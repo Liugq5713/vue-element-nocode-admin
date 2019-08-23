@@ -15,9 +15,6 @@
 export default {
   computed: {
     key() {
-      if(this.$route.path==='/code-editor'){
-        return Math.random()
-      }
       return this.$route.path + JSON.stringify(this.$route.query);
     }
   }

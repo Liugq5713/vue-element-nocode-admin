@@ -3,11 +3,17 @@
     <el-row :gutter="20">
       <el-col :span="5">
         <el-card class="box-card">
-          <TableEditor :getTableAPI.sync='getTableAPI' @change="setTableData" />
+          <TableEditor
+            :get-table-a-p-i.sync="getTableAPI"
+            @change="setTableData"
+          />
         </el-card>
       </el-col>
       <el-col :span="19">
-        <TableExhibition :getTableAPI='getTableAPI' :tableData="tableData" />
+        <TableExhibition
+          :get-table-a-p-i="getTableAPI"
+          :table-data="tableData"
+        />
       </el-col>
     </el-row>
   </div>
