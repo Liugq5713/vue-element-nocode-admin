@@ -26,6 +26,10 @@ const path = {
     DELETE_CUSTOM_PWDS(state, idx) {
       state.custom_pwds.splice(idx, 1);
       localStorage.setItem("ele-cli-custom_pwd_list", JSON.stringify(state.custom_pwds));
+    },
+    EXCHANGE_CUSTOM_PWDS(state, idx) {
+      [state.custom_pwds[0], state.custom_pwds[idx]] = [state.custom_pwds[idx], state.custom_pwds[0]];
+      localStorage.setItem("ele-cli-custom_pwd_list", JSON.stringify(state.custom_pwds));
     }
   }
 };

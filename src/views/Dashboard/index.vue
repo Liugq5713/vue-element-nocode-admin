@@ -7,24 +7,25 @@
         <span>常用生成文件路径</span>
       </div>
       <div>
-        当前生成路径：{{ pwd }}
+        <h3>当前生成路径：</h3>{{ pwd }}
       </div>
-      <div>收藏的路径</div>
+      <h3>收藏的路径</h3>
       <div
         v-for="(pwd,idx) in custom_pwds"
         :key="idx"
+        style="margin:10px"
       >
-        {{ pwd }}
         <el-button
           size="mini"
           icon="el-icon-check"
-          @click="setPWD(pwd)"
+          @click="setPWD(pwd,idx)"
         />
         <el-button
           size="mini"
-          icon="el-icon-close"
+          icon="el-icon-delete"
           @click="remvoeCustomPWD(idx)"
         />
+        {{ pwd }}
       </div>
     </el-card>
   </div>
@@ -49,11 +50,12 @@ export default {
     }
   },
   methods: {
-    setPWD(pwd) {
+    setPWD(pwd, idx) {
       this.$store.commit("SET_PWD", pwd);
+      this.$store.commit("EXCHANGE_CUSTOM_PWDS", idx);
     },
     remvoeCustomPWD(idx) {
-      this.custom_pwds.splice(idx, 1);
+      this.$store.commit("DELETE_CUSTOM_PWDS", idx);
     }
   }
 };

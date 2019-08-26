@@ -28,11 +28,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["pwd", "pwd_segments"])
+    ...mapGetters(["pwd", "pwd_segments", "custom_pwds"])
   },
-
-  created() {
-    this.getPWD();
+  mounted() {
+    if (this.custom_pwds[0]) {
+      this.$store.commit("SET_PWD", this.custom_pwds[0]);
+    } else {
+      this.getPWD();
+    }
   },
   methods: {
     getPWD() {
