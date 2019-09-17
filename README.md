@@ -14,19 +14,21 @@
 
 > element-ui 的代码可视化编辑器，自动生成表单代码，列表代码。不是一个可视化解决方案，更像是生成模板的工具
 
-> 命令行工具还未完成，npm 上的包不能使用，我先把名字占了
-
-## 🏠 [Homepage](https://so-easy.cc/vue-element-nocode-admin/)
+## 🏠 [Homepage](https://liugq5713.github.io/vue-element-nocode-admin/)
 
 > 网页版本，在`preview`分支
 
 ## Install
 
 ```sh
-npm install
+npm install -g ele-cli
 ```
 
 ## How to Use
+
+> 服务端占用 3000 端口
+
+`ele ui`
 
 ### 表单
 
